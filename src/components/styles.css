@@ -1,0 +1,23 @@
+:root {
+  --font-1: "Montserrat";
+
+  /* COLORS */
+  --color-primary: #363E43;
+  --color-secondary: #83DDA9;
+  --color-dark: #1A1F26;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-1), sans-serif;
+}
+
+.BackgroundWave {
+  min-height: 350px;
+  background: url(../assets/images/Wave.svg);
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+}
