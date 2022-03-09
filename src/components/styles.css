@@ -5,6 +5,8 @@
   --color-primary: #363E43;
   --color-secondary: #83DDA9;
   --color-dark: #1A1F26;
+  --color-white: #FFFFFF;
+  --color-text: #CBCBCB;
 }
 
 * {
@@ -14,10 +16,34 @@
   font-family: var(--font-1), sans-serif;
 }
 
-.BackgroundWave {
-  min-height: 350px;
-  background: url(../assets/images/Wave.svg);
-  background-size: cover;
-  background-position: top;
-  background-repeat: no-repeat;
+html {
+  font-size: 16px;
+}
+
+html, body, #root, .App {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  box-shadow: inset 0px 86px 69px var(--color-dark);
+  background-color: var(--color-primary);
+}
+
+.d-flex {
+  display: flex;
+}
+
+.centered {
+  text-align: center;
+}
+
+.button-without-styles {
+  background: none;
+  height: fit-content;
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: none;
+  cursor: pointer;
 }

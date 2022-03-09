@@ -1,0 +1,134 @@
+.BackgroundWave {
+  min-height: 350px;
+  background: url(../assets/images/Wave.svg);
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  position: relative;
+  padding-top: 1rem;
+}
+
+.BackgroundWave-ButtonContainer {
+  padding-top: 1rem;
+}
+
+.Pig, .Logo, .BackgroundWave-Video {
+  margin: auto;
+  display: block;
+}
+
+.Logo {
+  padding: 0.5rem;
+}
+
+.Pig {
+  width: 100%;
+  max-width: 400px;
+}
+
+.SubTitle {
+  /* text-align: center; */
+  margin-top: 3.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.BackgroundWave-Container_text {
+  margin: 0 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.BackgroundWave-Container_text p {
+  font-size: 15px;
+  color: var(--color-text);
+}
+
+.BackgroundWave-Video_Container {
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.BackgroundWave-Video {
+  max-width: 520px;
+  min-height: 175px;
+  height: 100%;
+  width: 100%;
+  background-color: var(--color-dark);
+  border-radius: 5px
+}
+
+.PlayIcon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 100px;
+  color: var(--color-white);
+}
+
+.socialMediaText {
+  margin-top: 3rem;
+}
+
+strong.SubTitleSecondary {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-white);
+}
+
+p.SubTitleSecondaryContainer {
+  padding-bottom: 1rem;
+}
+
+p.SubTitleThered {
+  margin-bottom: 0.5rem;
+}
+
+p.SubTitleThered strong {
+  color: var(--color-white);
+  font-weight: 600;
+}
+
+p.SubTitleThered span {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.IconsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  max-width: 172px;
+  min-height: 150px;
+  margin: auto;
+}
+
+.facebookIcon, .tweeterIcon {
+  margin-top: 0.5rem;
+}
+
+.copyright {
+  padding: 5px 0;
+  position: relative;
+  height: 147px;
+}
+
+.bgWave {
+  border-radius: 150px 150px 25px 25px;
+  background-color: var(--color-primary);
+  width: 100%;
+  height: 147px;
+  position: absolute;
+}
+
+.copyright span {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 15px;
+  color: var(--color-text);
+  max-width: 200px;
+  width: 100%;
+}

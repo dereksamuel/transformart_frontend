@@ -1,10 +1,17 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-function Button({ children }) {
+import "./styles.css";
+
+function Button(props) {
   return (
-    <button>{ children }</button>
+    <button {...props}>{ props.children }</button>
   );
 }
+
+Button.propTypes = {
+  children: PropTypes.any
+};
 
 export {
   Button

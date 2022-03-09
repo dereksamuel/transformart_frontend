@@ -1,0 +1,11 @@
+button.PrimaryWave {
+  background-color: var(--color-secondary);
+  border: none;
+  padding: 0.9rem 1.5rem;
+  font-weight: 600;
+  margin: 0 auto;
+  display: block;
+  border-radius: 5px;
+  font-size: 15px;
+  box-sizing: content-box;
+}
