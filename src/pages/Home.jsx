@@ -30,8 +30,8 @@ function Home() {
             <video src="" className="BackgroundWave-Video"></video>
           </div>
           <p className="SubTitleSecondaryContainer"><strong className="SubTitleSecondary">Datos de contacto</strong></p>
-          <p className="SubTitleThered"><strong>Tel</strong><span>: 3154494547</span></p>
-          <p className="SubTitleThered"><strong>Cel</strong><span>: 34498</span></p>
+          <p className="SubTitleThered"><strong>Tel</strong><span>: 22453</span></p>
+          <p className="SubTitleThered"><strong>Cel</strong><span>: 3156979296</span></p>
           <p className="SubTitleThered"><span>hectorpaulc@gmail.com</span></p>
           <p className="SubTitleSecondaryContainer centered socialMediaText"><strong className="SubTitleSecondary">Redes Sociales</strong></p>
           <div className="IconsContainer">
@@ -52,10 +52,10 @@ function Home() {
             </Button>
           </div>
         </div>
-        <p className="centered copyright">
+        <div className="centered copyright">
           <span>@copyright Derechos reservados - 2022 enero</span>
           <div className="bgWave"></div>
-        </p>
+        </div>
       </div>
     </>
   );

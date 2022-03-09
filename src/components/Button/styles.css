@@ -9,3 +9,26 @@ button.PrimaryWave {
   font-size: 15px;
   box-sizing: content-box;
 }
+
+button.ButtonMenu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  width: 53px;
+  height: 53px;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  background-color: var(--color-gray);
+  box-shadow: 0px 0px 20px var(--color-dark);
+  cursor: pointer;
+}
+
+button.ButtonMenu svg {
+  width: 20px;
+  height: 20px;
+  color: var(--color-white);
+}
