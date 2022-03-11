@@ -1,0 +1,133 @@
+.ContainerMenu {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  height: fit-content;
+  z-index: 100;
+}
+
+.Menu {
+  width: 60vw;
+  background-color: var(--color-dark);
+  height: 100vh;
+  transform: scaleX(0);
+  transform-origin: right;
+  animation: scaleMenu 0.5s ease-in forwards alternate;
+  overflow-y: auto;
+}
+
+.Menu-link, .Menu-link-empty {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--color-radiant);
+  margin-bottom: 0;
+  margin-bottom: 0.7rem;
+  transition: 1s all;
+}
+
+.Menu-link {
+  max-width: fit-content;
+  border-bottom: 0.2rem solid currentColor;
+  color: var(--color-white);
+}
+
+.IconMenuLink svg {
+  max-width: 1.3rem;
+  width: 100%;
+  margin-right: 0.5rem;
+}
+
+.IconMenuLink-Active {
+  color: var(--color-white);
+}
+
+.imgInformative {
+  opacity: 0;
+  transition: 1s all;
+  animation: showable 1s alternate forwards ease-in;
+}
+
+.LogoTipoSm {
+  padding: 0 1rem;
+}
+
+.ContainerDesc {
+  background-color: var(--color-gray);
+  padding: 1rem;
+  color: var(--color-text);
+}
+
+.ContainerDesc img {
+  margin: 1rem auto;
+  width: 100%;
+  display: block;
+  text-align: center;
+  max-width: 250px;
+}
+
+.ContainerLinks {
+  padding: 1.2rem;
+}
+
+.srcSearch {
+  padding-left: 1rem;
+}
+
+.srcMyShoppingInfo {
+  padding-right: 1rem;
+}
+
+.IconMenuLink svg path {
+  stroke-dasharray: 5px;
+  transition: 3.5s all;
+  animation: changeStroke 3.5s ease-in forwards alternate;
+}
+
+@keyframes scaleMenu {
+  0% {
+    transform: scaleX(0);
+  }
+  20% {
+    transform: scaleX(0);
+  }
+  50% {
+    transform: scaleX(0);
+  }
+  90% {
+    transform: scaleX(0.9);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes changeStroke {
+  0% {
+    stroke-dasharray: 5px;
+  }
+  100% {
+    stroke-dasharray: 100px;
+  }
+}
+
+@keyframes changeStrokeBigger {
+  0% {
+    stroke-dasharray: 5px;
+  }
+  100% {
+    stroke-dasharray: 200px;
+  }
+}
+
+@keyframes showable {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

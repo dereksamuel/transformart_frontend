@@ -5,12 +5,13 @@ import "./styles.css";
 
 function Button(props) {
   return (
-    <button {...props}>{ props.children }</button>
+    <button {...props} ref={props.refel}>{ props.children }</button>
   );
 }
 
 Button.propTypes = {
-  children: PropTypes.any
+  children: PropTypes.any,
+  refel: PropTypes.any
 };
 
 export {

@@ -8,6 +8,7 @@
   --color-white: #FFFFFF;
   --color-text: #CBCBCB;
   --color-gray: #3E4A54;
+  --color-radiant: #7FDEE4;
 }
 
 * {
@@ -47,4 +48,16 @@ body {
   border: none;
   outline: none;
   cursor: pointer;
+}
+
+.rotate360 {
+  transform: rotate(-180deg);
+}
+
+.blur {
+  filter: blur(15px);
+}
+
+.Router {
+  transition: 0.5s filter ease-in;
 }

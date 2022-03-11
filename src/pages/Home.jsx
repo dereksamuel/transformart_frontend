@@ -1,11 +1,11 @@
 import React from "react";
 import { PlayIcon } from "@heroicons/react/outline";
 
-import logoSrc from "../assets/images/LogoTipo.svg";
-import pigSrc from "../assets/images/Pig.svg";
-import instagramIcon from "../assets/images/InstagramIcon.svg";
-import facebookIcon from "../assets/images/FacebookIcon.svg";
-import tweeterIcon from "../assets/images/TweeterIcon.svg";
+import logoSrc from "../assets/images/mobile/LogoTipo.svg";
+import pigSrc from "../assets/images/mobile/Pig.svg";
+import instagramIcon from "../assets/images/mobile/InstagramIcon.svg";
+import facebookIcon from "../assets/images/mobile/FacebookIcon.svg";
+import tweeterIcon from "../assets/images/mobile/TweeterIcon.svg";
 
 import { Button } from "../components/Button";
 import { Title } from "../components/Title";
@@ -15,12 +15,14 @@ import "./Home.css";
 
 function Home() {
   return (
-    <>
-      <img src={logoSrc} alt="Logo" className="Logo" />
-      <img src={pigSrc} alt="Pig" className="Pig" />
+    <div className="Home" id="Home">
+      <div className="HomeImages">
+        <img src={logoSrc} alt="Logo" className="Logo" />
+        <img src={pigSrc} alt="Pig" className="Pig" />
+      </div>
       <div className="BackgroundWave">
         <div className="BackgroundWave-ButtonContainer">
-          <Button className="PrimaryWave">Ver productos</Button>
+          <Button className="PrimaryWave" onClick={console.log}>Ver productos</Button>
         </div>
         <div className="BackgroundWave-Container_text">
           <Title isTitle={false}>Sobre nosotros...</Title>
@@ -57,7 +59,7 @@ function Home() {
           <div className="bgWave"></div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

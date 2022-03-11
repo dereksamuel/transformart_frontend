@@ -1,6 +1,10 @@
+.Home {
+  transition: 0.5s filter;
+}
+
 .BackgroundWave {
   min-height: 350px;
-  background: url(../assets/images/Wave.svg);
+  background: url(../assets/images/mobile/Wave.svg);
   background-size: cover;
   background-position: top;
   background-repeat: no-repeat;
@@ -98,12 +102,13 @@ p.SubTitleThered span {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  max-width: 172px;
+  max-width: 268px;
   min-height: 150px;
   margin: auto;
 }
 
-.facebookIcon, .tweeterIcon {
+.facebookIcon, .tweeterIcon, .instagramIcon {
+  margin: 0 1rem;
   margin-top: 0.5rem;
 }
 
