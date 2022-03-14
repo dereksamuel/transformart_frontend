@@ -1,4 +1,7 @@
 import React from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { LoginIcon } from "@heroicons/react/outline";
+import { auth } from "../utils/connectFirebase";
 
 import logoIcon from "../assets/images/mobile/logoIcon.svg";
 import WaveFlowHeader from "../assets/images/mobile/WaveFlowHeader.svg";
@@ -6,25 +9,30 @@ import WaveFlowFooter from "../assets/images/mobile/WaveFlowFooter.svg";
 
 import { IconBanner } from "../components/IconBanner";
 import { Button } from "../components/Button";
-import { LoginIcon } from "@heroicons/react/outline";
 import { Input } from "../components/Input";
-import "./Login.css";
 import { useModel } from "../hooks/useModel";
 
+import "./Login.css";
+
 function Login() {
-  const [userName, setUserName] = useModel({
+  const [userName] = useModel({
     initialValue: "",
     domEl: "#userName"
   });
-  const [userPasword, setUserPasword] = useModel({
+  const [userPasword] = useModel({
     initialValue: "",
     domEl: "#userPasword"
   });
 
-  const onLogin = (event) => {
+  const onLogin = async (event) => {
     event.preventDefault();
-    console.log([userPasword, setUserPasword]);
-    console.log([userName, setUserName]);
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      userName,
+      userPasword
+    );
+
+    console.log(userCredential.user.accessToken);
   };
 
   return (
@@ -38,12 +46,14 @@ function Login() {
           id="userName"
           className="Input userName"
           placeholder="Nombre de usuario"
+          required
         />
         <Input
           id="userPasword"
           className="Input userPasword"
           placeholder="Contraseña"
           type="password"
+          required
         />
         <Button type="submit" className="PrimaryWave stylesButtonSignin" onClick={console.log}>
           <div className="sessionContainer">

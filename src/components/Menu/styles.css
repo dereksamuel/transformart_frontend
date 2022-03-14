@@ -10,7 +10,8 @@
 }
 
 .Menu {
-  width: 60vw;
+  width: 100%;
+  max-width: 235px;
   background-color: var(--color-dark);
   height: 100vh;
   transform: scaleX(0);
@@ -88,7 +89,7 @@
 }
 
 .srcLoginInfo {
-  padding: 1rem 3rem;
+  padding-bottom: 0.5rem;
 }
 
 .srcSearch {

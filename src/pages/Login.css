@@ -12,8 +12,12 @@
   text-align: center;
   padding: 0 2rem;
   width: 100%;
-  /* margin-top: -75px; */
   position: relative;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
 }
 
 .WaveFlowHeader {
@@ -22,7 +26,7 @@
   background-repeat: no-repeat;
   position: relative;
   width: 100%;
-  margin-bottom: 1rem;
+  margin-bottom: 6rem;
 }
 
 .WaveFlowFooter {

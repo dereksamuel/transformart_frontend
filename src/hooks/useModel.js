@@ -8,10 +8,10 @@ function useModel({ initialValue = "", domEl }) {
   };
 
   useEffect(() => {
-    document.querySelector(domEl).addEventListener("change", onChangeModel);
+    document.querySelector(domEl)?.addEventListener("change", onChangeModel);
 
     return () => {
-      return document.querySelector(domEl).removeEventListener("change", onChangeModel);
+      return document.querySelector(domEl)?.removeEventListener("change", onChangeModel);
     };
   }, []);
 
