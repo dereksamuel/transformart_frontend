@@ -1,0 +1,71 @@
+.Login {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.FormLogin {
+  max-width: 360px;
+  margin: auto;
+  text-align: center;
+  padding: 0 2rem;
+  width: 100%;
+  /* margin-top: -75px; */
+  position: relative;
+}
+
+.WaveFlowHeader {
+  background-size: contain;
+  background-position: top;
+  background-repeat: no-repeat;
+  position: relative;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.WaveFlowFooter {
+  background-size: contain;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  position: relative;
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+.logoIcon {
+  margin: auto;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.logoIcon img {
+  margin-top: -20px;
+}
+
+input.userName, input.userPasword {
+  width: 100%;
+  margin: 0.5rem 0;
+}
+
+button.stylesButtonSignin, .sessionContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button.stylesButtonSignin {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+button.stylesButtonSignin svg {
+  width: 25px;
+  height: 25px;
+  margin-right: 0.8rem;
+}
