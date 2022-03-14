@@ -53,6 +53,10 @@
 
 .LogoTipoSm {
   padding: 0 1rem;
+  max-width: 250px;
+  margin: auto;
+  display: block;
+  width: 100%;
 }
 
 .ContainerDesc {
@@ -69,8 +73,22 @@
   max-width: 250px;
 }
 
-.ContainerLinks {
+.ContainerGeneralLinks {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ContainerLinks, .ContainerActions {
   padding: 1.2rem;
+}
+
+.ContainerActions {
+  margin-top: 0.8rem;
+}
+
+.srcLoginInfo {
+  padding: 1rem 3rem;
 }
 
 .srcSearch {

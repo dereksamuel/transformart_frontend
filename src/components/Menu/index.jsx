@@ -14,7 +14,8 @@ function Menu() {
   const [state, setState] = useState({
     isMenuDisplayed: false,
     informationPage: null,
-    pathsInfo: []
+    pathsInfo: {},
+    pathsAction: {}
   });
 
   const onShowMenu = () => {
@@ -29,15 +30,20 @@ function Menu() {
     });
   };
 
+  const renderIcon = (valuePage) => {
+    return history.pathname === valuePage.to && <span className="IconMenuLink">{valuePage.icon}</span>;
+  };
+
   // anime.setDashoffset(["0%", "100%"]);
 
   useEffect(() => {
-    const { pathsInfo, onlyPath } = knowInformationPath(history.pathname);
+    const { pathsInfo, onlyPath, pathsAction } = knowInformationPath(history.pathname);
 
     setState({
       ...state,
       informationPage: onlyPath,
-      pathsInfo
+      pathsInfo,
+      pathsAction
     });
   }, [history.pathname]);
 
@@ -54,19 +60,35 @@ function Menu() {
               <p>{state.informationPage.description}</p>
               {state.informationPage.img}
             </div>
-            <div className="ContainerLinks">
-              {
-                Object.values(state.pathsInfo).map((valuePage, index) => (
-                  <Link to={{ pathname: valuePage.to }} className={
-                    history.pathname === valuePage.to ? "Menu-link" : "Menu-link-empty"
-                  } key={index}>
-                    {
-                      history.pathname === valuePage.to && <span className="IconMenuLink">{valuePage.icon}</span>
-                    }
-                    <span>{valuePage.name}</span>
-                  </Link>
-                ))
-              }
+            <div className="ContainerGeneralLinks">
+              <div className="ContainerLinks">
+                {
+                  Object.values(state.pathsInfo).map((valuePage, index) => (
+                    <Link to={{ pathname: valuePage.to }} className={
+                      history.pathname === valuePage.to ? "Menu-link" : "Menu-link-empty"
+                    } key={index}>
+                      { renderIcon(valuePage) }
+                      <span>{valuePage.name}</span>
+                    </Link>
+                  ))
+                }
+              </div>
+              <div className="ContainerActions">
+                <Link to={{ pathname: state.pathsAction["/update_art"].to }} className={
+                  history.pathname === state.pathsAction["/update_art"].to ?
+                    "Menu-link" :
+                    "Menu-link-empty"
+                }>
+                  { renderIcon(state.pathsAction["/update_art"]) }
+                  <span>{state.pathsAction["/update_art"].name}</span>
+                </Link>
+                <Link to={{ pathname: state.pathsAction["/login"].to }} className="link-without-styles">
+                  <button className="ButtonSecondary">
+                    { renderIcon(state.pathsAction["/login"]) }
+                    <span>{state.pathsAction["/login"].name}</span>
+                  </button>
+                </Link>
+              </div>
             </div>
           </div>
         )

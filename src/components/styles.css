@@ -50,6 +50,10 @@ body {
   cursor: pointer;
 }
 
+.link-without-styles {
+  text-decoration: none;
+}
+
 .rotate360 {
   transform: rotate(-180deg);
 }
