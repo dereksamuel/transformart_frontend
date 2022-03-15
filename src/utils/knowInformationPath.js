@@ -50,7 +50,7 @@ function knowInformationPath(pathname) {
     },
     "/login": {
       name: "Inicio de sesión",
-      description: "Edita el aplicativo a tu antojo, si tienes alguna duda escribe al email dereksamuelgr",
+      description: "En esta sección solo pueden acceder usuarios autorizados por transformArt.",
       img: <img src={srcLoginInfo} alt="srcLoginInfo" className="imgInformative srcLoginInfo sectionTwo" />,
       icon: <LoginIcon />,
       typeButton: true,
