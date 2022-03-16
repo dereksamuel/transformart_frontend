@@ -1,0 +1,9 @@
+const SET_AUTH = "SET_AUTH";
+const SET_LOADING = "SET_LOADING";
+const SET_ERROR = "SET_ERROR";
+
+export {
+  SET_AUTH,
+  SET_LOADING,
+  SET_ERROR
+};

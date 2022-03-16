@@ -1,8 +1,9 @@
 import React from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { LoginIcon } from "@heroicons/react/outline";
-import { auth } from "../utils/connectFirebase";
+import { useDispatch } from "react-redux";
 
+import { auth } from "../utils/connectFirebase";
 import logoIcon from "../assets/images/mobile/logoIcon.svg";
 import WaveFlowHeader from "../assets/images/mobile/WaveFlowHeader.svg";
 import WaveFlowFooter from "../assets/images/mobile/WaveFlowFooter.svg";
@@ -13,8 +14,10 @@ import { Input } from "../components/Input";
 import { useModel } from "../hooks/useModel";
 
 import "./Login.css";
+import { doAuthenticate } from "../store/actions/authenticate";
 
 function Login() {
+  const dispatch = useDispatch();
   const [userName] = useModel({
     initialValue: "",
     domEl: "#userName"
@@ -32,7 +35,7 @@ function Login() {
       userPasword
     );
 
-    console.log(userCredential.user.accessToken);
+    dispatch(doAuthenticate(userCredential.user.accessToken));
   };
 
   return (
