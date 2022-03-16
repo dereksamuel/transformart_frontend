@@ -15,9 +15,12 @@ import { useModel } from "../hooks/useModel";
 
 import "./Login.css";
 import { doAuthenticate } from "../store/actions/authenticate";
+import { useNavigate } from "react-router";
 
 function Login() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const [userName] = useModel({
     initialValue: "",
     domEl: "#userName"
@@ -35,7 +38,7 @@ function Login() {
       userPasword
     );
 
-    dispatch(doAuthenticate(userCredential.user.accessToken));
+    dispatch(doAuthenticate(userCredential.user.accessToken, navigate));
   };
 
   return (

@@ -4,6 +4,7 @@ import { Home } from "../pages/Home";
 import { Login } from "../pages/Login";
 
 import { Menu } from "./Menu";
+import { PrivateRoute } from "./PrivateRoute";
 
 import "./styles.css";
 
@@ -17,6 +18,12 @@ function App() {
             <Route path="/search" element={<div>Hello search</div>} />
             <Route path="/myshopping" element={<div>Hello myshopping</div>} />
             <Route path="/login" element={<Login />} />
+            <Route
+              path="/update_art"
+              element={<PrivateRoute />}
+            >
+              <Route exact path='/update_art' element={<div>Hello my private route</div>}/>
+            </Route>
           </Routes>
         </main>
         <Menu />
