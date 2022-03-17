@@ -25,3 +25,15 @@
   font-weight: 700;
   font-size: 16px;
 }
+
+.ProductsArray {
+  padding-bottom: 4rem;
+}
+
+.ProductsGrid {
+  padding: 0 2rem;
+  padding-bottom: 1rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(6.7rem, 1fr));
+}

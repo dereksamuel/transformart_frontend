@@ -8,6 +8,7 @@
   --color-white: #FFFFFF;
   --color-text: #CBCBCB;
   --color-gray: #3E4A54;
+  --color-gray-dark: #6B6A6E;
   --color-radiant: #7FDEE4;
   --color-danger: #E34D43;
 }
@@ -34,7 +35,6 @@ body {
 
 #root {
   overflow: auto;
-  background-attachment: scroll !important;
   background-size: cover !important;
   background-repeat: no-repeat;
   background: url(../assets/images/mobile/Shadow.svg);

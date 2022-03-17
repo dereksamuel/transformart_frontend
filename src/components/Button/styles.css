@@ -51,3 +51,8 @@ button.ButtonSecondary {
   background-color: var(--color-gray);
   color: var(--color-white);
 }
+
+button.ButtonSecondaryClick {
+  background-color: var(--color-gray-dark);
+  color: var(--color-white);
+}

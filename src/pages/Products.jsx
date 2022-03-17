@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Title } from "../components/Title";
 
 import srcLogoIcon from "../assets/images/mobile/logoIcon.svg";
 import "./Products.css";
@@ -7,6 +6,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../store/actions/products";
 import { getCategories } from "../store/actions/categories";
 import { getCategoriesProducts } from "../store/actions/categoriesProducts";
+
+import { Title } from "../components/Title";
+import { ProductItem } from "../components/ProductItem";
+import { Button } from "../components/Button";
 
 function Products() {
   const categoriesProducts = useSelector((state) => state.categoriesProducts.all);
@@ -67,20 +70,21 @@ function Products() {
         </Title>
         {
           categoriesProductsArray.length && categoriesProductsArray.map((categoriesProductsItem) => (
-            <div key={categoriesProductsItem[1].category.id}>
+            <div className="ProductsArray" key={categoriesProductsItem[1].category.id}>
               <Title
                 className="SubTitle TitleEachProduct"
                 isTitle={false}
               >{categoriesProductsItem[1].category.name}</Title>
-              <div className="Products">
+              <div className="ProductsGrid">
                 {
                   [...categoriesProductsItem[1].products].map((product) => (
-                    <li key={product.id}>
-                      <img src={product.srcImage} alt={product.name} />
-                    </li>
+                    <ProductItem key={product.id} product={product} />
                   ))
                 }
               </div>
+              <Button className="PrimaryWave ButtonSecondaryClick">
+                <span>Ver más</span>
+              </Button>
             </div>
           ))
         }
