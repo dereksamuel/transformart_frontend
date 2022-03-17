@@ -80,14 +80,6 @@ function Menu() {
                 }
               </div>
               <div className="ContainerActions">
-                <Link to={{ pathname: state.pathsAction["/update_art"].to }} className={
-                  history.pathname === state.pathsAction["/update_art"].to ?
-                    "Menu-link" :
-                    "Menu-link-empty"
-                }>
-                  { renderIcon(state.pathsAction["/update_art"]) }
-                  <span>{state.pathsAction["/update_art"].name}</span>
-                </Link>
                 {
                   !isAuth ? <Link to={{ pathname: state.pathsAction["/login"].to }} className="link-without-styles">
                     <button className="ButtonSecondary">
@@ -95,10 +87,20 @@ function Menu() {
                       <span>{state.pathsAction["/login"].name}</span>
                     </button>
                   </Link> : (
-                    <button className="ButtonSecondary" onClick={onLogout}>
-                      { renderIcon(state.pathsAction["/register"]) }
-                      <span>{state.pathsAction["/register"].name}</span>
-                    </button>
+                    <>
+                      <Link to={{ pathname: state.pathsAction["/update_art"].to }} className={
+                        history.pathname === state.pathsAction["/update_art"].to ?
+                          "Menu-link" :
+                          "Menu-link-empty"
+                      }>
+                        { renderIcon(state.pathsAction["/update_art"]) }
+                        <span>{state.pathsAction["/update_art"].name}</span>
+                      </Link>
+                      <button className="ButtonSecondary" onClick={onLogout}>
+                        { renderIcon(state.pathsAction["/register"]) }
+                        <span>{state.pathsAction["/register"].name}</span>
+                      </button>
+                    </>
                   )
                 }
               </div>
