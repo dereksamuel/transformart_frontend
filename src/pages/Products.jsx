@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Title } from "../components/Title";
 
 import srcLogoIcon from "../assets/images/mobile/logoIcon.svg";
@@ -13,7 +13,8 @@ function Products() {
   const categories = useSelector((state) => state.categories.all);
   const products = useSelector((state) => state.products.all);
 
-  const renderCategoriesProduct = {};
+  const [categoriesProductsArray, setCategoriesProductsArray] = useState([]);
+
   const dispatch = useDispatch();
 
   const onLoadProducts = () => {
@@ -23,21 +24,28 @@ function Products() {
   };
 
   const onDoCategoriesProducts = () => {
+    const renderCategoriesProduct = {};
+
     for (const categoriesProduct of categoriesProducts) {
-      let byCategories = categories.find((category) => category.id === categoriesProduct.categoriesId).name;
+      let byCategories = categoriesProduct.categoriesId;
 
       if (!renderCategoriesProduct[byCategories]) {
-        renderCategoriesProduct[byCategories] = [
+        renderCategoriesProduct[byCategories] = {
+          category: categories.find((category) => category.id === categoriesProduct.categoriesId),
+          products: new Set()
+        };
+
+        renderCategoriesProduct[byCategories].products.add(
           products.find((products) => products.id === categoriesProduct.productsId)
-        ];
+        );
       } else {
-        renderCategoriesProduct[byCategories].push(
+        renderCategoriesProduct[byCategories].products.add(
           products.find((products) => products.id === categoriesProduct.productsId)
         );
       }
     }
 
-    console.log(renderCategoriesProduct);
+    setCategoriesProductsArray(Object.entries(renderCategoriesProduct));
   };
 
   useEffect(() => {
@@ -53,11 +61,29 @@ function Products() {
   return (
     <div className="Products">
       <article>
-        <Title className="SubTitle TitleProducts">
+        <Title className="SubTitle TitleProducts" isTitle={false}>
           <img src={srcLogoIcon} alt="srcLogoIcon" className="Products-srcLogoIcon" />
           <span>Productos</span>
         </Title>
-        <Title className="SubTitle TitleEachProduct"></Title>
+        {
+          categoriesProductsArray.length && categoriesProductsArray.map((categoriesProductsItem) => (
+            <div key={categoriesProductsItem[1].category.id}>
+              <Title
+                className="SubTitle TitleEachProduct"
+                isTitle={false}
+              >{categoriesProductsItem[1].category.name}</Title>
+              <div className="Products">
+                {
+                  [...categoriesProductsItem[1].products].map((product) => (
+                    <li key={product.id}>
+                      <img src={product.srcImage} alt={product.name} />
+                    </li>
+                  ))
+                }
+              </div>
+            </div>
+          ))
+        }
       </article>
     </div>
   );
