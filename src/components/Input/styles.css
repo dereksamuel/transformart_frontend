@@ -13,3 +13,9 @@ input.Input {
 input.Input::placeholder {
   color: var(--color-text);
 }
+
+input.Input:-internal-autofill-selected {
+  font-family: var(--font-1);
+  background-color: var(--color-dark) !important;
+  color: var(--color-text);
+}

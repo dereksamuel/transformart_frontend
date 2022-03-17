@@ -18,10 +18,11 @@ import "./Login.css";
 import { doAuthenticate } from "../store/actions/authenticate";
 import { Alert } from "../components/Alert";
 import { setState } from "../utils/setState";
-import { SET_ERROR } from "../store/types/authenticate";
+import { SET_ERROR, SET_LOADING } from "../store/types/authenticate";
 
 function Login() {
   const isAuth = useSelector((state) => state.authenticate.isAuth);
+  const loading = useSelector((state) => state.authenticate.loading);
   const [showAlert, setShowAlert] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -37,6 +38,8 @@ function Login() {
 
   const onLogin = async (event) => {
     event.preventDefault();
+    dispatch(setState({ type: SET_LOADING, payload: true }));
+
     const userCredential = await signInWithEmailAndPassword(
       auth,
       userName,
@@ -45,6 +48,7 @@ function Login() {
       console.error(error);
       setShowAlert(true);
       dispatch(setState({ type: SET_ERROR, payload: true }));
+      dispatch(setState({ type: SET_LOADING, payload: false }));
     });
 
     dispatch(doAuthenticate(userCredential.user.accessToken));
@@ -53,6 +57,8 @@ function Login() {
   const onHideAlert = () => setShowAlert(false);
 
   useEffect(() => {
+    dispatch(setState({ type: SET_LOADING, payload: false }));
+
     if (isAuth) {
       navigate({ pathname: "/update_art" });
     }
@@ -66,7 +72,7 @@ function Login() {
           title="Error de autenticación"
           description="Lo sentimos, pero algo ha ido mal con la autenticación"
           theme="Error"
-          toLeft
+          toLeft={true}
           onClick={onHideAlert}
         />
       }
@@ -89,10 +95,18 @@ function Login() {
           autoComplete="false"
           required
         />
-        <Button type="submit" className="PrimaryWave stylesButtonSignin" onClick={console.log}>
+        <Button type="submit" className="PrimaryWave stylesButtonSignin" onClick={console.log} disabled={loading}>
           <div className="sessionContainer">
-            <LoginIcon />
-            <span>Iniciar sesión</span>
+            {
+              !loading ? (
+                <>
+                  <LoginIcon />
+                  <span>Iniciar sesión</span>
+                </>
+              ) : (
+                <span>Cargando</span>
+              )
+            }
           </div>
         </Button>
       </form>

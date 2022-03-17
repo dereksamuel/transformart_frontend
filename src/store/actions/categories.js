@@ -1,21 +1,24 @@
 import { fetchQuery } from "../../utils/fetchQuery";
 import { setState } from "../../utils/setState";
-import { SET_AUTH, SET_ERROR, SET_LOADING } from "../types/authenticate";
+import { SET_ALL, SET_ERROR, SET_LOADING } from "../types/categories";
 
-const doAuthenticate = (fb_token) => async (dispatch) => {
+const getCategories = () => async (dispatch) => {
   dispatch(setState({ type: SET_LOADING, payload: true }));
 
-  const { error } = await fetchQuery(`
-    mutation {
-      authenticate(headerToken: "${fb_token}")
+  const { data, error } = await fetchQuery(`
+    query {
+      getCategories {
+        id
+        name
+      }
     }
   `);
 
-  dispatch(setState({ type: SET_AUTH, payload: !error }));
+  dispatch(setState({ type: SET_ALL, payload: data.getCategories }));
   dispatch(setState({ type: SET_LOADING, payload: false }));
   dispatch(setState({ type: SET_ERROR, payload: Boolean(error) }));
 };
 
 export {
-  doAuthenticate
+  getCategories
 };

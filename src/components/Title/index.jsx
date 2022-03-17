@@ -8,8 +8,8 @@ function Title(props) {
     <>
       {
         props.isTitle ?
-          <h1 className="Title">{ props.children }</h1> :
-          <h2 className="SubTitle">{ props.children }</h2>
+          <h1 className="Title" {...props}>{ props.children }</h1> :
+          <h2 className="SubTitle" {...props}>{ props.children }</h2>
       }
     </>
   );

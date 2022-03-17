@@ -1,0 +1,27 @@
+.Products-srcLogoIcon {
+  max-width: 38px;
+  width: 100%;
+}
+
+.TitleProducts {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 2rem;
+  padding-top: 1rem;
+  margin-bottom: 0;
+  color: var(--color-radiant);
+}
+
+.TitleProducts span {
+  margin-bottom: 0.25rem;
+  margin-left: 1rem;
+}
+
+.TitleEachProduct {
+  padding-top: 0;
+  margin-left: 2rem;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+}

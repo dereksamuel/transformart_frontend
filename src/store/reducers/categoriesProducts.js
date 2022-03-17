@@ -1,4 +1,4 @@
-import { SET_ALL, SET_ERROR, SET_LOADING } from "../types/products";
+import { SET_ALL, SET_ERROR, SET_LOADING } from "../types/categoriesProducts.js";
 
 const initialState = {
   all: [],
@@ -6,8 +6,8 @@ const initialState = {
   error: true
 };
 
-function products(state = initialState, action) {
-  const productsCases = {
+function categoriesProducts(state = initialState, action) {
+  const categoriesProductsCases = {
     [SET_ALL]: {
       ...state,
       all: action.payload
@@ -22,9 +22,9 @@ function products(state = initialState, action) {
     }
   };
 
-  return productsCases[action.type] || state;
+  return categoriesProductsCases[action.type] || state;
 }
 
 export {
-  products
+  categoriesProducts
 };

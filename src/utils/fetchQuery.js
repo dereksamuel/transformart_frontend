@@ -7,17 +7,19 @@ const fetchQuery = async (query) => {
   };
 
   try {
+    const response = await (await fetch(URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        query
+      })
+    })).json();
+
     state = {
       ...state,
-      data: await (await fetch(URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          query
-        })
-      })).json(),
+      data: response.data,
       loading: false,
       error: null
     };
