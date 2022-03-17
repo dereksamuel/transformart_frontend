@@ -28,13 +28,16 @@ html, body, #root, .App {
   width: 100%;
 }
 
+body {
+  background-color: var(--color-primary);
+}
+
 #root {
   overflow: auto;
   background-attachment: scroll !important;
   background-size: cover !important;
   background-repeat: no-repeat;
   background: url(../assets/images/mobile/Shadow.svg);
-  background-color: var(--color-primary);
 }
 
 .d-flex {
