@@ -53,5 +53,5 @@
 
 .Error article {
   background-color: var(--color-danger);
-  opacity: 87%;
+  opacity: 0.87;
 }
