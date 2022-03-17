@@ -23,6 +23,7 @@
 .WaveFlowHeader {
   background-size: contain;
   background-position: top;
+  background-attachment: fixed;
   background-repeat: no-repeat;
   position: relative;
   width: 100%;
@@ -32,6 +33,7 @@
 .WaveFlowFooter {
   background-size: contain;
   background-position: bottom;
+  background-attachment: fixed;
   background-repeat: no-repeat;
   position: relative;
   width: 100%;

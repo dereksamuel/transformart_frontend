@@ -3,7 +3,7 @@ import { SET_AUTH, SET_ERROR, SET_LOADING } from "../types/authenticate";
 const initialState = {
   isAuth: false,
   loading: true,
-  error: true
+  error: false
 };
 
 function authenticate(state = initialState, action) {

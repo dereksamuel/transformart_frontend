@@ -1,0 +1,57 @@
+.Alert {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  position: fixed;
+  z-index: 9000;
+  bottom: 5px;
+  transition: 0.25s all;
+  animation: showable 0.25s ease-in forwards alternate;
+}
+
+.Alert article {
+  padding: 1rem 2rem;
+}
+
+.title {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.description {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+.IconContainer {
+  min-width: 70px;
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-danger);
+}
+
+.IconContainer svg {
+  width: 1.8rem;
+}
+
+.Alert-left {
+  left: 0;
+}
+
+.Alert-left .IconContainer {
+  border-radius: 0px 29px 29px 0px;
+}
+
+.Error {
+  color: var(--color-white);
+}
+
+.Error article {
+  background-color: var(--color-danger);
+  opacity: 87%;
+}

@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { LoginIcon } from "@heroicons/react/outline";
-import { useDispatch, useSelector } from "react-redux";
 
 import { auth } from "../utils/connectFirebase";
 import logoIcon from "../assets/images/mobile/logoIcon.svg";
@@ -15,10 +16,13 @@ import { useModel } from "../hooks/useModel";
 
 import "./Login.css";
 import { doAuthenticate } from "../store/actions/authenticate";
-import { useNavigate } from "react-router";
+import { Alert } from "../components/Alert";
+import { setState } from "../utils/setState";
+import { SET_ERROR } from "../store/types/authenticate";
 
 function Login() {
   const isAuth = useSelector((state) => state.authenticate.isAuth);
+  const [showAlert, setShowAlert] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -37,10 +41,16 @@ function Login() {
       auth,
       userName,
       userPasword
-    );
+    ).catch((error) => {
+      console.error(error);
+      setShowAlert(true);
+      dispatch(setState({ type: SET_ERROR, payload: true }));
+    });
 
     dispatch(doAuthenticate(userCredential.user.accessToken));
   };
+
+  const onHideAlert = () => setShowAlert(false);
 
   useEffect(() => {
     if (isAuth) {
@@ -51,6 +61,15 @@ function Login() {
   return (
     <div className="Login">
       <img src={WaveFlowHeader} alt="WaveFlowHeader" className="WaveFlowHeader" />
+      {
+        showAlert && <Alert
+          title="Error de autenticación"
+          description="Lo sentimos, pero algo ha ido mal con la autenticación"
+          theme="Error"
+          toLeft
+          onClick={onHideAlert}
+        />
+      }
       <form className="FormLogin" onSubmit={onLogin}>
         <IconBanner className="IconBanner logoIcon">
           <img src={logoIcon} alt="logoIcon" />

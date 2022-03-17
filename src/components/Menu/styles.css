@@ -141,12 +141,3 @@
     stroke-dasharray: 200px;
   }
 }
-
-@keyframes showable {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}

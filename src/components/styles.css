@@ -9,6 +9,7 @@
   --color-text: #CBCBCB;
   --color-gray: #3E4A54;
   --color-radiant: #7FDEE4;
+  --color-danger: #E34D43;
 }
 
 * {
@@ -68,4 +69,13 @@ body {
 
 .whitep {
   color: var(--color-white);
+}
+
+@keyframes showable {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
