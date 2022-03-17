@@ -62,10 +62,6 @@ function Menu() {
         state.isMenuDisplayed && (
           <div className="Menu">
             <img src={LogoTipoSm} alt="LogoTipoSm" className="LogoTipoSm" />
-            <div className="ContainerDesc">
-              <p>{state.informationPage.description}</p>
-              {state.informationPage.img}
-            </div>
             <div className="ContainerGeneralLinks">
               <div className="ContainerLinks">
                 {
@@ -104,6 +100,10 @@ function Menu() {
                   )
                 }
               </div>
+            </div>
+            <div className="ContainerDesc">
+              <p>{state.informationPage.description}</p>
+              {state.informationPage.img}
             </div>
           </div>
         )

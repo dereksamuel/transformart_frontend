@@ -39,6 +39,8 @@ button.ButtonMenu svg {
 }
 
 button.ButtonSecondary {
+  width: 100%;
+  justify-content: center;
   font-weight: 600;
   font-size: 15px;
   border-radius: 25px;
@@ -48,5 +50,4 @@ button.ButtonSecondary {
   padding: 0.5rem 1.5rem;
   background-color: var(--color-gray);
   color: var(--color-white);
-  width: fit-content;
 }
