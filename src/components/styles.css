@@ -65,3 +65,7 @@ body {
 .Router {
   transition: 0.5s filter ease-in;
 }
+
+.whitep {
+  color: var(--color-white);
+}

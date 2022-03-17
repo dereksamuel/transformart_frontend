@@ -1,9 +1,9 @@
 import { fetchQuery } from "../../utils/fetchQuery";
-import { changeState } from "../../utils/reusableReducer";
+import { setState } from "../../utils/setState";
 import { SET_AUTH, SET_ERROR, SET_LOADING } from "../types/authenticate";
 
-const doAuthenticate = (fb_token, navigate) => async (dispatch) => {
-  dispatch(changeState({ type: SET_LOADING, payload: true }));
+const doAuthenticate = (fb_token) => async function (dispatch) {
+  dispatch(setState({ type: SET_LOADING, payload: true }));
 
   const { error } = await fetchQuery(`
     mutation {
@@ -11,13 +11,9 @@ const doAuthenticate = (fb_token, navigate) => async (dispatch) => {
     }
   `);
 
-  if (!error) {
-    navigate({ pathname: "/update_art" });
-  }
-
-  dispatch(changeState({ type: SET_AUTH, payload: !error }));
-  dispatch(changeState({ type: SET_LOADING, payload: false }));
-  dispatch(changeState({ type: SET_ERROR, payload: error }));
+  dispatch(setState({ type: SET_AUTH, payload: !error }));
+  dispatch(setState({ type: SET_LOADING, payload: false }));
+  dispatch(setState({ type: SET_ERROR, payload: error }));
 };
 
 export {

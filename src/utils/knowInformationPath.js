@@ -58,6 +58,11 @@ function knowInformationPath(pathname) {
     }
   };
 
+  pathsAction["/register"] = {
+    ...pathsAction["/login"],
+    name: "Cerrar sesión"
+  };
+
   return {
     pathsInfo,
     pathsAction,

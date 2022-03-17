@@ -1,27 +1,39 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Outlet, useNavigate } from "react-router";
 
-import { useAuth } from "../../hooks/useAuth";
-import { SET_LOADING } from "../../store/types/authenticate";
-import { changeState } from "../../utils/reusableReducer";
+import { auth } from "../../utils/connectFirebase";
+import { setState } from "../../utils/setState";
+import { SET_LOADING, SET_AUTH, SET_ERROR } from "../../store/types/authenticate";
 
 const PrivateRoute = () => {
-  // const [loading, setLoading] = useState(true);
   const loading = useSelector((state) => state.authenticate.loading);
+  const isAuth = useSelector((state) => state.authenticate.isAuth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  useAuth((isAuth) => {
-    if (!isAuth) {
-      navigate({ pathname: "/login" });
-    } else {
-      console.log("Hello");
-      dispatch(changeState({ type: SET_LOADING, payload: false }));
-    }
-  });
+  useEffect(() => {
+    dispatch(setState({ type: SET_LOADING, payload: true }));
 
-  return loading ? <p>Loading DK... {`${loading}`}</p> : <Outlet />;
+    auth.onAuthStateChanged((user) => {
+      dispatch(setState({ type: SET_LOADING, payload: false }));
+      dispatch(setState({ type: SET_AUTH, payload: Boolean(user) }));
+      dispatch(setState({ type: SET_ERROR, payload: false }));
+
+      if (!user) {
+        dispatch(setState({ type: SET_ERROR, payload: true }));
+        navigate({ pathname: "/login" });
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    if (!isAuth && !loading) {
+      navigate({ pathname: "/login" });
+    }
+  }, [isAuth, loading]);
+
+  return loading ? <p className="whitep">LOADING...</p> : <Outlet />;
 };
 
 export {

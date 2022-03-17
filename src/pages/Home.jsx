@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
 import { PlayIcon } from "@heroicons/react/outline";
 
 import logoSrc from "../assets/images/mobile/LogoTipo.svg";
@@ -15,13 +14,6 @@ import { IconBanner } from "../components/IconBanner";
 import "./Home.css";
 
 function Home() {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    console.log(dispatch);
-    // onGetAllProducts();
-  }, []);
-
   return (
     <div className="Home" id="Home">
       <div className="HomeImages">

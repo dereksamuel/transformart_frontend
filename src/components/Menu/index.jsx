@@ -1,14 +1,18 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router";
-import { Button } from "../Button";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { ChevronLeftIcon } from "@heroicons/react/solid";
+
+import { Button } from "../Button";
 import LogoTipoSm from "../../assets/images/mobile/LogoTipoSm.svg";
 
-import "./styles.css";
+import { auth } from "../../utils/connectFirebase";
 import { knowInformationPath } from "../../utils/knowInformationPath";
-import { Link } from "react-router-dom";
+import "./styles.css";
 
 function Menu() {
+  const isAuth = useSelector((state) => state.authenticate.isAuth);
   const history = useLocation();
   const $button = useRef(null);
   const [state, setState] = useState({
@@ -34,7 +38,9 @@ function Menu() {
     return history.pathname === valuePage.to && <span className="IconMenuLink">{valuePage.icon}</span>;
   };
 
-  // anime.setDashoffset(["0%", "100%"]);
+  const onLogout = async () => {
+    await auth.signOut();
+  };
 
   useEffect(() => {
     const { pathsInfo, onlyPath, pathsAction } = knowInformationPath(history.pathname);
@@ -48,7 +54,7 @@ function Menu() {
   }, [history.pathname]);
 
   return (
-    <div className="ContainerMenu">
+    <header className="ContainerMenu">
       <Button refel={$button} onClick={onShowMenu} className="ButtonMenu" aria-label="ButtonMenu">
         <ChevronLeftIcon />
       </Button>
@@ -82,18 +88,25 @@ function Menu() {
                   { renderIcon(state.pathsAction["/update_art"]) }
                   <span>{state.pathsAction["/update_art"].name}</span>
                 </Link>
-                <Link to={{ pathname: state.pathsAction["/login"].to }} className="link-without-styles">
-                  <button className="ButtonSecondary">
-                    { renderIcon(state.pathsAction["/login"]) }
-                    <span>{state.pathsAction["/login"].name}</span>
-                  </button>
-                </Link>
+                {
+                  !isAuth ? <Link to={{ pathname: state.pathsAction["/login"].to }} className="link-without-styles">
+                    <button className="ButtonSecondary">
+                      { renderIcon(state.pathsAction["/login"]) }
+                      <span>{state.pathsAction["/login"].name}</span>
+                    </button>
+                  </Link> : (
+                    <button className="ButtonSecondary" onClick={onLogout}>
+                      { renderIcon(state.pathsAction["/register"]) }
+                      <span>{state.pathsAction["/register"].name}</span>
+                    </button>
+                  )
+                }
               </div>
             </div>
           </div>
         )
       }
-    </div>
+    </header>
   );
 }
 

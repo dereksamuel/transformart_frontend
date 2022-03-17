@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { LoginIcon } from "@heroicons/react/outline";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { auth } from "../utils/connectFirebase";
 import logoIcon from "../assets/images/mobile/logoIcon.svg";
@@ -18,8 +18,9 @@ import { doAuthenticate } from "../store/actions/authenticate";
 import { useNavigate } from "react-router";
 
 function Login() {
-  const navigate = useNavigate();
+  const isAuth = useSelector((state) => state.authenticate.isAuth);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [userName] = useModel({
     initialValue: "",
@@ -38,8 +39,14 @@ function Login() {
       userPasword
     );
 
-    dispatch(doAuthenticate(userCredential.user.accessToken, navigate));
+    dispatch(doAuthenticate(userCredential.user.accessToken));
   };
+
+  useEffect(() => {
+    if (isAuth) {
+      navigate({ pathname: "/update_art" });
+    }
+  }, [isAuth]);
 
   return (
     <div className="Login">
@@ -52,6 +59,7 @@ function Login() {
           id="userName"
           className="Input userName"
           placeholder="Nombre de usuario"
+          autoComplete="false"
           required
         />
         <Input
@@ -59,6 +67,7 @@ function Login() {
           className="Input userPasword"
           placeholder="Contraseña"
           type="password"
+          autoComplete="false"
           required
         />
         <Button type="submit" className="PrimaryWave stylesButtonSignin" onClick={console.log}>
