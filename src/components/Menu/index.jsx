@@ -101,10 +101,14 @@ function Menu() {
                 }
               </div>
             </div>
-            <div className="ContainerDesc">
-              <p>{state.informationPage.description}</p>
-              {state.informationPage.img}
-            </div>
+            {
+              state.informationPage ? (
+                <div className="ContainerDesc">
+                  <p>{ state.informationPage.description }</p>
+                  { state.informationPage.img }
+                </div>
+              ) : <div className="ContainerHidden"></div>
+            }
           </div>
         )
       }

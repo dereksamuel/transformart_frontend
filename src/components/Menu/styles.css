@@ -106,6 +106,13 @@
   animation: changeStroke 3.5s ease-in forwards alternate;
 }
 
+.ContainerHidden {
+  margin: 1rem auto;
+  display: block;
+  text-align: center;
+  width: 235px;
+}
+
 @keyframes scaleMenu {
   0% {
     transform: scaleX(0);

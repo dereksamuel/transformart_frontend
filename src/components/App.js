@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home } from "../pages/Home";
 import { Login } from "../pages/Login";
 import { Categories } from "../pages/Categories";
+import { Category } from "../pages/Category";
 
 import { Menu } from "./Menu";
 import { PrivateRoute } from "./PrivateRoute";
@@ -19,6 +20,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/search" element={<div>Hello search</div>} />
             <Route path="/products" element={<Categories />} />
+            <Route path="/products/:categoryId" element={<Category />} />
+            <Route path="/oneProduct/:productId" element={<Category />} />
             <Route path="/myshopping" element={<div>Hello myshopping</div>} />
             <Route path="/login" element={<Login />} />
             <Route

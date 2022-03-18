@@ -4,12 +4,17 @@ import PropTypes from "prop-types";
 import "./styles.css";
 
 function Title(props) {
+  const propsWithoutTitle = {
+    ...props
+  };
+  delete propsWithoutTitle.isTitle;
+
   return (
     <>
       {
-        props.istitle ?
-          <h1 className="Title" {...props}>{ props.children }</h1> :
-          <h2 className="SubTitle" {...props}>{ props.children }</h2>
+        props.isTitle ?
+          <h1 className="Title" {...propsWithoutTitle}>{ props.children }</h1> :
+          <h2 className="SubTitle" {...propsWithoutTitle}>{ props.children }</h2>
       }
     </>
   );
@@ -17,7 +22,7 @@ function Title(props) {
 
 Title.propTypes = {
   children: PropTypes.any,
-  istitle: PropTypes.bool
+  isTitle: PropTypes.bool
 };
 
 export {

@@ -1,4 +1,4 @@
-li.ProductItem {
+a.ProductItem {
   /* max-width: 7rem;
   width: 100%;
   margin: 0.8rem;
@@ -9,7 +9,7 @@ li.ProductItem {
   height: fit-content;
 }
 
-li.ProductItem .tap {
+a.ProductItem .tap {
   height: 100%;
   width: 100%;
   position: absolute;
@@ -21,13 +21,13 @@ li.ProductItem .tap {
   box-shadow: inset 0px -35px 24px rgba(0, 0, 0, 0.61);
 }
 
-li.ProductItem img {
+a.ProductItem img {
   max-width: 100%;
   min-height: 4rem;
   border-radius: 5px;
 }
 
-li.ProductItem h3 {
+a.ProductItem h3 {
   position: absolute;
   bottom: 0.5rem;
   left: 0.5rem;

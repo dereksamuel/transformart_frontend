@@ -1,9 +1,9 @@
-.Products-srcLogoIcon {
+.Categories-srcLogoIcon {
   max-width: 38px;
   width: 100%;
 }
 
-.TitleProducts {
+.TitleCategories {
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -13,12 +13,12 @@
   color: var(--color-radiant);
 }
 
-.TitleProducts span {
+.TitleCategories span {
   margin-bottom: 0.25rem;
   margin-left: 1rem;
 }
 
-.TitleEachProduct {
+.TitleEachCategory {
   padding-top: 0;
   margin-left: 2rem;
   font-style: normal;
@@ -27,11 +27,11 @@
   margin-bottom: 1rem;
 }
 
-.ProductsArray {
-  padding-bottom: 4rem;
+.CategoriesArray {
+  padding-bottom: 3rem;
 }
 
-.ProductsGrid {
+.CategoriesGrid {
   display: grid;
   /* justify-items: start; */
   align-items: center;
