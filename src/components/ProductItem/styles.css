@@ -1,8 +1,9 @@
 li.ProductItem {
-  max-width: 7rem;
+  /* max-width: 7rem;
   width: 100%;
   margin: 0.8rem;
-  margin-left: 0;
+  margin-left: 0; */
+  min-width: 6.5rem;
   list-style: none;
   position: relative;
   height: fit-content;
@@ -22,7 +23,7 @@ li.ProductItem .tap {
 
 li.ProductItem img {
   max-width: 100%;
-  min-height: 5rem;
+  min-height: 4rem;
   border-radius: 5px;
 }
 

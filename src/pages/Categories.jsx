@@ -11,10 +11,10 @@ import { Title } from "../components/Title";
 import { ProductItem } from "../components/ProductItem";
 import { Button } from "../components/Button";
 
-import "./Products.css";
+import "./Categories.css";
 import { useNavigate } from "react-router";
 
-function Products() {
+function Categories() {
   const categoriesProducts = useSelector((state) => state.categoriesProducts.all);
   const categories = useSelector((state) => state.categories.all);
   const products = useSelector((state) => state.products.all);
@@ -50,7 +50,7 @@ function Products() {
           products.find((product) => product.id === categoriesProduct.productsId)
         );
       } else {
-        if (renderCategoriesProduct[byCategories].products.size !== 5) {
+        if (renderCategoriesProduct[byCategories].products.size <= 3) {
           renderCategoriesProduct[byCategories].products.add(
             products.find((product) => product.id === categoriesProduct.productsId)
           );
@@ -106,4 +106,6 @@ function Products() {
   );
 }
 
-export default Products;
+export {
+  Categories
+};

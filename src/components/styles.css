@@ -36,6 +36,7 @@ body {
 #root {
   box-shadow: inset 0px 86px 69px var(--color-dark);
   overflow: auto;
+  scroll-behavior: smooth;
   /* background-size: cover !important; */
   /* background-repeat: no-repeat; */
   /* background: url(../assets/images/mobile/Shadow.svg); */
@@ -73,6 +74,11 @@ body {
 
 .Router {
   transition: 0.5s filter ease-in;
+}
+
+.Router div:first-child {
+  transition: 0.25s all;
+  animation: showable 0.25s ease-in forwards alternate;
 }
 
 .whitep {

@@ -1,5 +1,6 @@
 import React from "react";
 import { PlayIcon } from "@heroicons/react/outline";
+import { useNavigate } from "react-router";
 
 import logoSrc from "../assets/images/mobile/LogoTipo.svg";
 import pigSrc from "../assets/images/mobile/Pig.svg";
@@ -14,6 +15,12 @@ import { IconBanner } from "../components/IconBanner";
 import "./Home.css";
 
 function Home() {
+  const navigate = useNavigate();
+
+  const onGoToCategories = () => {
+    navigate({ pathname: "/products" });
+  };
+
   return (
     <div className="Home" id="Home">
       <div className="HomeImages">
@@ -22,7 +29,7 @@ function Home() {
       </div>
       <div className="BackgroundWave">
         <div className="BackgroundWave-ButtonContainer">
-          <Button className="PrimaryWave" onClick={console.log}>Ver productos</Button>
+          <Button className="PrimaryWave" onClick={onGoToCategories}>Ver productos</Button>
         </div>
         <div className="BackgroundWave-Container_text">
           <Title istitle={false}>Sobre nosotros...</Title>

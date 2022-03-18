@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { Home } from "../pages/Home";
 import { Login } from "../pages/Login";
-import Products from "../pages/Products";
+import { Categories } from "../pages/Categories";
 
 import { Menu } from "./Menu";
 import { PrivateRoute } from "./PrivateRoute";
@@ -18,7 +18,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/search" element={<div>Hello search</div>} />
-            <Route path="/products" element={<Products />} />
+            <Route path="/products" element={<Categories />} />
             <Route path="/myshopping" element={<div>Hello myshopping</div>} />
             <Route path="/login" element={<Login />} />
             <Route
