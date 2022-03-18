@@ -6,6 +6,7 @@ import "./styles.css";
 function ProductItem(props) {
   return (
     <li className="ProductItem">
+      <div className="tap"></div>
       <img src={props.product.srcImage} alt={props.product.name} />
       <h3>{ props.product.name }</h3>
     </li>

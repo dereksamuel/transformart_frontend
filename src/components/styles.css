@@ -34,10 +34,11 @@ body {
 }
 
 #root {
+  box-shadow: inset 0px 86px 69px var(--color-dark);
   overflow: auto;
-  background-size: cover !important;
-  background-repeat: no-repeat;
-  background: url(../assets/images/mobile/Shadow.svg);
+  /* background-size: cover !important; */
+  /* background-repeat: no-repeat; */
+  /* background: url(../assets/images/mobile/Shadow.svg); */
 }
 
 .d-flex {
@@ -76,6 +77,10 @@ body {
 
 .whitep {
   color: var(--color-white);
+}
+
+.width-auto {
+  width: fit-content;
 }
 
 @keyframes showable {

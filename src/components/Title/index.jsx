@@ -7,7 +7,7 @@ function Title(props) {
   return (
     <>
       {
-        props.isTitle ?
+        props.istitle ?
           <h1 className="Title" {...props}>{ props.children }</h1> :
           <h2 className="SubTitle" {...props}>{ props.children }</h2>
       }
@@ -17,7 +17,7 @@ function Title(props) {
 
 Title.propTypes = {
   children: PropTypes.any,
-  isTitle: PropTypes.bool
+  istitle: PropTypes.bool
 };
 
 export {

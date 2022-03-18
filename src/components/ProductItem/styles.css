@@ -1,21 +1,35 @@
 li.ProductItem {
+  max-width: 7rem;
+  width: 100%;
+  margin: 0.8rem;
+  margin-left: 0;
   list-style: none;
   position: relative;
   height: fit-content;
+}
+
+li.ProductItem .tap {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 5px;
+  box-shadow: inset 0px -35px 24px rgba(0, 0, 0, 0.61);
 }
 
 li.ProductItem img {
   max-width: 100%;
   min-height: 5rem;
   border-radius: 5px;
-  box-shadow: inset 0px -35px 24px rgba(0, 0, 0, 0.61);
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
 }
 
 li.ProductItem h3 {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0.5rem;
   font-style: normal;
   font-weight: 400;
   font-size: 15px;

@@ -25,7 +25,7 @@ function Home() {
           <Button className="PrimaryWave" onClick={console.log}>Ver productos</Button>
         </div>
         <div className="BackgroundWave-Container_text">
-          <Title isTitle={false}>Sobre nosotros...</Title>
+          <Title istitle={false}>Sobre nosotros...</Title>
           <p>Lorem ipsum es el texto que se usa habitualmente en diseño gráfico en demostraciones de tipografías o de borradores de diseño para probar el diseño visual antes de insertar el texto final.</p>
           <div className="BackgroundWave-Video_Container">
             <PlayIcon className="PlayIcon" />

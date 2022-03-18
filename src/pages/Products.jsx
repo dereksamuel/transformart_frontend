@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { EyeIcon } from "@heroicons/react/outline";
 
 import srcLogoIcon from "../assets/images/mobile/logoIcon.svg";
-import "./Products.css";
-import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../store/actions/products";
 import { getCategories } from "../store/actions/categories";
 import { getCategoriesProducts } from "../store/actions/categoriesProducts";
@@ -10,6 +10,9 @@ import { getCategoriesProducts } from "../store/actions/categoriesProducts";
 import { Title } from "../components/Title";
 import { ProductItem } from "../components/ProductItem";
 import { Button } from "../components/Button";
+
+import "./Products.css";
+import { useNavigate } from "react-router";
 
 function Products() {
   const categoriesProducts = useSelector((state) => state.categoriesProducts.all);
@@ -19,11 +22,16 @@ function Products() {
   const [categoriesProductsArray, setCategoriesProductsArray] = useState([]);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onLoadProducts = () => {
     dispatch(getCategoriesProducts());
     dispatch(getProducts());
     dispatch(getCategories());
+  };
+
+  const onSeeMore = (categoryId) => {
+    navigate({ pathname: `/categories/${categoryId}` });
   };
 
   const onDoCategoriesProducts = () => {
@@ -39,12 +47,14 @@ function Products() {
         };
 
         renderCategoriesProduct[byCategories].products.add(
-          products.find((products) => products.id === categoriesProduct.productsId)
+          products.find((product) => product.id === categoriesProduct.productsId)
         );
       } else {
-        renderCategoriesProduct[byCategories].products.add(
-          products.find((products) => products.id === categoriesProduct.productsId)
-        );
+        if (renderCategoriesProduct[byCategories].products.size !== 5) {
+          renderCategoriesProduct[byCategories].products.add(
+            products.find((product) => product.id === categoriesProduct.productsId)
+          );
+        }
       }
     }
 
@@ -64,7 +74,7 @@ function Products() {
   return (
     <div className="Products">
       <article>
-        <Title className="SubTitle TitleProducts" isTitle={false}>
+        <Title className="SubTitle TitleProducts" istitle={false}>
           <img src={srcLogoIcon} alt="srcLogoIcon" className="Products-srcLogoIcon" />
           <span>Productos</span>
         </Title>
@@ -73,7 +83,6 @@ function Products() {
             <div className="ProductsArray" key={categoriesProductsItem[1].category.id}>
               <Title
                 className="SubTitle TitleEachProduct"
-                isTitle={false}
               >{categoriesProductsItem[1].category.name}</Title>
               <div className="ProductsGrid">
                 {
@@ -82,8 +91,12 @@ function Products() {
                   ))
                 }
               </div>
-              <Button className="PrimaryWave ButtonSecondaryClick">
+              <Button
+                className="PrimaryWave ButtonSecondaryClick"
+                onClick={() => onSeeMore(categoriesProductsItem[1].category.id)}
+              >
                 <span>Ver más</span>
+                <span className="IconSeeMore"><EyeIcon /></span>
               </Button>
             </div>
           ))

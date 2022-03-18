@@ -24,6 +24,7 @@
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
+  margin-bottom: 1rem;
 }
 
 .ProductsArray {
@@ -31,9 +32,16 @@
 }
 
 .ProductsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
   padding: 0 2rem;
   padding-bottom: 1rem;
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fill, minmax(6.7rem, 1fr));
+}
+
+.IconSeeMore {
+  width: 100%;
+  height: 1.4rem;
+  max-width: 1.5rem;
+  margin-left: 0.5rem;
 }
