@@ -6,18 +6,39 @@ import { Link } from "react-router-dom";
 
 function ProductItem(props) {
   return (
-    <Link to={`/oneProduct/${props.product.id}`} className="ProductItem">
-      <li>
-        <div className="tap"></div>
-        <img src={props.product.srcImage} alt={props.product.name} />
-        <h3>{ props.product.name }</h3>
-      </li>
-    </Link>
+    <section>
+      <Link to={`/oneProduct/${props.product.id}`} className="ProductItem">
+        <li>
+          <div className="tap"></div>
+          {
+            props.product.offer ? (
+              <div className="OfferBox">
+                Oferta del { props.product.offer }%
+              </div>
+            ) : null
+          }
+          <img src={props.product.srcImage} alt={props.product.name} />
+          <h3>
+            <span>{ props.product.name }</span>
+            {
+              props.toBuy ? (
+                <span className="SizeProduct">
+                  { props.product.selectedSize }
+                </span>
+              ) : null
+            }
+          </h3>
+        </li>
+      </Link>
+      { props.children }
+    </section>
   );
 }
 
 ProductItem.propTypes = {
-  product: PropTypes.any
+  product: PropTypes.any,
+  children: PropTypes.any,
+  toBuy: PropTypes.bool
 };
 
 export {

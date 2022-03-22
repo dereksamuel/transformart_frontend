@@ -2,7 +2,7 @@
   --font-1: "Montserrat";
 
   /* COLORS */
-  --color-primary: #363E43;
+  --color-primary: #323841;
   --color-secondary: #83DDA9;
   --color-dark: #1A1F26;
   --color-white: #FFFFFF;
@@ -11,6 +11,7 @@
   --color-gray-dark: #6B6A6E;
   --color-radiant: #7FDEE4;
   --color-danger: #E34D43;
+  --color-warning: #EA8044;
 }
 
 * {

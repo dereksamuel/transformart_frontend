@@ -5,11 +5,13 @@ import { Home } from "../pages/Home";
 import { Login } from "../pages/Login";
 import { Categories } from "../pages/Categories";
 import { Category } from "../pages/Category";
+import { Product } from "../pages/Product";
 
 import { Menu } from "./Menu";
 import { PrivateRoute } from "./PrivateRoute";
 
 import "./styles.css";
+import { Shopping } from "../pages/Shopping";
 
 function App() {
   return (
@@ -21,8 +23,8 @@ function App() {
             <Route path="/search" element={<div>Hello search</div>} />
             <Route path="/products" element={<Categories />} />
             <Route path="/products/:categoryId" element={<Category />} />
-            <Route path="/oneProduct/:productId" element={<Category />} />
-            <Route path="/myshopping" element={<div>Hello myshopping</div>} />
+            <Route path="/oneProduct/:productId" element={<Product />} />
+            <Route path="/myshopping" element={<Shopping />} />
             <Route path="/login" element={<Login />} />
             <Route
               path="/update_art"

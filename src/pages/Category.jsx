@@ -3,11 +3,11 @@ import React from "react";
 import { Title } from "../components/Title";
 import srcLogoIcon from "../assets/images/mobile/logoIcon.svg";
 
-import "./Categories.css";
-
 import { useParams } from "react-router";
 import { useCP } from "../hooks/useCP";
 import { ProductItem } from "../components/ProductItem";
+
+import "./Categories.css";
 
 function Category() {
   const params = useParams();

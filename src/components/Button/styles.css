@@ -64,3 +64,8 @@ button.ButtonSecondaryClick {
   background-color: var(--color-gray-dark);
   color: var(--color-white);
 }
+
+button.ProductButton {
+  margin: 0;
+  transition: 0.5s all ease-in;
+}

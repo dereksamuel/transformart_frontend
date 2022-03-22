@@ -27,7 +27,7 @@ function Categories() {
           <span>Productos</span>
         </Title>
         {
-          categoriesProductsArray.length && categoriesProductsArray.map((categoriesProductsItem) => (
+          categoriesProductsArray.length ? categoriesProductsArray.map((categoriesProductsItem) => (
             <div className="CategoriesArray" key={categoriesProductsItem[1].category.id}>
               <Title
                 className="SubTitle TitleEachCategory"
@@ -52,7 +52,7 @@ function Categories() {
                 )
               }
             </div>
-          ))
+          )) : <p>No hay productos</p>
         }
       </article>
     </div>

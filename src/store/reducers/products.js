@@ -1,7 +1,9 @@
-import { SET_ALL, SET_ERROR, SET_LOADING } from "../types/products";
+import { SET_ALL, SET_ERROR, SET_LOADING, SET_ONE, SET_SELECTED } from "../types/products";
 
 const initialState = {
   all: [],
+  one: {},
+  selected: {},
   loading: false,
   error: true
 };
@@ -11,6 +13,14 @@ function products(state = initialState, action) {
     [SET_ALL]: {
       ...state,
       all: action.payload
+    },
+    [SET_ONE]: {
+      ...state,
+      one: action.payload
+    },
+    [SET_SELECTED]: {
+      ...state,
+      selected: action.payload
     },
     [SET_ERROR]: {
       ...state,

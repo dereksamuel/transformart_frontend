@@ -1,0 +1,154 @@
+/* .ProductContainer {
+  background-color: red;
+} */
+
+figure.ContainerImage {
+  position: relative;
+  max-width: 100%;
+  background-color: var(--color-dark);
+}
+
+figure.ContainerImage img {
+  width: 100%;
+  max-height: 14rem;
+  object-fit: contain;
+  object-position: top;
+}
+
+.ContainerBody {
+  padding-bottom: 0.25rem;
+}
+
+ul.ContainerCategories {
+  display: flex;
+  overflow-x: auto;
+  max-width: 100%;
+  padding: 1rem;
+  scroll-snap-type: x mandatory;
+}
+
+li.CategoryBanner, li.SizeBanner {
+  width: 100%;
+  max-width: 12rem;
+  margin: 0 0.5rem;
+  padding: 0.5rem;
+  list-style: none;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 1rem;
+  font-size: 1rem;
+  background-color: var(--color-dark);
+  color: var(--color-text);
+  scroll-snap-align: center;
+}
+
+li.CategoryBanner span, li.SizeBanner span {
+  display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+li.SizeBanner {
+  width: fit-content;
+  max-width: 15rem;
+  transition: filter 0.2s ease-in;
+}
+
+h1.ProductTitle {
+  color: var(--color-white);
+  padding: 0 1.5rem;
+}
+
+p.Price {
+  margin-top: 0.25rem;
+  padding: 0 1.5rem;
+  font-size: 1rem;
+  color: var(--color-white);
+  font-weight: 700;
+}
+
+span.PriceValue {
+  color: var(--color-secondary);
+  margin-left: 0.5rem;
+}
+
+p.Disabled {
+  font-weight: 600;
+  color: var(--color-text);
+  opacity: 0.7;
+}
+
+p.Disabled span.PriceValue {
+  color: var(--color-text);
+}
+
+p.Offer {
+  max-width: 7rem;
+  text-align: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-weight: 600;
+  padding: 0.8rem;
+  background-color: var(--color-warning);
+}
+
+p.Description {
+  padding: 0 1.5rem;
+  margin-top: 2rem;
+  color: var(--color-text);
+}
+
+.SubTitle-sub {
+  padding: 0 1.5rem;
+  padding-top: 2rem;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 0;
+  color: var(--color-secondary);
+}
+
+.SubTitle2 {
+  margin-top: 2rem;
+  padding-top: 0;
+  color: var(--color-white);
+}
+
+.Link {
+  color: var(--color-radiant);
+  text-decoration: none;
+  padding-bottom: 0.25rem;
+  border-bottom: 0.2rem solid currentColor;
+}
+
+ul.ContainerLinks {
+  padding: 0.8rem 0;
+  padding-bottom: 0;
+}
+
+li.ContainerLink {
+  margin: 0 2.6rem;
+  margin-bottom: 1rem;
+  color: var(--color-radiant);
+}
+
+li.SelecteSizeBanner {
+  filter: drop-shadow(0px 0px 4px rgba(114, 203, 144, 0.877));
+  color: var(--color-secondary);
+  font-weight: bold;
+}
+
+.ZoneOfButton {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 1rem 0.5rem;
+  background-color: var(--color-primary);
+}
+
+.spaceButton {
+  height: 5rem;
+}
