@@ -6,12 +6,12 @@ import { Login } from "../pages/Login";
 import { Categories } from "../pages/Categories";
 import { Category } from "../pages/Category";
 import { Product } from "../pages/Product";
+import { Shopping } from "../pages/Shopping";
 
 import { Menu } from "./Menu";
 import { PrivateRoute } from "./PrivateRoute";
 
 import "./styles.css";
-import { Shopping } from "../pages/Shopping";
 
 function App() {
   return (
@@ -30,7 +30,7 @@ function App() {
               path="/update_art"
               element={<PrivateRoute />}
             >
-              <Route exact path='/update_art' element={<div>Hello my private route</div>}/>
+              <Route exact path="/update_art" element={<div>Hello my private route</div>}/>
             </Route>
           </Routes>
         </main>

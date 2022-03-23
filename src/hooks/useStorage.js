@@ -5,16 +5,21 @@ const useStorage = (key) => {
   const [storageInfo, setStorageInfo] = useState(null);
   const [error, setError] = useState(false);
 
-  useEffect(() => {
+  const onStartedStorage = () => {
     const storageSaved = getLocalStorage(key);
 
     if (!storageInfo) setError(true);
 
     setStorageInfo(JSON.parse(storageSaved));
+  };
+
+  useEffect(() => {
+    onStartedStorage();
   }, []);
 
   return {
     storageInfo,
+    setStorageInfo,
     error
   };
 };

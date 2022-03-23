@@ -1,0 +1,37 @@
+.ZoneButtons {
+  height: 2rem;
+  position: relative;
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  border-radius: 0.25rem;
+  overflow: hidden;
+  margin-top: -0.25rem;
+}
+
+.ZoneButtons svg {
+  max-width: 1.5rem;
+  width: 100%;
+  color: var(--color-white);
+}
+
+.Count {
+  max-width: 4rem;
+  width: 100%;
+  padding: 0 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-dark);
+  color: var(--color-white);
+}
+
+.EmptyTitle {
+  margin-top: 2rem;
+  padding: 0 2rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+
+  color: var(--color-white);
+}

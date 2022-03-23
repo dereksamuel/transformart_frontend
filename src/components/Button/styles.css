@@ -69,3 +69,20 @@ button.ProductButton {
   margin: 0;
   transition: 0.5s all ease-in;
 }
+
+button.ButtonToggleSize, button.ButtonToggleSize-danger {
+  width: 100%;
+  background-color: var(--color-gray);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button.ButtonToggleSize-danger {
+  background-color: var(--color-danger);
+}
+
+button.ButtonToggleSize-danger svg {
+  opacity: 0.6;
+}

@@ -1,5 +1,6 @@
 const fetchQuery = async (query) => {
   const URL = "http://localhost:4001/api/v1/gql";
+  const headerToken = localStorage.getItem("headerToken");
   let state = {
     data: null,
     loading: true,
@@ -10,7 +11,10 @@ const fetchQuery = async (query) => {
     const response = await (await fetch(URL, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Authorization": headerToken ? (
+          "Bearer " + headerToken
+        ) : null
       },
       body: JSON.stringify({
         query

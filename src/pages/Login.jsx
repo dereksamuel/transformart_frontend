@@ -15,10 +15,9 @@ import { Input } from "../components/Input";
 import { useModel } from "../hooks/useModel";
 
 import "./Login.css";
-import { doAuthenticate } from "../store/actions/authenticate";
 import { Alert } from "../components/Alert";
 import { setState } from "../utils/setState";
-import { SET_ERROR, SET_LOADING } from "../store/types/authenticate";
+import { SET_AUTH, SET_ERROR, SET_LOADING } from "../store/types/authenticate";
 
 function Login() {
   const isAuth = useSelector((state) => state.authenticate.isAuth);
@@ -47,11 +46,14 @@ function Login() {
     ).catch((error) => {
       console.error(error);
       setShowAlert(true);
+      dispatch(setState({ type: SET_AUTH, payload: false }));
       dispatch(setState({ type: SET_ERROR, payload: true }));
       dispatch(setState({ type: SET_LOADING, payload: false }));
     });
 
-    dispatch(doAuthenticate(userCredential.user.accessToken));
+    localStorage.setItem("headerToken", userCredential.user.accessToken);
+
+    dispatch(setState({ type: SET_AUTH, payload: true }));
   };
 
   const onHideAlert = () => setShowAlert(false);
@@ -95,7 +97,7 @@ function Login() {
           autoComplete="false"
           required
         />
-        <Button type="submit" className="PrimaryWave stylesButtonSignin" onClick={console.log} disabled={loading}>
+        <Button type="submit" className="PrimaryWave stylesButtonSignin" disabled={loading}>
           <div className="sessionContainer">
             {
               !loading ? (

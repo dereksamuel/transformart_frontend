@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router";
@@ -18,13 +18,17 @@ import "./Product.css";
 function Product() {
   const [productsCategories, setProductsCategories] = useState([]);
   const [selectedSize, setSelectedSize] = useState("");
+  const [showGreenGuide, setShowGreenGuide] = useState(false);
+
+  const params = useParams();
+  const refLink = useRef(null);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const params = useParams();
   const categoriesProductsArray = useCP();
   const product = useOneProduct(params.productId);
+
   const formatPrice = new Intl.NumberFormat("es-CO", {
     currency: "COP"
   }).format(product.price);
@@ -39,16 +43,46 @@ function Product() {
   };
 
   const onAddToPay = async () => {
-    const products = getLocalStorage("products");
+    if (!selectedSize) {
+      setShowGreenGuide(true);
+      return;
+    }
 
-    setLocalStorage("products", [
-      ...products ? JSON.parse(products) : [],
-      {
-        ...product,
-        categories: productsCategories,
-        selectedSize
-      }
-    ]);
+    let products = getLocalStorage("products");
+    products = products ? JSON.parse(products) : [];
+
+    let isRepeated = [];
+    let oneRepeated = false;
+
+    if (products.length) {
+      isRepeated = products.map((productLocal) => {
+        if ((
+          productLocal.selectedSize === selectedSize
+        ) && (
+          +productLocal.id === +product.id
+        )) {
+          oneRepeated = true;
+          productLocal.count = productLocal.count ? productLocal.count : 0;
+          productLocal.count += 1;
+        }
+
+        return productLocal;
+      });
+    }
+
+    if (!oneRepeated) {
+      setLocalStorage("products", [
+        ...products,
+        {
+          ...product,
+          count: 1,
+          categories: productsCategories,
+          selectedSize
+        }
+      ]);
+    } else {
+      setLocalStorage("products", isRepeated);
+    }
 
     await dispatch(setState({
       type: SET_SELECTED,
@@ -60,6 +94,12 @@ function Product() {
     }));
 
     navigate({ pathname: "/myshopping" });
+  };
+
+  const onNavigateToProducts = (categoryId) => {
+    navigate({
+      pathname: "/products/" + categoryId
+    });
   };
 
   useEffect(() => {
@@ -84,7 +124,11 @@ function Product() {
         <ul className="ContainerCategories">
           {
             productsCategories.length && productsCategories.map((productsCategory) => (
-              <li className="CategoryBanner" key={productsCategory[1].category.id}>
+              <li
+                className="CategoryBanner"
+                key={productsCategory[1].category.id}
+                onClick={() => onNavigateToProducts(productsCategory[1].categoriesProductId)}
+              >
                 <span>
                   { productsCategory[1].category.name }
                 </span>
@@ -117,44 +161,51 @@ function Product() {
         </Title>
         <ul className="ContainerLinks">
           <li className="ContainerLink">
-            <a href={product.facebookLink} about="_blank" className="Link">facebook</a>
+            <a href={product.facebookLink} target="_blank" className="Link" rel="noreferrer">facebook</a>
           </li>
           <li className="ContainerLink">
-            <a href={product.tweeterLink} about="_blank" className="Link">tweeter</a>
+            <a href={product.tweeterLink} target="_blank" className="Link" rel="noreferrer">tweeter</a>
           </li>
           <li className="ContainerLink">
-            <a href={product.instagramLink} about="_blank" className="Link">instagram</a>
+            <a href={product.instagramLink} target="_blank" className="Link" rel="noreferrer">instagram</a>
           </li>
         </ul>
-        <Title className="SubTitle SubTitle-sub">
-          Elige el tamaño de { product.name }:
-        </Title>
-        <ul className="ContainerCategories">
-          <li
-            className={`SizeBanner ${selectedSize === "Pequeño (120cm x 120)" && "SelecteSizeBanner"}`}
-            onClick={() => setSelectedSize("Pequeño (120cm x 120)")}
-          >
-            <span>Pequeño (120cm x 120)</span>
-          </li>
-          <li
-            className={`SizeBanner ${selectedSize === "Mediano (15m x 1m)" && "SelecteSizeBanner"}`}
-            onClick={() => setSelectedSize("Mediano (15m x 1m)")}
-          >
-            <span>Mediano (15m x 1m)</span>
-          </li>
-          <li
-            className={`SizeBanner ${selectedSize === "Grande (120cm x 120)" && "SelecteSizeBanner"}`}
-            onClick={() => setSelectedSize("Grande (120cm x 120)")}
-          >
-            <span>Grande (120cm x 120)</span>
-          </li>
-        </ul>
+        <div className={`ContainerSizes ${showGreenGuide && "ContainerSizes-green"}`} id="containerSizes">
+          <Title className="SubTitle SubTitle-sub">
+            Primero Elige el tamaño de { product.name }:
+          </Title>
+          <ul className="ContainerCategories">
+            <li
+              className={`SizeBanner ${selectedSize === "Pequeño (120cm x 120)" && "SelecteSizeBanner"}`}
+              onClick={() => setSelectedSize("Pequeño (120cm x 120)")}
+            >
+              <span>Pequeño (120cm x 120)</span>
+            </li>
+            <li
+              className={`SizeBanner ${selectedSize === "Mediano (15m x 1m)" && "SelecteSizeBanner"}`}
+              onClick={() => setSelectedSize("Mediano (15m x 1m)")}
+            >
+              <span>Mediano (15m x 1m)</span>
+            </li>
+            <li
+              className={`SizeBanner ${selectedSize === "Grande (120cm x 120)" && "SelecteSizeBanner"}`}
+              onClick={() => setSelectedSize("Grande (120cm x 120)")}
+            >
+              <span>Grande (120cm x 120)</span>
+            </li>
+          </ul>
+        </div>
         <div className="ZoneOfButton">
-          <Button
-            className="PrimaryWave ProductButton"
-            disabled={!selectedSize}
+          <a
+            className="containerSizesClassName"
+            href="#containerSizes"
+            ref={refLink}
             onClick={onAddToPay}
-          >Agregar a mis compras</Button>
+          >
+            <Button
+              className={`PrimaryWave ProductButton ${!selectedSize && "Disabled"}`}
+            >Agregar a mis compras</Button>
+          </a>
         </div>
         <div className="spaceButton"></div>
       </section>

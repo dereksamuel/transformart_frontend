@@ -1,19 +1,22 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ChevronLeftIcon } from "@heroicons/react/solid";
 
 import { Button } from "../Button";
 import LogoTipoSm from "../../assets/images/mobile/LogoTipoSm.svg";
-
 import { auth } from "../../utils/connectFirebase";
 import { knowInformationPath } from "../../utils/knowInformationPath";
+import { logout } from "../../store/actions/authenticate";
+
+import { useVerifyAuth } from "../../hooks/useVerifyAuth";
+
 import "./styles.css";
 
 function Menu() {
   const isAuth = useSelector((state) => state.authenticate.isAuth);
-  const history = useLocation();
+  const location = useLocation();
   const $button = useRef(null);
   const [state, setState] = useState({
     isMenuDisplayed: false,
@@ -21,6 +24,10 @@ function Menu() {
     pathsInfo: {},
     pathsAction: {}
   });
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  useVerifyAuth();
 
   const onShowMenu = () => {
     const $router = document.getElementById("Router");
@@ -35,15 +42,18 @@ function Menu() {
   };
 
   const renderIcon = (valuePage) => {
-    return history.pathname === valuePage.to && <span className="IconMenuLink">{valuePage.icon}</span>;
+    return location.pathname === valuePage.to && <span className="IconMenuLink">{valuePage.icon}</span>;
   };
 
   const onLogout = async () => {
     await auth.signOut();
+    dispatch(logout());
+
+    navigate({ pathname: "/login" });
   };
 
   useEffect(() => {
-    const { pathsInfo, onlyPath, pathsAction } = knowInformationPath(history.pathname);
+    const { pathsInfo, onlyPath, pathsAction } = knowInformationPath(location.pathname);
 
     setState({
       ...state,
@@ -51,7 +61,7 @@ function Menu() {
       pathsInfo,
       pathsAction
     });
-  }, [history.pathname]);
+  }, [location.pathname]);
 
   return (
     <header className="ContainerMenu">
@@ -67,7 +77,7 @@ function Menu() {
                 {
                   Object.values(state.pathsInfo).map((valuePage, index) => (
                     <Link to={{ pathname: valuePage.to }} className={
-                      history.pathname === valuePage.to ? "Menu-link" : "Menu-link-empty"
+                      location.pathname === valuePage.to ? "Menu-link" : "Menu-link-empty"
                     } key={index}>
                       { renderIcon(valuePage) }
                       <span>{valuePage.name}</span>
@@ -85,7 +95,7 @@ function Menu() {
                   </Link> : (
                     <>
                       <Link to={{ pathname: state.pathsAction["/update_art"].to }} className={
-                        history.pathname === state.pathsAction["/update_art"].to ?
+                        location.pathname === state.pathsAction["/update_art"].to ?
                           "Menu-link" :
                           "Menu-link-empty"
                       }>

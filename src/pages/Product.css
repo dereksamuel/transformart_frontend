@@ -152,3 +152,20 @@ li.SelecteSizeBanner {
 .spaceButton {
   height: 5rem;
 }
+
+.ContainerSizes {
+  transition: 0.5s all ease-in;
+}
+
+.ContainerSizes-green {
+  padding: 0 1rem;
+  border: 0.25rem solid var(--color-secondary);
+}
+
+.containerSizesClassName {
+  text-decoration: none;
+}
+
+.Disabled {
+  opacity: 0.5;
+}
