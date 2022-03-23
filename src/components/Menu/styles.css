@@ -131,15 +131,6 @@
   }
 }
 
-@keyframes changeStroke {
-  0% {
-    stroke-dasharray: 5px;
-  }
-  100% {
-    stroke-dasharray: 100px;
-  }
-}
-
 @keyframes changeStrokeBigger {
   0% {
     stroke-dasharray: 5px;

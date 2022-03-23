@@ -90,6 +90,15 @@ body {
   width: fit-content;
 }
 
+@keyframes changeStroke {
+  0% {
+    stroke-dasharray: 5px;
+  }
+  100% {
+    stroke-dasharray: 100px;
+  }
+}
+
 @keyframes showable {
   0% {
     opacity: 0;
