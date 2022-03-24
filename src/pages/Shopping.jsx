@@ -54,7 +54,7 @@ function Shopping() {
     console.log("goToBuy");
   };
 
-  if (error && (!products && !products.length)) {
+  if (error || (!products || !products.length)) {
     return <div className="Error">No tienes productos</div>;
   }
 
