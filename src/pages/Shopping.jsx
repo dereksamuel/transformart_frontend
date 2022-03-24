@@ -18,8 +18,7 @@ import "./Shopping.css";
 function Shopping() {
   const {
     storageInfo: products,
-    setStorageInfo,
-    error
+    setStorageInfo
   } = useStorage("products");
 
   const toggleOneProduct = (rest, uniqId) => {
@@ -53,10 +52,6 @@ function Shopping() {
   const goToBuy = () => {
     console.log("goToBuy");
   };
-
-  if (error) {
-    return <div className="Error">Lo sentimos pero ocurrió un error</div>;
-  }
 
   return (
     <div className="Shopping">
