@@ -169,3 +169,12 @@ li.SelecteSizeBanner {
 .Disabled {
   opacity: 0.5;
 }
+
+.imageContainerVideo {
+  margin: 0;
+}
+
+.imageContainerVideo video {
+  max-width: 100%;
+  max-height: 175px;
+}

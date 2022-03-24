@@ -51,6 +51,7 @@ function Shopping() {
 
   const goToBuy = () => {
     console.log("goToBuy");
+    // TODO: Go to buy later
   };
 
   return (

@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { PlayIcon } from "@heroicons/react/outline";
 
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router";
@@ -16,12 +17,14 @@ import { getLocalStorage, setLocalStorage } from "../utils/localStorage";
 import "./Product.css";
 
 function Product() {
+  const [playingVideo, setPlayingVideo] = useState(false);
   const [productsCategories, setProductsCategories] = useState([]);
   const [selectedSize, setSelectedSize] = useState("");
   const [showGreenGuide, setShowGreenGuide] = useState(false);
 
   const params = useParams();
   const refLink = useRef(null);
+  const refVideo = useRef(null);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -102,6 +105,14 @@ function Product() {
     });
   };
 
+  const onPlayVideo = () => {
+    if (refVideo.current) {
+      setPlayingVideo(true);
+
+      refVideo.current.play();
+    }
+  };
+
   useEffect(() => {
     const filteredCP = categoriesProductsArray.filter((categoriesProductsItem) =>
       [...categoriesProductsItem[1].products].filter((productLocal) =>
@@ -118,7 +129,29 @@ function Product() {
             <p className="Offer">Oferta del { product.offer }%</p>
           ) : null
         }
-        <img src={product.srcImage} alt={product.name} />
+        {
+          product.srcVideo ? (
+            <div
+              className="BackgroundWave-Video_Container imageContainerVideo"
+              onClick={onPlayVideo}
+            >
+              {
+                !playingVideo && (
+                  <PlayIcon className="PlayIcon" />
+                )
+              }
+              <video
+                src={product.srcVideo}
+                controls={playingVideo}
+                className="BackgroundWave-Video"
+                poster={product.srcImage}
+                ref={refVideo}
+              ></video>
+            </div>
+          ) : (
+            <img src={product.srcImage} alt={product.name} />
+          )
+        }
       </figure>
       <section className="ContainerBody">
         <ul className="ContainerCategories">
