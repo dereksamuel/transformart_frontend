@@ -4,23 +4,25 @@ import { PlayIcon } from "@heroicons/react/outline";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router";
 
-import { Title } from "../components/Title";
-import { Button } from "../components/Button";
+import { Title } from "../../components/Title";
+import { Button } from "../../components/Button";
 
-import { useCP } from "../hooks/useCP";
-import { useOneProduct } from "../hooks/useOneProduct";
+import { useCP } from "../../hooks/useCP";
+import { useOneProduct } from "../../hooks/useOneProduct";
 
-import { setState } from "../utils/setState";
-import { SET_SELECTED } from "../store/types/products";
-import { getLocalStorage, setLocalStorage } from "../utils/localStorage";
+import { setState } from "../../utils/setState";
+import { SET_SELECTED } from "../../store/types/products";
+import { getLocalStorage, setLocalStorage } from "../../utils/localStorage";
 
-import "./Product.css";
+import "./styles.css";
 
 function Product() {
-  const [playingVideo, setPlayingVideo] = useState(false);
-  const [productsCategories, setProductsCategories] = useState([]);
-  const [selectedSize, setSelectedSize] = useState("");
-  const [showGreenGuide, setShowGreenGuide] = useState(false);
+  const [stateLocal, setStateLocal] = useState({
+    playingVideo: false,
+    showGreenGuide: false,
+    productsCategories: [],
+    selectedSize: ""
+  });
 
   const params = useParams();
   const refLink = useRef(null);
@@ -46,8 +48,11 @@ function Product() {
   };
 
   const onAddToPay = async () => {
-    if (!selectedSize) {
-      setShowGreenGuide(true);
+    if (!stateLocal.selectedSize) {
+      setStateLocal({
+        ...stateLocal,
+        showGreenGuide: true
+      });
       return;
     }
 
@@ -60,7 +65,7 @@ function Product() {
     if (products.length) {
       isRepeated = products.map((productLocal) => {
         if ((
-          productLocal.selectedSize === selectedSize
+          productLocal.selectedSize === stateLocal.selectedSize
         ) && (
           +productLocal.id === +product.id
         )) {
@@ -79,8 +84,8 @@ function Product() {
         {
           ...product,
           count: 1,
-          categories: productsCategories,
-          selectedSize
+          categories: stateLocal.productsCategories,
+          selectedSize: stateLocal.selectedSize
         }
       ]);
     } else {
@@ -91,8 +96,8 @@ function Product() {
       type: SET_SELECTED,
       payload: {
         ...product,
-        categories: productsCategories,
-        selectedSize
+        categories: stateLocal.productsCategories,
+        selectedSize: stateLocal.selectedSize
       }
     }));
 
@@ -107,7 +112,10 @@ function Product() {
 
   const onPlayVideo = () => {
     if (refVideo.current) {
-      setPlayingVideo(true);
+      setStateLocal({
+        ...stateLocal,
+        playingVideo: true
+      });
 
       refVideo.current.play();
     }
@@ -118,7 +126,10 @@ function Product() {
       [...categoriesProductsItem[1].products].filter((productLocal) =>
         productLocal.id === product.id).length);
 
-    setProductsCategories(filteredCP);
+    setStateLocal({
+      ...stateLocal,
+      productsCategories: filteredCP
+    });
   }, [categoriesProductsArray, product]);
 
   return (
@@ -136,13 +147,13 @@ function Product() {
               onClick={onPlayVideo}
             >
               {
-                !playingVideo && (
+                !stateLocal.playingVideo && (
                   <PlayIcon className="PlayIcon" />
                 )
               }
               <video
                 src={product.srcVideo}
-                controls={playingVideo}
+                controls={stateLocal.playingVideo}
                 className="BackgroundWave-Video"
                 poster={product.srcImage}
                 ref={refVideo}
@@ -156,7 +167,7 @@ function Product() {
       <section className="ContainerBody">
         <ul className="ContainerCategories">
           {
-            productsCategories.length && productsCategories.map((productsCategory) => (
+            stateLocal.productsCategories.length && stateLocal.productsCategories.map((productsCategory) => (
               <li
                 className="CategoryBanner"
                 key={productsCategory[1].category.id}
@@ -203,26 +214,35 @@ function Product() {
             <a href={product.instagramLink} target="_blank" className="Link" rel="noreferrer">instagram</a>
           </li>
         </ul>
-        <div className={`ContainerSizes ${showGreenGuide && "ContainerSizes-green"}`} id="containerSizes">
+        <div className={`ContainerSizes ${stateLocal.showGreenGuide && "ContainerSizes-green"}`} id="containerSizes">
           <Title className="SubTitle SubTitle-sub">
             Primero Elige el tamaño de { product.name }:
           </Title>
           <ul className="ContainerCategories">
             <li
-              className={`SizeBanner ${selectedSize === "Pequeño (120cm x 120)" && "SelecteSizeBanner"}`}
-              onClick={() => setSelectedSize("Pequeño (120cm x 120)")}
+              className={`SizeBanner ${stateLocal.selectedSize === "Pequeño (120cm x 120)" && "SelecteSizeBanner"}`}
+              onClick={() => setStateLocal({
+                ...stateLocal,
+                selectedSize: "Pequeño (120cm x 120)"
+              })}
             >
               <span>Pequeño (120cm x 120)</span>
             </li>
             <li
-              className={`SizeBanner ${selectedSize === "Mediano (15m x 1m)" && "SelecteSizeBanner"}`}
-              onClick={() => setSelectedSize("Mediano (15m x 1m)")}
+              className={`SizeBanner ${stateLocal.selectedSize === "Mediano (15m x 1m)" && "SelecteSizeBanner"}`}
+              onClick={() => setStateLocal({
+                ...stateLocal,
+                selectedSize: "Mediano (15m x 1m)"
+              })}
             >
               <span>Mediano (15m x 1m)</span>
             </li>
             <li
-              className={`SizeBanner ${selectedSize === "Grande (120cm x 120)" && "SelecteSizeBanner"}`}
-              onClick={() => setSelectedSize("Grande (120cm x 120)")}
+              className={`SizeBanner ${stateLocal.selectedSize === "Grande (120cm x 120)" && "SelecteSizeBanner"}`}
+              onClick={() => setStateLocal({
+                ...stateLocal,
+                selectedSize: "Grande (120cm x 120)"
+              })}
             >
               <span>Grande (120cm x 120)</span>
             </li>
@@ -236,7 +256,7 @@ function Product() {
             onClick={onAddToPay}
           >
             <Button
-              className={`PrimaryWave ProductButton ${!selectedSize && "Disabled"}`}
+              className={`PrimaryWave ProductButton ${!stateLocal.selectedSize && "Disabled"}`}
             >Agregar a mis compras</Button>
           </a>
         </div>

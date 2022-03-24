@@ -4,7 +4,7 @@
 
 .BackgroundWave {
   min-height: 350px;
-  background: url(../assets/images/mobile/Wave.svg);
+  background: url(../../assets/images/mobile/Wave.svg);
   background-size: cover;
   background-position: top;
   background-repeat: no-repeat;

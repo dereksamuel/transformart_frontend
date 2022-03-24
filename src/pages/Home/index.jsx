@@ -2,17 +2,17 @@ import React from "react";
 import { PlayIcon } from "@heroicons/react/outline";
 import { useNavigate } from "react-router";
 
-import logoSrc from "../assets/images/mobile/LogoTipo.svg";
-import pigSrc from "../assets/images/mobile/Pig.svg";
-import instagramIcon from "../assets/images/mobile/InstagramIcon.svg";
-import facebookIcon from "../assets/images/mobile/FacebookIcon.svg";
-import tweeterIcon from "../assets/images/mobile/TweeterIcon.svg";
+import logoSrc from "../../assets/images/mobile/LogoTipo.svg";
+import pigSrc from "../../assets/images/mobile/Pig.svg";
+import instagramIcon from "../../assets/images/mobile/InstagramIcon.svg";
+import facebookIcon from "../../assets/images/mobile/FacebookIcon.svg";
+import tweeterIcon from "../../assets/images/mobile/TweeterIcon.svg";
 
-import { Button } from "../components/Button";
-import { Title } from "../components/Title";
-import { IconBanner } from "../components/IconBanner";
+import { Button } from "../../components/Button";
+import { Title } from "../../components/Title";
+import { IconBanner } from "../../components/IconBanner";
 
-import "./Home.css";
+import "./styles.css";
 
 function Home() {
   const navigate = useNavigate();

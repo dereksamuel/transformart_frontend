@@ -1,13 +1,13 @@
 import React from "react";
 
-import { Title } from "../components/Title";
-import srcLogoIcon from "../assets/images/mobile/logoIcon.svg";
+import { Title } from "../../components/Title";
+import srcLogoIcon from "../../assets/images/mobile/logoIcon.svg";
 
 import { useParams } from "react-router";
-import { useCP } from "../hooks/useCP";
-import { ProductItem } from "../components/ProductItem";
+import { useCP } from "../../hooks/useCP";
+import { ProductItem } from "../../components/ProductItem";
 
-import "./Categories.css";
+import "../Categories/styles.css";
 
 function Category() {
   const params = useParams();

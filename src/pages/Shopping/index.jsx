@@ -2,18 +2,18 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { HomeIcon, MinusIcon, PlusIcon, TrashIcon } from "@heroicons/react/outline";
 
-import { ProductItem } from "../components/ProductItem";
-import { Button } from "../components/Button";
-import { Title } from "../components/Title";
+import { ProductItem } from "../../components/ProductItem";
+import { Button } from "../../components/Button";
+import { Title } from "../../components/Title";
 
-import srcLogoIcon from "../assets/images/mobile/logoIcon.svg";
-import { useStorage } from "../hooks/useStorage";
+import srcLogoIcon from "../../assets/images/mobile/logoIcon.svg";
+import { useStorage } from "../../hooks/useStorage";
 
-import { setLocalStorage } from "../utils/localStorage";
-import { EmptyDraw } from "../components/EmptyDraw";
+import { setLocalStorage } from "../../utils/localStorage";
+import { EmptyDraw } from "../../components/EmptyDraw";
 
-import "./Categories.css";
-import "./Shopping.css";
+import "../Categories/styles.css";
+import "./styles.css";
 
 function Shopping() {
   const {
@@ -47,11 +47,6 @@ function Shopping() {
 
     setStorageInfo(productsCopy);
     setLocalStorage("products", productsCopy);
-  };
-
-  const goToBuy = () => {
-    console.log("goToBuy");
-    // TODO: Go to buy later
   };
 
   return (
@@ -107,11 +102,14 @@ function Shopping() {
         )
       }
       <div className="ZoneOfButton">
-        <Button
-          disabled={!products || !products.length}
-          className={"PrimaryWave ProductButton"}
-          onClick={goToBuy}
-        >Vamos a comprar</Button>
+        <Link to={{
+          pathname: "/buying"
+        }} className="link-without-styles">
+          <Button
+            disabled={!products || !products.length}
+            className={"PrimaryWave ProductButton"}
+          >Vamos a comprar</Button>
+        </Link>
       </div>
       <div className="spaceButton"></div>
     </div>

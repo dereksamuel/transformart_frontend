@@ -1,16 +1,17 @@
 import React from "react";
 import { EyeIcon } from "@heroicons/react/outline";
 
-import srcLogoIcon from "../assets/images/mobile/logoIcon.svg";
+import srcLogoIcon from "../../assets/images/mobile/logoIcon.svg";
 
-import { Title } from "../components/Title";
-import { ProductItem } from "../components/ProductItem";
-import { Button } from "../components/Button";
+import { Title } from "../../components/Title";
+import { ProductItem } from "../../components/ProductItem";
+import { Button } from "../../components/Button";
 
-import "./Categories.css";
 import { useNavigate } from "react-router";
-import { useCP } from "../hooks/useCP";
-import { EmptyDraw } from "../components/EmptyDraw";
+import { useCP } from "../../hooks/useCP";
+import { EmptyDraw } from "../../components/EmptyDraw";
+
+import "./styles.css";
 
 function Categories() {
   const categoriesProductsArray = useCP();

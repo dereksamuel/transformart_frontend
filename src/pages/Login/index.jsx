@@ -4,25 +4,30 @@ import { useDispatch, useSelector } from "react-redux";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { LoginIcon } from "@heroicons/react/outline";
 
-import { auth } from "../utils/connectFirebase";
-import logoIcon from "../assets/images/mobile/logoIcon.svg";
-import WaveFlowHeader from "../assets/images/mobile/WaveFlowHeader.svg";
-import WaveFlowFooter from "../assets/images/mobile/WaveFlowFooter.svg";
+import { auth } from "../../utils/connectFirebase";
+import logoIcon from "../../assets/images/mobile/logoIcon.svg";
+import WaveFlowHeader from "../../assets/images/mobile/WaveFlowHeader.svg";
+import WaveFlowFooter from "../../assets/images/mobile/WaveFlowFooter.svg";
 
-import { IconBanner } from "../components/IconBanner";
-import { Button } from "../components/Button";
-import { Input } from "../components/Input";
-import { useModel } from "../hooks/useModel";
+import { IconBanner } from "../../components/IconBanner";
+import { Button } from "../../components/Button";
+import { Input } from "../../components/Input";
+import { useModel } from "../../hooks/useModel";
+import { Alert } from "../../components/Alert";
 
-import "./Login.css";
-import { Alert } from "../components/Alert";
-import { setState } from "../utils/setState";
-import { SET_AUTH, SET_ERROR, SET_LOADING } from "../store/types/authenticate";
+import { setState } from "../../utils/setState";
+import { SET_AUTH, SET_ERROR, SET_LOADING } from "../../store/types/authenticate";
+
+import "./styles.css";
 
 function Login() {
   const isAuth = useSelector((state) => state.authenticate.isAuth);
   const loading = useSelector((state) => state.authenticate.loading);
-  const [showAlert, setShowAlert] = useState(false);
+
+  const [stateLocal, setStateLocal] = useState({
+    showAlert: false
+  });
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -45,7 +50,10 @@ function Login() {
       userPasword
     ).catch((error) => {
       console.error(error);
-      setShowAlert(true);
+      setStateLocal({
+        ...stateLocal,
+        showAlert: true
+      });
       dispatch(setState({ type: SET_AUTH, payload: false }));
       dispatch(setState({ type: SET_ERROR, payload: true }));
       dispatch(setState({ type: SET_LOADING, payload: false }));
@@ -56,7 +64,10 @@ function Login() {
     dispatch(setState({ type: SET_AUTH, payload: true }));
   };
 
-  const onHideAlert = () => setShowAlert(false);
+  const onHideAlert = () => setStateLocal({
+    ...stateLocal,
+    showAlert: false
+  });
 
   useEffect(() => {
     dispatch(setState({ type: SET_LOADING, payload: false }));
@@ -70,7 +81,7 @@ function Login() {
     <div className="Login">
       <img src={WaveFlowHeader} alt="WaveFlowHeader" className="WaveFlowHeader" />
       {
-        showAlert && <Alert
+        stateLocal.showAlert && <Alert
           title="Error de autenticación"
           description="Lo sentimos, pero algo ha ido mal con la autenticación"
           theme="Error"
