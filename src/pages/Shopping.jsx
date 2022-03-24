@@ -54,8 +54,8 @@ function Shopping() {
     console.log("goToBuy");
   };
 
-  if (error || (!products || !products.length)) {
-    return <div className="Error">No tienes productos</div>;
+  if (error) {
+    return <div className="Error">Lo sentimos pero ocurrió un error</div>;
   }
 
   return (

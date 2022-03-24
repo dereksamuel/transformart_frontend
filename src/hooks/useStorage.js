@@ -8,7 +8,7 @@ const useStorage = (key) => {
   const onStartedStorage = () => {
     const storageSaved = getLocalStorage(key);
 
-    if (!storageInfo) setError(true);
+    if (!storageSaved) setError(true);
 
     setStorageInfo(JSON.parse(storageSaved));
   };
