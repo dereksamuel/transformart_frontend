@@ -10,6 +10,7 @@ import { Button } from "../components/Button";
 import "./Categories.css";
 import { useNavigate } from "react-router";
 import { useCP } from "../hooks/useCP";
+import { EmptyDraw } from "../components/EmptyDraw";
 
 function Categories() {
   const categoriesProductsArray = useCP();
@@ -52,7 +53,11 @@ function Categories() {
                 )
               }
             </div>
-          )) : <p>No hay productos</p>
+          )) : (
+            <div className="CategoriesEmpty">
+              <EmptyDraw titleEmpty="No hay productos" />
+            </div>
+          )
         }
       </article>
     </div>

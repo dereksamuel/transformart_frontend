@@ -26,37 +26,6 @@
   color: var(--color-white);
 }
 
-.EmptyTitle {
-  margin-top: 2rem;
-  padding: 0 2rem;
-  font-size: 1.5rem;
-  font-weight: 600;
-  text-align: center;
-
-  color: var(--color-white);
-}
-
-.svg {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%);
-}
-
-.LogoToAnimateEmpty {
-  position: relative;
-  left: calc(50% - 50%);
-  transition: 2s all;
-  transform: translateX(60vw);
-  animation: iterButterFly 3.5s infinite ease-in-out alternate;
-}
-
-.svg path {
-  stroke-dasharray: 5px;
-  transition: 3.5s all;
-  animation: changeStroke 3.5s ease-in infinite alternate-reverse;
-}
-
 .textEmpty {
   margin-top: 2rem;
   padding: 4rem;
@@ -69,25 +38,4 @@ a.align-center {
   margin-top: 1rem;
   text-align: center;
   justify-content: center;
-}
-
-.relative {
-  position: relative;
-  max-width: 222px;
-  margin: auto;
-}
-
-@keyframes iterButterFly {
-  0% {
-    transform: translateX(120px) translateY(0px) rotate(0deg) scale(0.5);
-  }
-  40% {
-    transform: translateX(80px) translateY(60px) rotate(-360deg);
-  }
-  80% {
-    transform: translateX(40px) translateY(0px) rotate(-732deg) scale(0.5);
-  }
-  100% {
-    transform: translateX(0px) translateY(0px) rotate(-700deg);
-  }
 }
