@@ -17,7 +17,7 @@ function ContactUs() {
     storageInfo: products,
   } = useStorage("products");
 
-  const number = 3154494547;
+  const number = "+573154494547";
   const finalMessage = `
     Mis compras:
       ${(products && products.length) && products.map((product) => `
