@@ -54,7 +54,7 @@ function ContactUs() {
 
   useEffect(() => {
     if (products) {
-      if (!products.length)
+      if (!products || !products.length)
         navigate({
           pathname: "/"
         });
