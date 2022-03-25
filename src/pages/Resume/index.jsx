@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 import WaveFlowHeader from "../../assets/images/mobile/WaveFlowHeader.svg";
 
@@ -17,6 +17,17 @@ function Resume () {
   const {
     storageInfo: products
   } = useStorage("products");
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (products) {
+      if (!products || !products.length)
+        navigate({
+          pathname: "/"
+        });
+    }
+  }, [products]);
 
   return (
     <div className="Resume">

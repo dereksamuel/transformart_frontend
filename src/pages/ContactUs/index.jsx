@@ -25,7 +25,7 @@ function ContactUs() {
 
   const number = "+573154494547";
   const finalMessage = `
-    Mis Compras:
+    Hola, quisiera pagar por estos productos:
     ${
       (products && products.length) && products?.map((product) => {
         return `
@@ -42,6 +42,9 @@ function ContactUs() {
 
   const onOpenWhatsappLink = () => {
     window.open("https://api.whatsapp.com/send" + `?phone=${number}&text=${encodeURIComponent(finalMessage)}`);
+    navigate({
+      pathname: "/"
+    });
   };
 
   const onOpenGmailLink = () => {
@@ -51,6 +54,9 @@ function ContactUs() {
       "&su=Quiero comprar algo en Transformart" +
       `&body=${encodeURIComponent(finalMessage)}`
       );
+    navigate({
+      pathname: "/"
+    });
   };
 
   useEffect(() => {

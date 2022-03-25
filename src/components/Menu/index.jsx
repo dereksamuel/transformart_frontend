@@ -5,10 +5,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { ChevronLeftIcon } from "@heroicons/react/solid";
 
 import { Button } from "../Button";
+
 import LogoTipoSm from "../../assets/images/mobile/LogoTipoSm.svg";
-import { auth } from "../../utils/connectFirebase";
-import { knowInformationPath } from "../../utils/knowInformationPath";
+
 import { logout } from "../../store/actions/authenticate";
+
+import { knowInformationPath } from "../../utils/knowInformationPath";
+import { auth } from "../../utils/connectFirebase";
 
 import { useVerifyAuth } from "../../hooks/useVerifyAuth";
 
