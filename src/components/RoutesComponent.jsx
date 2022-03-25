@@ -8,6 +8,7 @@ import { Category } from "../pages/Category";
 import { Product } from "../pages/Product";
 import { Shopping } from "../pages/Shopping";
 import { ContactUs } from "../pages/ContactUs";
+import { Resume } from "../pages/Resume";
 
 import { PrivateRoute } from "./PrivateRoute";
 
@@ -32,6 +33,7 @@ function RoutesComponent() {
         <Route path="/oneProduct/:productId" element={<Product />} />
         <Route path="/myshopping" element={<Shopping />} />
         <Route path="/contact_us" element={<ContactUs />} />
+        <Route path="/resume" element={<Resume />} />
         <Route path="/login" element={<Login />} />
         <Route
           path="/update_art"

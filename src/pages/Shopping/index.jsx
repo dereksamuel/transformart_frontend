@@ -5,12 +5,12 @@ import { HomeIcon, MinusIcon, PlusIcon, TrashIcon } from "@heroicons/react/outli
 import { ProductItem } from "../../components/ProductItem";
 import { Button } from "../../components/Button";
 import { Title } from "../../components/Title";
+import { EmptyDraw } from "../../components/EmptyDraw";
 
 import srcLogoIcon from "../../assets/images/mobile/logoIcon.svg";
 import { useStorage } from "../../hooks/useStorage";
 
 import { setLocalStorage } from "../../utils/localStorage";
-import { EmptyDraw } from "../../components/EmptyDraw";
 
 import "../Categories/styles.css";
 import "./styles.css";
@@ -103,7 +103,7 @@ function Shopping() {
       }
       <div className="ZoneOfButton">
         <Link to={{
-          pathname: "/contact_us"
+          pathname: "/resume"
         }} className="link-without-styles">
           <Button
             disabled={!products || !products.length}

@@ -1,4 +1,6 @@
-import React from "react";
+/* eslint-disable indent */
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router";
 
 import { Title } from "../../components/Title";
 import { Button } from "../../components/Button";
@@ -8,6 +10,7 @@ import PigDone from "../../assets/images/mobile/PigDone.svg";
 import Whatsapp from "../../assets/images/mobile/Whatsapp.svg";
 import Gmail from "../../assets/images/mobile/Gmail.svg";
 
+import { totalToPay } from "../../utils/totalToPay";
 import { useStorage } from "../../hooks/useStorage";
 
 import "./styles.css";
@@ -17,21 +20,46 @@ function ContactUs() {
     storageInfo: products,
   } = useStorage("products");
 
+  const navigate = useNavigate();
+
   const number = "+573154494547";
   const finalMessage = `
-    Mis compras:
-      ${(products && products.length) && products.map((product) => `
-        - ${product.name}
-          | Precio: ${product.price}
-          | Cantidad: ${product.count}
-          | Tamaño: ${product.selectedSize}
-          | Oferta ${product.offer}%
-      `).join("")}
+    Mis Compras:
+    ${
+      (products && products.length) && products?.map((product) => {
+        return `
+      - ${product.name}
+        | Precio: $${product.priceText}
+        | Cantidad: ${product.count}
+        | Tamaño: ${product.selectedSize}
+        | Oferta: ${product.offer}%
+        `;
+      }).join("") || ""
+    }
+    *Total a pagar: $${(products && products.length) ? totalToPay(products) : ""}*
   `;
 
-  const openWhatsappLink = () => {
-    window.open("https://wa.me/" + `${number}?text=${finalMessage}`);
+  const onOpenWhatsappLink = () => {
+    window.open("https://api.whatsapp.com/send" + `?phone=${number}&text=${encodeURIComponent(finalMessage)}`);
   };
+
+  const onOpenGmailLink = () => {
+    window.open(
+      "https://mail.google.com/mail?view=cm&tf=0" +
+      "&to=transformart@gmail.com" +
+      "&su=Quiero comprar algo en Transformart" +
+      `&body=${encodeURIComponent(finalMessage)}`
+    );
+  };
+
+  useEffect(() => {
+    if (products) {
+      if (!products.length)
+        navigate({
+          pathname: "/"
+        });
+    }
+  }, [products]);
 
   return (
     <div className="ContactUs">
@@ -51,12 +79,15 @@ function ContactUs() {
       <div className="buttonContainer">
         <Button
           className="PrimaryWave Icon"
-          onClick={openWhatsappLink}
+          onClick={onOpenWhatsappLink}
         >
           <img src={Whatsapp} alt="Whatsapp" className="Whatsapp" />
           <span>Por Whatsapp</span>
         </Button>
-        <Button className="PrimaryWave Icon">
+        <Button
+          className="ButtonSecondaryClick PrimaryWave Icon"
+          onClick={onOpenGmailLink}
+        >
           <img src={Gmail} alt="Gmail" className="Gmail" />
           <span>Por Gmail</span>
         </Button>

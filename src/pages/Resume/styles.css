@@ -1,0 +1,38 @@
+.ContainerList {
+  position: relative;
+  padding-left: 4rem;
+
+  color: var(--color-white);
+}
+
+.ItemList {
+  margin: 3rem 0;
+}
+
+.ItemList p {
+  color: var(--color-white);
+}
+
+p.ProductSize {
+  font-weight: 600;
+}
+
+p.ProductPrice {
+  font-weight: 700;
+  color: var(--color-secondary-active);
+}
+
+p.TotalPrice {
+  display: block;
+  text-align: center;
+
+  font-weight: 700;
+  border-radius: 2rem;
+
+  padding: 1rem;
+  width: fit-content;
+  margin: auto;
+
+  color: var(--color-secondary);
+  background-color: var(--color-dark);
+}
