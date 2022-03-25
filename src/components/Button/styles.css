@@ -79,10 +79,22 @@ button.ButtonToggleSize, button.ButtonToggleSize-danger {
   justify-content: center;
 }
 
+button.ButtonToggleSize {
+  transition: 0.25s transform ease-in;
+}
+
+button.ButtonToggleSize:active {
+  transform: scale(1.1);
+}
+
 button.ButtonToggleSize-danger {
   background-color: var(--color-danger);
 }
 
 button.ButtonToggleSize-danger svg {
   opacity: 0.6;
+}
+
+button.ButtonActive {
+  background-color: var(--color-secondary-active);
 }

@@ -7,7 +7,6 @@ import { LoginIcon } from "@heroicons/react/outline";
 import { auth } from "../../utils/connectFirebase";
 import logoIcon from "../../assets/images/mobile/logoIcon.svg";
 import WaveFlowHeader from "../../assets/images/mobile/WaveFlowHeader.svg";
-import WaveFlowFooter from "../../assets/images/mobile/WaveFlowFooter.svg";
 
 import { IconBanner } from "../../components/IconBanner";
 import { Button } from "../../components/Button";
@@ -123,7 +122,6 @@ function Login() {
           </div>
         </Button>
       </form>
-      <img src={WaveFlowFooter} alt="WaveFlowFooter" className="WaveFlowFooter" />
     </div>
   );
 }

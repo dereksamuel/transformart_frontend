@@ -11,6 +11,8 @@ import { useCP } from "../../hooks/useCP";
 import { useOneProduct } from "../../hooks/useOneProduct";
 
 import { setState } from "../../utils/setState";
+import { priceConverter } from "../../utils/priceConverter";
+
 import { SET_SELECTED } from "../../store/types/products";
 import { getLocalStorage, setLocalStorage } from "../../utils/localStorage";
 
@@ -34,25 +36,20 @@ function Product() {
   const categoriesProductsArray = useCP();
   const product = useOneProduct(params.productId);
 
-  const formatPrice = new Intl.NumberFormat("es-CO", {
-    currency: "COP"
-  }).format(product.price);
+  const formatPrice = priceConverter(product.price);
 
   const totalPrice = (productOffer) => {
     const offerValue = 100 - productOffer;
     const totalPriceResult = (product.price * offerValue) / 100;
 
-    return new Intl.NumberFormat("es-CO", {
-      currency: "COP"
-    }).format(totalPriceResult);
+    return {
+      text: priceConverter(totalPriceResult),
+      number: totalPriceResult
+    };
   };
 
   const onAddToPay = async () => {
     if (!stateLocal.selectedSize) {
-      setStateLocal({
-        ...stateLocal,
-        showGreenGuide: true
-      });
       return;
     }
 
@@ -67,7 +64,7 @@ function Product() {
         if ((
           productLocal.selectedSize === stateLocal.selectedSize
         ) && (
-          +productLocal.id === +product.id
+          +productLocal.id === Number(product.id)
         )) {
           oneRepeated = true;
           productLocal.count = productLocal.count ? productLocal.count : 0;
@@ -84,6 +81,8 @@ function Product() {
         {
           ...product,
           count: 1,
+          price: product.offer ? totalPrice(product.offer).number : product.price,
+          priceText: product.offer ? priceConverter(totalPrice(product.offer).number) : priceConverter(product.price),
           categories: stateLocal.productsCategories,
           selectedSize: stateLocal.selectedSize
         }
@@ -192,7 +191,7 @@ function Product() {
             <p className="Price">
               Precio con oferta:
               <span className="PriceValue">
-                ${ totalPrice(product.offer) }
+                ${ totalPrice(product.offer).text }
               </span>
             </p>
           ) : null
@@ -214,7 +213,7 @@ function Product() {
             <a href={product.instagramLink} target="_blank" className="Link" rel="noreferrer">instagram</a>
           </li>
         </ul>
-        <div className={`ContainerSizes ${stateLocal.showGreenGuide && "ContainerSizes-green"}`} id="containerSizes">
+        <div className="ContainerSizes" id="containerSizes">
           <Title className="SubTitle SubTitle-sub">
             Primero Elige el tamaño de { product.name }:
           </Title>

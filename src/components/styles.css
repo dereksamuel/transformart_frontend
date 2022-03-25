@@ -4,6 +4,7 @@
   /* COLORS */
   --color-primary: #323841;
   --color-secondary: #83DDA9;
+  --color-secondary-active: #43D882;
   --color-dark: #1A1F26;
   --color-white: #FFFFFF;
   --color-text: #CBCBCB;
@@ -38,9 +39,7 @@ body {
   box-shadow: inset 0px 86px 69px var(--color-dark);
   overflow: auto;
   scroll-behavior: smooth;
-  /* background-size: cover !important; */
-  /* background-repeat: no-repeat; */
-  /* background: url(../assets/images/mobile/Shadow.svg); */
+  position: relative;
 }
 
 .d-flex {

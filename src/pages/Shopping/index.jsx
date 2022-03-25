@@ -103,7 +103,7 @@ function Shopping() {
       }
       <div className="ZoneOfButton">
         <Link to={{
-          pathname: "/buying"
+          pathname: "/contact_us"
         }} className="link-without-styles">
           <Button
             disabled={!products || !products.length}

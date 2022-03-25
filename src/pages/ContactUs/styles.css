@@ -1,0 +1,51 @@
+.TitleContactUs {
+  display: block;
+  text-align: center;
+
+  position: relative;
+  z-index: 2;
+}
+
+.InformativeBox {
+  width: 100%;
+  max-width: 25rem;
+
+  margin: auto;
+  padding: 0 1rem;
+
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.InformativeBox--message {
+  padding-left: 2rem;
+  color: var(--color-white);
+}
+
+.buttonContainer {
+  width: 100%;
+  max-width: 25rem;
+
+  position: relative;
+  z-index: 2;
+
+  margin: auto;
+  padding: 1rem;
+}
+
+button.Icon {
+  width: 100%;
+  margin: 2rem 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button.Icon span {
+  margin-left: 1rem;
+}
