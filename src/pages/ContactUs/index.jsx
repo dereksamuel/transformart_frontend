@@ -65,9 +65,6 @@ function ContactUs() {
   useEffect(() => {
     return () => {
       setLocalStorage("products", []);
-      navigate({
-        pathname: "/"
-      });
     };
   }, []);
 
