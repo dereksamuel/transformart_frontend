@@ -14,6 +14,7 @@ import { totalToPay } from "../../utils/totalToPay";
 import { useStorage } from "../../hooks/useStorage";
 
 import "./styles.css";
+import { setLocalStorage } from "../../utils/localStorage";
 
 function ContactUs() {
   const {
@@ -49,7 +50,7 @@ function ContactUs() {
       "&to=transformart@gmail.com" +
       "&su=Quiero comprar algo en Transformart" +
       `&body=${encodeURIComponent(finalMessage)}`
-    );
+      );
   };
 
   useEffect(() => {
@@ -60,6 +61,15 @@ function ContactUs() {
         });
     }
   }, [products]);
+
+  useEffect(() => {
+    return () => {
+      setLocalStorage("products", []);
+      navigate({
+        pathname: "/"
+      });
+    };
+  }, []);
 
   return (
     <div className="ContactUs">

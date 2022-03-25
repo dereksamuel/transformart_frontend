@@ -11,6 +11,7 @@ import { ContactUs } from "../pages/ContactUs";
 import { Resume } from "../pages/Resume";
 
 import { PrivateRoute } from "./PrivateRoute";
+import { UpdateArt } from "../pages/UpdateArt";
 
 function RoutesComponent() {
   const location = useLocation();
@@ -39,7 +40,7 @@ function RoutesComponent() {
           path="/update_art"
           element={<PrivateRoute />}
         >
-          <Route exact path="/update_art" element={<div>Hello my private route</div>}/>
+          <Route exact path="/update_art" element={<UpdateArt />}/>
         </Route>
       </Routes>
     </main>

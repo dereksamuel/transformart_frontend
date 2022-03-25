@@ -1,0 +1,25 @@
+.AcordionContainer {
+  width: 100%;
+  padding: 1rem;
+}
+
+.Acordion {
+  width: 100%;
+  border-radius: 0.25rem;
+
+  margin-bottom: 4rem;
+
+  background-color: var(--color-dark);
+}
+
+.AcordionTitle {
+  padding: 1rem;
+  border-radius: 0.25rem;
+
+  background-color: var(--color-gray-dark);
+  color: var(--color-white);
+}
+
+.CategoriesGrid {
+  padding: 1rem;
+}
