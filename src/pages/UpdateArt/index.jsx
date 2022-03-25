@@ -13,6 +13,7 @@ import srcLogoIcon from "../../assets/images/mobile/logoIcon.svg";
 import { useCP } from "../../hooks/useCP";
 
 import { deleteProduct } from "../../store/actions/products";
+import { deleteCategory } from "../../store/actions/categories";
 
 import "../Categories/styles.css";
 import "./styles.css";
@@ -21,12 +22,17 @@ function UpdateArt() {
   const [state, setState] = useState({
     modalDeleteText: "",
     showModalDelete: false,
-    productId: null
+    productId: null,
+    categoriesProductsItem1: []
   });
   const categoriesProductsArray = useCP();
   const dispatch = useDispatch();
 
   const onDeleteProduct = async () => {
+    if (state.categoriesProductsItem1.products.length === 1) {
+      await dispatch(deleteCategory(state.categoriesProductsItem1.category.id));
+    }
+
     await dispatch(deleteProduct(state.productId));
 
     setState({
@@ -37,10 +43,11 @@ function UpdateArt() {
     });
   };
 
-  const onToggleModalDelete = (productId) => {
+  const onToggleModalDelete = (categoriesProductsItem1, productId) => {
     setState({
       ...state,
       productId,
+      categoriesProductsItem1,
       modalDeleteText: "Quieres borrar este producto",
       showModalDelete: true
     });
@@ -81,7 +88,7 @@ function UpdateArt() {
                           <ProductItem key={product.id} product={product}>
                             <Button
                               className="ButtonToggleSize-danger"
-                              onClick={() => onToggleModalDelete(product.id)}
+                              onClick={() => onToggleModalDelete(categoriesProductsItem[1], product.id)}
                             >
                               <TrashIcon />
                               <span>Borrar</span>

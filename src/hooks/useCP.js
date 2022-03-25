@@ -56,7 +56,9 @@ const useCP = (categoryId) => {
     if (!categoriesProducts.length) {
       onLoadProducts();
     }
+  }, []);
 
+  useEffect(() => {
     if (categoriesProducts.length && categories.length && products.length) {
       onDoCategoriesProducts();
     }

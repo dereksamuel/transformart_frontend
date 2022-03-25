@@ -19,6 +19,20 @@ const getCategories = () => async (dispatch) => {
   dispatch(setState({ type: SET_ERROR, payload: Boolean(error) }));
 };
 
+const deleteCategory = (categoryId) => async (dispatch) => {
+  dispatch(setState({ type: SET_LOADING, payload: true }));
+
+  const { error } = await fetchQuery(`
+    mutation {
+      deleteCategory(id: ${categoryId})
+    }
+  `);
+
+  dispatch(setState({ type: SET_LOADING, payload: false }));
+  dispatch(setState({ type: SET_ERROR, payload: Boolean(error) }));
+};
+
 export {
-  getCategories
+  getCategories,
+  deleteCategory
 };
