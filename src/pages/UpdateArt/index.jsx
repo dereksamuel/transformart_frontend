@@ -1,4 +1,5 @@
 import React from "react";
+import { TrashIcon } from "@heroicons/react/outline";
 
 import { Title } from "../../components/Title";
 import { Acordion } from "../../components/Acordion";
@@ -10,6 +11,7 @@ import { ProductItem } from "../../components/ProductItem";
 import { Button } from "../../components/Button";
 
 import "../Categories/styles.css";
+import "./styles.css";
 
 function UpdateArt() {
   const categoriesProductsArray = useCP();
@@ -30,7 +32,12 @@ function UpdateArt() {
               <div className="CategoriesGrid">
                 {
                   [...categoriesProductsItem[1].products].map((product) => (
-                    <ProductItem key={product.id} product={product} />
+                    <ProductItem key={product.id} product={product}>
+                      <Button className="ButtonToggleSize-danger">
+                        <TrashIcon />
+                        <span>Borrar</span>
+                      </Button>
+                    </ProductItem>
                   ))
                 }
               </div>

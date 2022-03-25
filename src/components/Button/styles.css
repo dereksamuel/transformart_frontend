@@ -9,7 +9,7 @@ button.PrimaryWave {
   font-weight: 600;
   margin: 0 auto;
   display: block;
-  border-radius: 5px;
+  border-radius: 0.25rem;
   font-size: 15px;
 }
 
