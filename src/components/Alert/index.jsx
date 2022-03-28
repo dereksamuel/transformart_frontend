@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { XIcon } from "@heroicons/react/outline";
+import { XIcon } from "@heroicons/react/solid";
 
 import "./styles.css";
 

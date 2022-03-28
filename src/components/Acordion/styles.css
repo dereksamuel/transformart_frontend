@@ -13,11 +13,27 @@
 }
 
 .AcordionTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
   padding: 1rem;
   border-radius: 0.25rem;
 
   background-color: var(--color-gray-dark);
   color: var(--color-white);
+}
+
+.buttonsActions {
+  background-color: var(--color-gray-dark);
+}
+
+.buttonsActions svg {
+  color: var(--color-radiant);
+}
+
+.buttonsActions button {
+  width: 1.5rem;
 }
 
 .CategoriesGrid {

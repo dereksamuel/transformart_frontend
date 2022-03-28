@@ -1,4 +1,5 @@
 import { fetchQuery } from "../../utils/fetchQuery";
+import { refreshQueries } from "../../utils/refreshQueries";
 import { setState } from "../../utils/setState";
 import { SET_ALL, SET_ERROR, SET_LOADING, SET_ONE } from "../types/categoriesProducts";
 
@@ -38,7 +39,29 @@ const getCategoriesProduct = (id) => async (dispatch) => {
   dispatch(setState({ type: SET_ERROR, payload: Boolean(error) }));
 };
 
+const createCategoriesProduct = (categoriesId, productsId) => async (dispatch) => {
+  dispatch(setState({ type: SET_LOADING, payload: true }));
+
+  const { error } = await fetchQuery(`
+    mutation {
+      createCategoriesProduct(
+        categoriesId: ${categoriesId}
+        productsId: ${productsId}
+      ) {
+        id
+        categoriesId
+        productsId
+      }
+    }
+  `);
+
+  await refreshQueries(dispatch);
+  dispatch(setState({ type: SET_LOADING, payload: false }));
+  dispatch(setState({ type: SET_ERROR, payload: Boolean(error) }));
+};
+
 export {
   getCategoriesProducts,
-  getCategoriesProduct
+  getCategoriesProduct,
+  createCategoriesProduct
 };

@@ -1,5 +1,5 @@
 const fetchQuery = async (query) => {
-  const URL = "http://localhost:4002/api/v1/gql";
+  const URL = "http://localhost:4001/api/v1/gql";
   const headerToken = localStorage.getItem("headerToken");
   let state = {
     data: null,

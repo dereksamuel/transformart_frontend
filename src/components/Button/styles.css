@@ -98,3 +98,10 @@ button.ButtonToggleSize-danger svg {
 button.ButtonActive {
   background-color: var(--color-secondary-active);
 }
+
+button.DeleteButton {
+  width: 100%;
+
+  background-color: var(--color-danger);
+  color: var(--color-white);
+}

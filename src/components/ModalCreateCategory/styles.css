@@ -1,0 +1,16 @@
+.NameContainer {
+  padding: 1.5rem;
+}
+
+.NameContainer input.Input {
+  width: 100%;
+}
+
+.ContainerButtonCreateCategory {
+  padding: 2rem 1.5rem;
+  padding-top: 0;
+}
+
+.ButtonCreateCategory {
+  width: 100%;
+}

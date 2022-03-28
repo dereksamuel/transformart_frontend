@@ -59,7 +59,7 @@ const useCP = (categoryId) => {
   }, []);
 
   useEffect(() => {
-    if (categoriesProducts.length && categories.length && products.length) {
+    if (categoriesProducts?.length || categories?.length || products?.length) {
       onDoCategoriesProducts();
     }
   }, [categoriesProducts, categories, products]);
