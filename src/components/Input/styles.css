@@ -6,7 +6,7 @@ input.Input {
   font-size: 15px;
   line-height: 18px;
   background-color: var(--color-dark);
-  color: var(--color-text);
+  color: var(--color-white);
   border-radius: 5px;
 }
 

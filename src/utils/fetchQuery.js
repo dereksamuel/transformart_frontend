@@ -21,19 +21,28 @@ const fetchQuery = async (query) => {
       })
     })).json();
 
-    state = {
-      ...state,
-      data: response.data,
-      loading: false,
-      error: null
-    };
+    if (response.errors) {
+      state = {
+        ...state,
+        data: {},
+        loading: false,
+        error: true
+      };
+    } else {
+      state = {
+        ...state,
+        data: response.data,
+        loading: false,
+        error: null
+      };
+    }
   } catch (error) {
     console.error("[error-api]:", error);
     state = {
       ...state,
       data: null,
       loading: false,
-      error: null
+      error: true
     };
   }
 

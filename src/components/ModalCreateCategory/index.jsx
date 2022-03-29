@@ -10,7 +10,7 @@ import { Title } from "../Title";
 
 import { useModel } from "../../hooks/useModel";
 
-import { createCategory } from "../../store/actions/categories";
+import { createCategory, updateCategory } from "../../store/actions/categories";
 import { createCategoriesProduct } from "../../store/actions/categoriesProducts";
 
 import "./styles.css";
@@ -28,18 +28,22 @@ function ModalCreateCategory(props) {
     await dispatch(createCategoriesProduct(categoryCreatedId.id, null));
   };
 
-  const onCreateCategory = async (event, onToggleOverlay) => {
+  const onSaveCategory = async (event, onToggleOverlay) => {
     event.preventDefault();
-
     if (!categoryName) return;
 
-    await dispatch(createCategory(categoryName));
+    const action = props.updateData ? updateCategory : createCategory;
+
+    await dispatch(action(props.updateData ? {
+      id: props.updateData.id,
+      categoryName
+    } : categoryName));
 
     props.onCloseModalCreateCategory(onToggleOverlay);
   };
 
   useEffect(async () => {
-    if (categoryCreatedId) {
+    if (categoryCreatedId && categoryName) {
       await onCreateCategoriesProduct();
     }
   }, [categoryCreatedId]);
@@ -62,14 +66,17 @@ function ModalCreateCategory(props) {
                 isTitle={false}
                 className="SubTitle TitleModal"
               >
-                Crear Categoria
+                {
+                  `${props.updateData ? "Actualizar" : "Crear"} Categoria`
+                }
               </Title>
-              <form onSubmit={(event) => onCreateCategory(event, onToggleOverlay)}>
+              <form onSubmit={(event) => onSaveCategory(event, onToggleOverlay)}>
                 <div className="NameContainer">
                   <Input
                     id="categoryName"
                     className="Input InputModalCreateCategory"
                     placeholder="Nombre de la categoria"
+                    defaultValue={props.updateData?.name || ""}
                     required
                   />
                 </div>
@@ -89,7 +96,8 @@ function ModalCreateCategory(props) {
 }
 
 ModalCreateCategory.propTypes = {
-  onCloseModalCreateCategory: PropTypes.func
+  onCloseModalCreateCategory: PropTypes.func,
+  updateData: PropTypes.any
 };
 
 export {

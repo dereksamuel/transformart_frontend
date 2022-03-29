@@ -5,6 +5,8 @@ import { Title } from "../../components/Title";
 import { Acordion } from "../../components/Acordion";
 import { ProductItem } from "../../components/ProductItem";
 import { Button } from "../../components/Button";
+import { ModalCreateCategory } from "../../components/ModalCreateCategory";
+import { ModalDeleteProduct } from "../../components/ModalDeleteProduct";
 
 import srcLogoIcon from "../../assets/images/mobile/logoIcon.svg";
 
@@ -12,8 +14,6 @@ import { useCP } from "../../hooks/useCP";
 
 import "../Categories/styles.css";
 import "./styles.css";
-import { ModalCreateCategory } from "../../components/ModalCreateCategory";
-import { ModalDeleteProduct } from "../../components/ModalDeleteProduct";
 
 function UpdateArt() {
   const [state, setState] = useState({
@@ -21,7 +21,8 @@ function UpdateArt() {
     productId: null,
     categoriesProductsItem1: [],
     showModalCreateCategory: false,
-    showModalDelete: false
+    showModalDelete: false,
+    category: null
   });
   const categoriesProductsArray = useCP();
 
@@ -54,10 +55,18 @@ function UpdateArt() {
   const onCloseModalCreateCategory = (onToggleOverlay) => {
     setState({
       ...state,
-      showModalCreateCategory: false
+      showModalCreateCategory: false,
+      category: null
     });
 
     onToggleOverlay();
+  };
+
+  const onEditCategory = (category) => {
+    setState({
+      ...state,
+      category
+    });
   };
 
   return (
@@ -78,6 +87,15 @@ function UpdateArt() {
         ) : ""
       }
 
+      {
+        state.category ? (
+          <ModalCreateCategory
+            onCloseModalCreateCategory={onCloseModalCreateCategory}
+            updateData={state.category}
+          />
+        ) : ""
+      }
+
       <Title className="SubTitle TitleCategories" isTitle={false}>
         <img src={srcLogoIcon} alt="srcLogoIcon" className="Categories-srcLogoIcon" />
         <span>Actualizar arte</span>
@@ -92,13 +110,17 @@ function UpdateArt() {
                     <div className="AcordionTitle">
                       <p>{ categoriesProductsItem[1].category?.name }</p>
                       <div className="buttonsActions">
-                        <button className="button-without-styles">
+                        <button className="button-without-styles buttonAction">
                           <TrashIcon />
                         </button>
-                        <button className="button-without-styles">
+                        <button
+                          className="button-without-styles buttonAction"
+                          onClick={() => onEditCategory(categoriesProductsItem[1].category)}
+                        >
                           <PencilIcon />
                         </button>
-                        <button className="button-without-styles">
+                        <button
+                          className="button-without-styles buttonAction">
                           <PlusIcon />
                         </button>
                       </div>
