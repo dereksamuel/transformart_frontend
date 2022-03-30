@@ -12,10 +12,13 @@ import { useModel } from "../../hooks/useModel";
 
 import { createCategory, updateCategory } from "../../store/actions/categories";
 import { createCategoriesProduct } from "../../store/actions/categoriesProducts";
+import { SET_ALERT } from "../../store/types/alert";
+
+import { setState } from "../../utils/setState";
 
 import "./styles.css";
 
-function ModalCreateCategory(props) {
+function ModalSaveCategory(props) {
   const categoryCreatedId = useSelector((state) => state.categories.createdId);
   const [categoryName] = useModel({
     initialValue: "",
@@ -39,7 +42,20 @@ function ModalCreateCategory(props) {
       categoryName
     } : categoryName));
 
-    props.onCloseModalCreateCategory(onToggleOverlay);
+    dispatch(setState({
+      type: SET_ALERT,
+      payload: {
+        title: "Acción exitosa",
+        description: props.updateData ? `
+          Producto actualizado con éxito
+        ` : `
+          Producto creado con éxito
+        `,
+        theme: "Success",
+        showAlert: true,
+      }
+    }));
+    props.onCloseModalSaveCategory(onToggleOverlay);
   };
 
   useEffect(async () => {
@@ -54,11 +70,11 @@ function ModalCreateCategory(props) {
         ({
           onToggleOverlay
         }) => (
-          <div className="Modal CategoryCreateModal">
+          <div className="Modal CategorySaveModal">
             <div className="ModalContent">
               <button
                 className="button-without-styles closeIcon"
-                onClick={() => props.onCloseModalCreateCategory(onToggleOverlay)}
+                onClick={() => props.onCloseModalSaveCategory(onToggleOverlay)}
               >
                 <XIcon />
               </button>
@@ -74,16 +90,16 @@ function ModalCreateCategory(props) {
                 <div className="NameContainer">
                   <Input
                     id="categoryName"
-                    className="Input InputModalCreateCategory"
+                    className="Input InputModalSaveCategory"
                     placeholder="Nombre de la categoria"
                     defaultValue={props.updateData?.name || ""}
                     required
                   />
                 </div>
-                <div className="ContainerButtonCreateCategory">
+                <div className="ContainerButtonSaveCategory">
                   <Button
                     type="submit"
-                    className="PrimaryWave ButtonCreateCategory"
+                    className="PrimaryWave ButtonSaveCategory"
                   >Guardar Cambios</Button>
                 </div>
               </form>
@@ -95,11 +111,11 @@ function ModalCreateCategory(props) {
   );
 }
 
-ModalCreateCategory.propTypes = {
-  onCloseModalCreateCategory: PropTypes.func,
+ModalSaveCategory.propTypes = {
+  onCloseModalSaveCategory: PropTypes.func,
   updateData: PropTypes.any
 };
 
 export {
-  ModalCreateCategory
+  ModalSaveCategory
 };

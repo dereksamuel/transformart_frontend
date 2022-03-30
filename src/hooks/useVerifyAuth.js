@@ -16,21 +16,23 @@ const useVerifyAuth = () => {
 
     let unsubscribe = auth.onAuthStateChanged((user) => {
       dispatch(setState({ type: SET_AUTH, payload: Boolean(user) }));
-
       unsubscribe();
     });
 
     dispatch(setState({ type: SET_LOADING, payload: false }));
 
-    const { data, error } = await fetchQuery(`
-      mutation {
-        verifyIsAuth
-      }
-    `);
-
-    dispatch(setState({ type: SET_LOADING, payload: false }));
-    dispatch(setState({ type: SET_AUTH, payload: data.verifyIsAuth }));
-    dispatch(setState({ type: SET_ERROR, payload: Boolean(error) }));
+    try {
+      const { data, error } = await fetchQuery(`
+        mutation {
+          verifyIsAuth
+        }
+      `);
+      dispatch(setState({ type: SET_LOADING, payload: false }));
+      dispatch(setState({ type: SET_AUTH, payload: data.verifyIsAuth }));
+      dispatch(setState({ type: SET_ERROR, payload: Boolean(error) }));
+    } catch (error) {
+      dispatch(setState({ type: SET_AUTH, payload: false }));
+    }
   }, []);
 };
 

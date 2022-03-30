@@ -4,7 +4,7 @@
   justify-content: space-between;
   position: fixed;
   z-index: 9000;
-  bottom: 5px;
+  top: 1rem;
   transition: 0.25s all;
   animation: showable 0.25s ease-in forwards alternate;
 }
@@ -54,4 +54,17 @@
 .Error article {
   background-color: var(--color-danger);
   opacity: 0.87;
+}
+
+.Success {
+  color: var(--color-dark);
+}
+
+.Success article {
+  background-color: var(--color-radiant);
+  opacity: 0.87;
+}
+
+.Success .IconContainer {
+  background-color: var(--color-radiant);
 }

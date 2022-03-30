@@ -24,7 +24,7 @@ div.Overlay {
 .Modal {
   position: fixed;
   width: 100%;
-  max-width: 30rem;
+  max-width: 20rem;
 
   z-index: 101;
   bottom: 0;

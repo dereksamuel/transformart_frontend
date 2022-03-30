@@ -1,7 +1,7 @@
 import { fetchQuery } from "../../utils/fetchQuery";
 import { refreshQueries } from "../../utils/refreshQueries";
 import { setState } from "../../utils/setState";
-import { SET_ALL, SET_ERROR, SET_LOADING, SET_CREATED } from "../types/categories";
+import { SET_ALL, SET_ERROR, SET_LOADING, SET_CREATED, SET_DELETED } from "../types/categories";
 
 const getCategories = () => async (dispatch) => {
   dispatch(setState({ type: SET_LOADING, payload: true }));
@@ -29,6 +29,7 @@ const deleteCategory = (categoryId) => async (dispatch) => {
     }
   `);
 
+  dispatch(setState({ type: SET_DELETED, payload: categoryId }));
   dispatch(setState({ type: SET_LOADING, payload: false }));
   dispatch(setState({ type: SET_ERROR, payload: Boolean(error) }));
 };

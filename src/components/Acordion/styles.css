@@ -13,6 +13,8 @@
 }
 
 .AcordionTitle {
+  position: relative;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -24,18 +26,6 @@
   color: var(--color-white);
 }
 
-.buttonsActions {
-  background-color: var(--color-gray-dark);
-}
-
-.buttonsActions svg {
-  color: var(--color-radiant);
-}
-
-.buttonsActions button {
-  width: 1.5rem;
-}
-
-.CategoriesGrid {
-  padding: 1rem;
+.AcordionTitle p {
+  max-width: 60%;
 }

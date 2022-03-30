@@ -105,3 +105,7 @@ button.DeleteButton {
   background-color: var(--color-danger);
   color: var(--color-white);
 }
+
+button.ButtonSaveCategory {
+  width: 100%;
+}

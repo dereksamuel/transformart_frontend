@@ -44,7 +44,7 @@ function ModalDeleteProduct(props) {
               >
                 <XIcon />
               </button>
-              <p className="labelModal">¿Quieres eliminar esta categoria?</p>
+              <p className="labelModal">¿Quieres eliminar este producto?</p>
               <div className="ContainerButtonDelete">
                 <Button
                   className="PrimaryWave DeleteButton"

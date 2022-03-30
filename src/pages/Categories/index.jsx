@@ -29,15 +29,15 @@ function Categories() {
           <span>Productos</span>
         </Title>
         {
-          categoriesProductsArray.length ? categoriesProductsArray.map((categoriesProductsItem) => (
-            <div className="CategoriesArray" key={categoriesProductsItem[1].category.id}>
+          categoriesProductsArray.length ? categoriesProductsArray.map((categoriesProductsItem, indexCP) => (
+            <div className="CategoriesArray" key={categoriesProductsItem[1].category?.id || indexCP}>
               <Title
                 className="SubTitle TitleEachCategory"
-              >{categoriesProductsItem[1].category.name}</Title>
+              >{categoriesProductsItem[1].category?.name}</Title>
               <div className="CategoriesGrid">
                 {
                   [...categoriesProductsItem[1].products].map((product, indexProduct) => (
-                    (indexProduct + 1) <= 4 &&
+                    ((indexProduct + 1) <= 4 && product) &&
                       <ProductItem key={product.id} product={product} />
                   ))
                 }

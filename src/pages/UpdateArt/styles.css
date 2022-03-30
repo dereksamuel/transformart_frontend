@@ -8,6 +8,27 @@
   border-radius: 0.25rem;
 }
 
+.buttonsActions {
+  position: absolute;
+  right: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+
+  background-color: var(--color-gray-dark);
+}
+
+.buttonsActions svg {
+  color: var(--color-radiant);
+}
+
+.buttonsActions button {
+  width: 1.5rem;
+}
+
+.CategoriesGrid {
+  padding: 1rem;
+}
+
 button.buttonAction {
   margin: 0 0.25rem;
 }

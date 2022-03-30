@@ -1,16 +1,13 @@
 .NameContainer {
   padding: 1.5rem;
+  padding-top: 0;
 }
 
 .NameContainer input.Input {
   width: 100%;
 }
 
-.ContainerButtonCreateCategory {
+.ContainerButtonSaveCategory {
   padding: 2rem 1.5rem;
   padding-top: 0;
-}
-
-.ButtonCreateCategory {
-  width: 100%;
 }

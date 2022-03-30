@@ -1,8 +1,9 @@
-import { SET_ALL, SET_CREATED, SET_ERROR, SET_LOADING } from "../types/categories.js";
+import { SET_ALL, SET_CREATED, SET_ERROR, SET_LOADING, SET_DELETED } from "../types/categories.js";
 
 const initialState = {
   all: [],
   createdId: null,
+  deletedId: null,
   loading: false,
   error: true
 };
@@ -16,6 +17,10 @@ function categories(state = initialState, action) {
     [SET_CREATED]: {
       ...state,
       createdId: action.payload
+    },
+    [SET_DELETED]: {
+      ...state,
+      deletedId: action.payload
     },
     [SET_ERROR]: {
       ...state,
