@@ -1,16 +1,5 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { PencilIcon, PlusIcon, TrashIcon } from "@heroicons/react/outline";
-
-import { Title } from "../../components/Title";
-import { Acordion } from "../../components/Acordion";
-import { ProductItem } from "../../components/ProductItem";
-import { Button } from "../../components/Button";
-import { Alert } from "../../components/Alert";
-import { ModalSaveCategory } from "../../components/ModalSaveCategory";
-import { ModalDeleteProduct } from "../../components/ModalDeleteProduct";
-
-import srcLogoIcon from "../../assets/images/mobile/logoIcon.svg";
 
 import { useCP } from "../../hooks/useCP";
 import { setState as setStateUtils } from "../../utils/setState";
@@ -18,7 +7,7 @@ import { setState as setStateUtils } from "../../utils/setState";
 import "../Categories/styles.css";
 import "./styles.css";
 import { SET_ALERT } from "../../store/types/alert";
-import { ModalDeleteCategory } from "../../components/ModalDeleteCategory";
+import { UpdateartUI } from "./UpdateArtUI";
 
 function UpdateArt() {
   const [state, setState] = useState({
@@ -28,7 +17,8 @@ function UpdateArt() {
     showModalCreateCategory: false,
     showModalDelete: false,
     category: null,
-    categoryIdDelete: null
+    categoryIdDelete: null,
+    cpItemToCreateProduct: null
   });
   const alert = useSelector((stateLocal) => stateLocal.alert.alert);
   const categoriesProductsArray = useCP();
@@ -79,6 +69,15 @@ function UpdateArt() {
     onToggleOverlay();
   };
 
+  const onCloseModalAddProducts = (onToggleOverlay) => {
+    setState({
+      ...state,
+      cpItemToCreateProduct: null
+    });
+
+    onToggleOverlay();
+  };
+
   const onEditCategory = (category) => {
     setState({
       ...state,
@@ -100,125 +99,30 @@ function UpdateArt() {
     }));
   };
 
+  const onCreateProduct = (cpItemToCreateProduct) => {
+    setState({
+      ...state,
+      cpItemToCreateProduct
+    });
+  };
+
   return (
-    <div className="UpdateArt">
-      {
-        (alert && alert.showAlert) && (
-          <Alert
-            title={alert.title}
-            description={alert.description}
-            theme={alert.theme}
-            toLeft={true}
-            onClick={onHideAlert}
-          />
-        )
-      }
-      {
-        state.showModalDelete && (
-          <ModalDeleteProduct
-            onCloseModalDelete={onCloseModalDelete}
-            state={state}
-            setState={setState}
-          />
-        )
-      }
-
-      {
-        state.showModalCreateCategory && (
-          <ModalSaveCategory
-            onCloseModalSaveCategory={onCloseModalSaveCategory}
-          />
-        )
-      }
-
-      {
-        state.category && (
-          <ModalSaveCategory
-            onCloseModalSaveCategory={onCloseModalSaveCategory}
-            updateData={state.category}
-          />
-        )
-      }
-
-      {
-        state.categoryIdDelete && (
-          <ModalDeleteCategory
-            onCloseModalDelete={onCloseModalDeleteCategory}
-            state={state}
-            setState={setState}
-          />
-        )
-      }
-
-      <Title className="SubTitle TitleCategories" isTitle={false}>
-        <img src={srcLogoIcon} alt="srcLogoIcon" className="Categories-srcLogoIcon" />
-        <span>Actualizar arte</span>
-      </Title>
-      <div className="AcordionContainer">
-        {
-          (categoriesProductsArray && categoriesProductsArray.length) ? categoriesProductsArray.map((categoriesProductsItem, indexCPI) => (
-            <div key={indexCPI}>
-              {
-                categoriesProductsItem[1].category && (
-                  <Acordion>
-                    <div className="AcordionTitle">
-                      <p>{ categoriesProductsItem[1].category?.name }</p>
-                      <div className="buttonsActions">
-                        <button
-                          className="button-without-styles buttonAction"
-                          onClick={() => onDeleteCategory(categoriesProductsItem[1].categoriesProductId)}
-                        >
-                          <TrashIcon />
-                        </button>
-                        <button
-                          className="button-without-styles buttonAction"
-                          onClick={() => onEditCategory(categoriesProductsItem[1].category)}
-                        >
-                          <PencilIcon />
-                        </button>
-                        <button
-                          className="button-without-styles buttonAction">
-                          <PlusIcon />
-                        </button>
-                      </div>
-                    </div>
-                    <div className="CategoriesGrid">
-                      {
-                        [...categoriesProductsItem[1].products].map((product, index) => (
-                          <div key={product ? product.id : index}>
-                            {
-                              product && (
-                                <ProductItem key={product.id} product={product}>
-                                  <Button
-                                    className="ButtonToggleSize-danger"
-                                    onClick={() => onToggleModalDelete(categoriesProductsItem[1], product.id)}
-                                  >
-                                    <TrashIcon />
-                                    <span>Borrar</span>
-                                  </Button>
-                                </ProductItem>
-                              )
-                            }
-                          </div>
-                        ))
-                      }
-                    </div>
-                  </Acordion>
-                )
-              }
-            </div>
-          )) : ""
-        }
-      </div>
-      <div className="ZoneOfButton">
-        <Button
-          onClick={onToggleModalCreateCategory}
-          className={"PrimaryWave ProductButton"}
-        >
-          <span>Crear Categoria</span>
-        </Button>
-      </div>
-    </div>
+    <UpdateartUI
+      alert={alert}
+      state={state}
+      categoriesProductsArray={categoriesProductsArray}
+      onToggleModalCreateCategory={onToggleModalCreateCategory}
+      onToggleModalDelete={onToggleModalDelete}
+      onDeleteCategory={onDeleteCategory}
+      onEditCategory={onEditCategory}
+      onCreateProduct={onCreateProduct}
+      setState={setState}
+      onCloseModalSaveCategory={onCloseModalSaveCategory}
+      onCloseModalDeleteCategory={onCloseModalDeleteCategory}
+      onCloseModalAddProducts={onCloseModalAddProducts}
+      onCloseModalDelete={onCloseModalDelete}
+      onHideAlert={onHideAlert}
+    />
   );
 }
 

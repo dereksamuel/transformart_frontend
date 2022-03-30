@@ -109,3 +109,9 @@ button.DeleteButton {
 button.ButtonSaveCategory {
   width: 100%;
 }
+
+button.ButtonSecondaryModal {
+  width: 100%;
+  max-width: 100%;
+  margin: 1rem 0;
+}

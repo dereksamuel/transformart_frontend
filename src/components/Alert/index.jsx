@@ -5,13 +5,18 @@ import { XIcon } from "@heroicons/react/solid";
 import "./styles.css";
 
 function Alert(props) {
+  const propsWithouttoLeft = {
+    ...props
+  };
+  delete propsWithouttoLeft.toLeft;
+
   return (
     <div className={`Alert ${(props.toLeft ? "Alert-left" : "Alert-right")} ${props.theme}`}>
       <article>
         <h3 className="title">{ props.title }</h3>
         <p className="description">{ props.description }</p>
       </article>
-      <span className="IconContainer" {...props}>
+      <span className="IconContainer" {...propsWithouttoLeft}>
         <XIcon />
       </span>
     </div>
