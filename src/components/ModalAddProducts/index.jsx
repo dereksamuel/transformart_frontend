@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { XIcon } from "@heroicons/react/solid";
 import PropTypes from "prop-types";
 
@@ -14,11 +14,9 @@ function ModalAddProducts(props) {
   const [state, setState] = useState({
     view: 1
   });
-  // const categoryCreatedId = useSelector((state) => state.categories.createdId);
-  // const [categoryName] = useModel({
-  //   initialValue: "",
-  //   domEl: "#categoryName"
-  // });
+  const categoriesProducts = useSelector((state) => state.categoriesProducts.all);
+  const relationCategories = [...props.cpItemToCreateProduct.products][0] ? categoriesProducts.filter((cp) =>
+    props.cpItemToCreateProduct.products === cp.productsId) : [props.cpItemToCreateProduct.category];
 
   // const dispatch = useDispatch();
 
@@ -72,7 +70,9 @@ function ModalAddProducts(props) {
               }
               {
                 state.view === 2 && (
-                  <AddProduct />
+                  <AddProduct
+                    relationCategories={relationCategories}
+                  />
                 )
               }
             </div>

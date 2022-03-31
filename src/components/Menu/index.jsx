@@ -13,8 +13,6 @@ import { logout } from "../../store/actions/authenticate";
 import { knowInformationPath } from "../../utils/knowInformationPath";
 import { auth } from "../../utils/connectFirebase";
 
-import { useVerifyAuth } from "../../hooks/useVerifyAuth";
-
 import "./styles.css";
 
 function Menu() {
@@ -30,7 +28,6 @@ function Menu() {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  useVerifyAuth();
 
   const onShowMenu = () => {
     const $router = document.getElementById("Router");

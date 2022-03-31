@@ -1,0 +1,68 @@
+.ContainerImage {
+  position: relative;
+
+  height: 12rem;
+
+  display: flex;
+  justify-content: stretch;
+  align-items: stretch;
+}
+
+.ContainerImage img {
+  padding: 1rem;
+}
+
+.PhotographIcon {
+  max-width: 5rem;
+  padding-bottom: 2rem;
+  margin: auto;
+
+  color: var(--color-primary);
+}
+
+.buttonActionsPicture {
+  position: absolute;
+  bottom: 0;
+
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+
+  width: 100%;
+  padding: 1rem;
+}
+
+.ContainerInputs {
+  padding: 1.5rem;
+  padding-bottom: 2rem;
+}
+
+.ContainerInputs input, .ContainerInputs textarea {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.LinksContainer {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.Banner input {
+  background: none;
+  border: none;
+  outline: none;
+
+  margin-bottom: 0;
+
+  font-size: 1rem;
+  color: var(--color-white);
+}
+
+.TitleContainer {
+  color: var(--color-white);
+}
