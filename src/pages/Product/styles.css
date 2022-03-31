@@ -12,7 +12,7 @@ figure.ContainerImage img {
   width: 100%;
   max-height: 14rem;
   object-fit: contain;
-  object-position: top;
+  object-position: center;
 }
 
 .ContainerBody {

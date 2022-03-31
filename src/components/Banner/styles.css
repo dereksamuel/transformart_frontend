@@ -1,4 +1,5 @@
 .Banner {
+  position: relative;
   width: fit-content;
   min-width: fit-content;
 
@@ -36,4 +37,12 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+}
+
+.tapBanner {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
 }

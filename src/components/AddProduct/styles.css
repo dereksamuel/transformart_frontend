@@ -8,10 +8,6 @@
   align-items: stretch;
 }
 
-.ContainerImage img {
-  padding: 1rem;
-}
-
 .PhotographIcon {
   max-width: 5rem;
   padding-bottom: 2rem;
@@ -26,7 +22,6 @@
 
   display: flex;
   overflow-x: auto;
-  scroll-snap-type: x mandatory;
 
   width: 100%;
   padding: 1rem;
@@ -45,7 +40,6 @@
 .LinksContainer {
   display: flex;
   overflow-x: auto;
-  scroll-snap-type: x mandatory;
 
   width: 100%;
   padding: 1rem;

@@ -4,7 +4,10 @@ function useModel({ initialValue = "", domEl }) {
   const [model, setModel] = useState(initialValue);
 
   const onChangeModel = (event) => {
-    setModel(event.target.value);
+    setModel((
+      event.target.files &&
+      event.target.files.length
+    ) ? event.target.files[0] : event.target.value);
   };
 
   useEffect(() => {

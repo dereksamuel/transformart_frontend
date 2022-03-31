@@ -97,6 +97,7 @@ function Login() {
           className="Input userName"
           placeholder="Nombre de usuario"
           autoComplete="false"
+          type="email"
           required
         />
         <Input
