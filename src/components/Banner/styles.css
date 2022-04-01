@@ -46,3 +46,7 @@
   bottom: 0;
   right: 0;
 }
+
+.DisabledBanner {
+  opacity: 0.5;
+}
