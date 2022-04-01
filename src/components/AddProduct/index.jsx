@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import { CameraIcon, PhotographIcon, VideoCameraIcon, XIcon } from "@heroicons/react/outline";
@@ -44,8 +44,6 @@ function AddProduct(props) {
   const onSaveProduct = async (event) => {
     event.preventDefault();
 
-    let formData = new FormData(addProductFormRef.current);
-
     if (!videoModel || !imageModel) {
       dispatch(setState({
         type: SET_ALERT,
@@ -60,19 +58,25 @@ function AddProduct(props) {
     }
 
     await dispatch(uploadFiles(videoModel, imageModel));
-
-    console.log({
-      name: formData.get("nameModel"),
-      price: formData.get("priceModel"),
-      description: formData.get("descriptionModel"),
-      offer: formData.get("offerModel"),
-      tweeterUrl: formData.get("tweeterUrlModel"),
-      facebookUrl: formData.get("facebookUrlModel"),
-      instagramUrl: formData.get("instagramUrlModel"),
-      srcVideo: sources.srcVideo,
-      srcImage: sources.srcImage,
-    });
   };
+  
+  useEffect(() => {
+    if (sources) {
+      let formData = new FormData(addProductFormRef.current);
+
+      console.log({
+        name: formData.get("nameModel"),
+        price: Number(formData.get("priceModel")),
+        description: formData.get("descriptionModel"),
+        offer: Number(formData.get("offerModel")),
+        tweeterUrl: formData.get("tweeterUrlModel"),
+        facebookUrl: formData.get("facebookUrlModel"),
+        instagramUrl: formData.get("instagramUrlModel"),
+        srcVideo: sources.srcVideo,
+        srcImage: sources.srcImage,
+      });
+    }
+  }, [sources]);
 
   return (
     <form onSubmit={onSaveProduct} ref={addProductFormRef}>
@@ -158,6 +162,7 @@ function AddProduct(props) {
           placeholder="Oferta"
           type="number"
           max="100"
+          min="0"
           defaultValue={props.offer}
           required
         />
