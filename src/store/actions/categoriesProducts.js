@@ -46,7 +46,7 @@ const createCategoriesProduct = (categoriesId, productsId) => async (dispatch) =
     mutation {
       createCategoriesProduct(
         categoriesId: ${categoriesId}
-        productsId: ${productsId}
+        ${productsId ? `productsId: ${productsId}` : ""}
       ) {
         id
         categoriesId

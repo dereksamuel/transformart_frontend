@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import { CameraIcon, PhotographIcon, VideoCameraIcon, XIcon } from "@heroicons/react/outline";
 
-import { SET_ALERT } from "../../store/types/alert";
 import { createCategoriesProduct } from "../../store/actions/categoriesProducts";
 import { createProduct, uploadFiles } from "../../store/actions/products";
-import { SET_CREATED } from "../../store/types/products";
+import { onHideAlert } from "../../store/actions/alert";
+import { SET_CREATED, SET_SOURCES } from "../../store/types/products";
 
 import { setState } from "../../utils/setState";
 import { onClickModel, toUrl } from "../../utils/addProduct";
@@ -32,24 +32,14 @@ function AddProduct(props) {
 
   const dispatch = useDispatch();
 
-  const onHideAlert = () => {
-    dispatch(setState({
-      type: SET_ALERT,
-      payload: {}
-    }));
-  };
-
   const onSaveProduct = async (event) => {
     event.preventDefault();
 
     if (!videoModel || !imageModel) {
-      dispatch(setState({
-        type: SET_ALERT,
-        payload: {
-          description: "Es requerido que subas imagen y video para el producto",
-          theme: "Error",
-          showAlert: true,
-        }
+      dispatch(onHideAlert({
+        description: "Es requerido que subas imagen y video para el producto",
+        theme: "Error",
+        showAlert: true
       }));
       return;
     }
@@ -66,7 +56,9 @@ function AddProduct(props) {
       // }));
       dispatch(createCategoriesProduct(relationCategoryLocal.id, createdId.id));
     });
+
     dispatch(setState({ type: SET_CREATED, payload: null }));
+    dispatch(setState({ type: SET_SOURCES, payload: null }));
     props.onCloseModalAddProducts(props.onToggleOverlay);
   };
 
@@ -92,7 +84,6 @@ function AddProduct(props) {
 
   useEffect(() => {
     if (createdId) {
-      console.log("Printed");
       onCreatedProduct();
     }
   }, [createdId]);
@@ -105,7 +96,7 @@ function AddProduct(props) {
             description={alert.description}
             theme={alert.theme}
             toLeft={true}
-            onClick={onHideAlert}
+            onClick={() => dispatch(onHideAlert({}))}
           />
         )
       }

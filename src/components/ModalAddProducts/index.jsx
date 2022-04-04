@@ -30,8 +30,6 @@ function ModalAddProducts(props) {
     relationCategories.map((relationCategoryItem) => relationCategoryItem.category) :
     relationCategories;
 
-  // const dispatch = useDispatch();
-
   const onCreateNewArt = () => {
     setState({
       ...state,
@@ -63,13 +61,13 @@ function ModalAddProducts(props) {
                 state.view === 1 && (
                   <div className="buttonsModalSecodaries">
                     {
-                      (products && products.length) && (
+                      (products && products.length) ? (
                         <Button
                           className="PrimaryWave ButtonSecondaryClick ButtonSecondaryModal"
                         >
                           <span>Arte existente</span>
                         </Button>
-                      )
+                      ) : ""
                     }
                     <Button
                       className="PrimaryWave ButtonSecondaryClick ButtonSecondaryModal"

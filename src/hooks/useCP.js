@@ -20,6 +20,16 @@ const useCP = (categoryId) => {
     dispatch(getCategories());
   };
 
+  const onAddProduct = ({
+    product,
+    renderCategoriesProduct,
+    byCategories
+  }) => {
+    if (product) {
+      renderCategoriesProduct[byCategories].products.add(product);
+    }
+  };
+
   const onDoCategoriesProducts = () => {
     const renderCategoriesProduct = {};
 
@@ -34,9 +44,17 @@ const useCP = (categoryId) => {
           products: new Set()
         };
 
-        renderCategoriesProduct[byCategories].products.add(product);
+        onAddProduct({
+          product,
+          renderCategoriesProduct,
+          byCategories
+        });
       } else {
-        renderCategoriesProduct[byCategories].products.add(product);
+        onAddProduct({
+          product,
+          renderCategoriesProduct,
+          byCategories
+        });
       }
     }
 
