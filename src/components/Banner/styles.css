@@ -1,17 +1,10 @@
 .Banner {
   position: relative;
   width: fit-content;
-  min-width: fit-content;
-
-  min-width: 8rem;
 
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
-
-  padding: 0.5rem 1rem;
-  margin-right: 1rem;
-  border-radius: 2rem;
 
   padding: 0.5rem 1rem;
   margin-right: 1rem;
@@ -30,6 +23,7 @@
 }
 
 .Banner .Icon {
+  min-width: 1.5rem;
   max-width: 1.5rem;
   margin-right: 0.5rem;
 
@@ -42,8 +36,6 @@
 
 .Banner .Text {
   white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
 }
 
 .tapBanner {

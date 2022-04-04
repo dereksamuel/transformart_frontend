@@ -1,4 +1,4 @@
-import { SET_ALL, SET_ERROR, SET_LOADING, SET_ONE, SET_SELECTED, SET_SOURCES } from "../types/products";
+import { SET_ALL, SET_ERROR, SET_LOADING, SET_ONE, SET_SELECTED, SET_SOURCES, SET_CREATED } from "../types/products";
 
 const initialState = {
   all: [],
@@ -6,7 +6,8 @@ const initialState = {
   selected: {},
   sources: null,
   loading: false,
-  error: true
+  error: true,
+  createdId: null
 };
 
 function products(state = initialState, action) {
@@ -34,6 +35,10 @@ function products(state = initialState, action) {
     [SET_LOADING]: {
       ...state,
       loading: action.payload
+    },
+    [SET_CREATED]: {
+      ...state,
+      createdId: action.payload
     }
   };
 

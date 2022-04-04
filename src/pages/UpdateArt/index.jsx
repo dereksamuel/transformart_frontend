@@ -17,7 +17,7 @@ function UpdateArt() {
     showModalCreateCategory: false,
     showModalDelete: false,
     category: null,
-    categoryIdDelete: null,
+    categoryDelete: null,
     cpItemToCreateProduct: null
   });
   const alert = useSelector((stateLocal) => stateLocal.alert.alert);
@@ -53,7 +53,7 @@ function UpdateArt() {
   const onCloseModalDeleteCategory = (onToggleOverlay) => {
     setState({
       ...state,
-      categoryIdDelete: null
+      categoryDelete: null
     });
 
     onToggleOverlay();
@@ -85,10 +85,10 @@ function UpdateArt() {
     });
   };
 
-  const onDeleteCategory = (categoryIdDelete) => {
+  const onDeleteCategory = (categoryDelete) => {
     setState({
       ...state,
-      categoryIdDelete
+      categoryDelete
     });
   };
 

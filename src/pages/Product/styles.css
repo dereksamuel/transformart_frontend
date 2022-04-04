@@ -89,6 +89,7 @@ p.Offer {
   position: absolute;
   top: 0;
   right: 0;
+  z-index: 2;
   font-weight: 600;
   padding: 0.8rem;
   background-color: var(--color-warning);

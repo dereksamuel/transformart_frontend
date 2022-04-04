@@ -76,9 +76,36 @@ const deleteCategoriesProduct = (cpId) => async (dispatch) => {
   dispatch(setState({ type: SET_ERROR, payload: Boolean(error) }));
 };
 
+const updateCategoriesProduct = ({
+  createCategoriesProductId,
+  categoriesId,
+  productsId
+}) => async (dispatch) => {
+  dispatch(setState({ type: SET_LOADING, payload: true }));
+
+  const { error } = await fetchQuery(`
+    mutation {
+      updateCategoriesProduct(
+        id: ${createCategoriesProductId}
+        categoriesId: ${categoriesId}
+        productsId: ${productsId}
+      ) {
+        id
+        categoriesId
+        productsId
+      }
+    }
+  `);
+
+  await refreshQueries(dispatch);
+  dispatch(setState({ type: SET_LOADING, payload: false }));
+  dispatch(setState({ type: SET_ERROR, payload: Boolean(error) }));
+};
+
 export {
   getCategoriesProducts,
   getCategoriesProduct,
   createCategoriesProduct,
-  deleteCategoriesProduct
+  deleteCategoriesProduct,
+  updateCategoriesProduct
 };

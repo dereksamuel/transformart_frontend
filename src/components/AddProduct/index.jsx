@@ -3,8 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import { CameraIcon, PhotographIcon, VideoCameraIcon, XIcon } from "@heroicons/react/outline";
 
-import { setState } from "../../utils/setState";
 import { SET_ALERT } from "../../store/types/alert";
+import { createCategoriesProduct } from "../../store/actions/categoriesProducts";
+import { createProduct, uploadFiles } from "../../store/actions/products";
+import { SET_CREATED } from "../../store/types/products";
+
+import { setState } from "../../utils/setState";
+import { onClickModel, toUrl } from "../../utils/addProduct";
 import { useModel } from "../../hooks/useModel";
 
 import { Banner } from "../Banner";
@@ -13,11 +18,12 @@ import { Button } from "../Button";
 import { Alert } from "../Alert";
 
 import "./styles.css";
-import { uploadFiles } from "../../store/actions/products";
 
 function AddProduct(props) {
   const sources = useSelector((stateLocal) => stateLocal.products.sources);
+  const createdId = useSelector((stateLocal) => stateLocal.products.createdId);
   const alert = useSelector((stateLocal) => stateLocal.alert.alert);
+  const loading = useSelector((stateLocal) => stateLocal.products.loading);
 
   const addProductFormRef = useRef(null);
 
@@ -25,14 +31,6 @@ function AddProduct(props) {
   const [imageModel] = useModel({ initialValue: "", domEl: "#imageModel" });
 
   const dispatch = useDispatch();
-
-  const onClickModel = (id) => {
-    const $model = document.getElementById(id);
-
-    $model.click();
-  };
-
-  const toUrl = (blob) => URL.createObjectURL(blob);
 
   const onHideAlert = () => {
     dispatch(setState({
@@ -48,7 +46,6 @@ function AddProduct(props) {
       dispatch(setState({
         type: SET_ALERT,
         payload: {
-          title: "Error al guardar datos",
           description: "Es requerido que subas imagen y video para el producto",
           theme: "Error",
           showAlert: true,
@@ -59,31 +56,52 @@ function AddProduct(props) {
 
     await dispatch(uploadFiles(videoModel, imageModel));
   };
-  
-  useEffect(() => {
+
+  const onCreatedProduct = () => {
+    props.relationCategories.map((relationCategoryLocal) => {
+      // dispatch(updateCategoriesProduct({
+      //   createCategoriesProductId: props.categoriesProductId,
+      //   categoriesId: relationCategoryLocal.id,
+      //   productsId: createdId.id
+      // }));
+      dispatch(createCategoriesProduct(relationCategoryLocal.id, createdId.id));
+    });
+    dispatch(setState({ type: SET_CREATED, payload: null }));
+    props.onCloseModalAddProducts(props.onToggleOverlay);
+  };
+
+  useEffect(async () => {
     if (sources) {
       let formData = new FormData(addProductFormRef.current);
 
-      console.log({
+      const data = {
         name: formData.get("nameModel"),
         price: Number(formData.get("priceModel")),
         description: formData.get("descriptionModel"),
         offer: Number(formData.get("offerModel")),
-        tweeterUrl: formData.get("tweeterUrlModel"),
-        facebookUrl: formData.get("facebookUrlModel"),
-        instagramUrl: formData.get("instagramUrlModel"),
+        tweeterLink: formData.get("tweeterUrlModel"),
+        facebookLink: formData.get("facebookUrlModel"),
+        instagramLink: formData.get("instagramUrlModel"),
         srcVideo: sources.srcVideo,
         srcImage: sources.srcImage,
-      });
+      };
+
+      await dispatch(createProduct(data));
     }
   }, [sources]);
+
+  useEffect(() => {
+    if (createdId) {
+      console.log("Printed");
+      onCreatedProduct();
+    }
+  }, [createdId]);
 
   return (
     <form onSubmit={onSaveProduct} ref={addProductFormRef}>
       {
         (alert && alert.showAlert) && (
           <Alert
-            title={alert.title}
             description={alert.description}
             theme={alert.theme}
             toLeft={true}
@@ -171,7 +189,6 @@ function AddProduct(props) {
           <Banner>
             <CameraIcon className="Icon" />
             <input
-              className="Text"
               name="facebookUrlModel"
               required
               type="url"
@@ -181,7 +198,6 @@ function AddProduct(props) {
           <Banner>
             <CameraIcon className="Icon" />
             <input
-              className="Text"
               name="instagramUrlModel"
               required
               type="url"
@@ -191,7 +207,6 @@ function AddProduct(props) {
           <Banner>
             <CameraIcon className="Icon" />
             <input
-              className="Text"
               name="tweeterUrlModel"
               required
               type="url"
@@ -220,7 +235,12 @@ function AddProduct(props) {
         <Button
           className="PrimaryWave ButtonModalAddProducts"
           type="submit"
-        >Guardar cambios</Button>
+          disabled={loading}
+        >
+          {
+            loading ? "Guardando" : "Guardar cambios"
+          }
+        </Button>
       </div>
     </form>
   );
@@ -236,7 +256,11 @@ AddProduct.propTypes = {
   relationCategories: PropTypes.array,
   tweeterUrl: PropTypes.string,
   facebookUrl: PropTypes.string,
-  instagramUrl: PropTypes.string
+  instagramUrl: PropTypes.string,
+  categoriesProductId: PropTypes.number,
+  onCloseModalAddProducts: PropTypes.func,
+  onToggleOverlay: PropTypes.func,
+  toEdit: PropTypes.bool
 };
 
 export {

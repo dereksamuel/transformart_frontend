@@ -45,11 +45,10 @@ function ModalSaveCategory(props) {
     dispatch(setState({
       type: SET_ALERT,
       payload: {
-        title: "Acción exitosa",
         description: props.updateData ? `
-          Producto actualizado con éxito
+          Producto "${categoryName}" actualizado con éxito
         ` : `
-          Producto creado con éxito
+          Producto "${categoryName}" creado con éxito
         `,
         theme: "Success",
         showAlert: true,

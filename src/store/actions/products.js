@@ -3,7 +3,7 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from "../../utils/connectFirebase";
 import { fetchQuery } from "../../utils/fetchQuery";
 import { setState } from "../../utils/setState";
-import { SET_ALL, SET_ERROR, SET_LOADING, SET_ONE, SET_SOURCES } from "../types/products";
+import { SET_ALL, SET_CREATED, SET_ERROR, SET_LOADING, SET_ONE, SET_SOURCES } from "../types/products";
 import { getCategories } from "./categories";
 import { getCategoriesProducts } from "./categoriesProducts";
 
@@ -102,9 +102,45 @@ const uploadFiles = (video, image) => async (dispatch) => {
   }
 };
 
+const createProduct = (data) => async (dispatch) => {
+  dispatch(setState({ type: SET_LOADING, payload: true }));
+
+  const { data: dataQuery, error } = await fetchQuery(`
+    mutation {
+      createProduct(
+        name: "${data.name}"
+        price: ${data.price}
+        offer: ${data.offer}
+        description: "${data.description}"
+        srcImage: "${data.srcImage}"
+        srcVideo: "${data.srcVideo}"
+        facebookLink: "${data.facebookLink}"
+        instagramLink: "${data.instagramLink}"
+        tweeterLink: "${data.tweeterLink}"
+      ) {
+        id
+        name
+        price
+        offer
+        description
+        srcImage
+        srcVideo
+        facebookLink
+        instagramLink
+        tweeterLink
+      }
+    }
+  `);
+
+  dispatch(setState({ type: SET_CREATED, payload: dataQuery.createProduct }));
+  dispatch(setState({ type: SET_LOADING, payload: false }));
+  dispatch(setState({ type: SET_ERROR, payload: Boolean(error) }));
+};
+
 export {
   getProducts,
   getProduct,
   deleteProduct,
-  uploadFiles
+  uploadFiles,
+  createProduct
 };

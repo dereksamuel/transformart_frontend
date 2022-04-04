@@ -92,6 +92,7 @@ button.ButtonToggleSize-danger {
 }
 
 button.ButtonToggleSize-danger svg {
+  min-width: 1rem;
   opacity: 0.6;
 }
 

@@ -54,9 +54,14 @@
   margin-bottom: 0;
 
   font-size: 1rem;
+  width: fit-content;
   color: var(--color-white);
 }
 
 .TitleContainer {
   color: var(--color-white);
+}
+
+#videoModel, #imageModel {
+  display: none;
 }

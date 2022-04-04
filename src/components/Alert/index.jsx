@@ -13,18 +13,16 @@ function Alert(props) {
   return (
     <div className={`Alert ${(props.toLeft ? "Alert-left" : "Alert-right")} ${props.theme}`}>
       <article>
-        <h3 className="title">{ props.title }</h3>
         <p className="description">{ props.description }</p>
       </article>
-      <span className="IconContainer" {...propsWithouttoLeft}>
+      <div className="Icon" {...propsWithouttoLeft}>
         <XIcon />
-      </span>
+      </div>
     </div>
   );
 }
 
 Alert.propTypes = {
-  title: PropTypes.string,
   description: PropTypes.string,
   theme: PropTypes.string,
   toLeft: PropTypes.bool

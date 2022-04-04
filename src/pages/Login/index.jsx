@@ -81,8 +81,7 @@ function Login() {
       <img src={WaveFlowHeader} alt="WaveFlowHeader" className="WaveFlowHeader" />
       {
         stateLocal.showAlert && <Alert
-          title="Error de autenticación"
-          description="Lo sentimos, pero algo ha ido mal con la autenticación"
+          description="Lo sentimos, pero algo ha ido mal la autenticación"
           theme="Error"
           toLeft={true}
           onClick={onHideAlert}

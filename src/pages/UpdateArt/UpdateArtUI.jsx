@@ -24,7 +24,6 @@ function UpdateartUI(props) {
       {
         (props.alert && props.alert.showAlert) && (
           <Alert
-            title={props.alert.title}
             description={props.alert.description}
             theme={props.alert.theme}
             toLeft={true}
@@ -64,12 +63,13 @@ function UpdateartUI(props) {
           <ModalAddProducts
             onCloseModalAddProducts={props.onCloseModalAddProducts}
             cpItemToCreateProduct={props.state.cpItemToCreateProduct}
+            categoriesProducts={props.categoriesProductsArray}
           />
         )
       }
 
       {
-        props.state.categoryIdDelete && (
+        props.state.categoryDelete && (
           <ModalDeleteCategory
             onCloseModalDelete={props.onCloseModalDeleteCategory}
             state={props.state}
@@ -95,7 +95,7 @@ function UpdateartUI(props) {
                         <div className="buttonsActions">
                           <button
                             className="button-without-styles buttonAction"
-                            onClick={() => props.onDeleteCategory(categoriesProductsItem[1].categoriesProductId)}
+                            onClick={() => props.onDeleteCategory(categoriesProductsItem[1])}
                           >
                             <TrashIcon />
                           </button>
@@ -120,13 +120,20 @@ function UpdateartUI(props) {
                               {
                                 product && (
                                   <ProductItem key={product.id} product={product}>
-                                    <Button
-                                      className="ButtonToggleSize-danger"
-                                      onClick={() => props.onToggleModalDelete(categoriesProductsItem[1], product.id)}
-                                    >
-                                      <TrashIcon />
-                                      <span>Borrar</span>
-                                    </Button>
+                                    <div className="ContainerButtonsProduct">
+                                      <Button
+                                        className="ButtonToggleSize-danger"
+                                        onClick={() => props.onToggleModalDelete(categoriesProductsItem[1], product.id)}
+                                      >
+                                        <TrashIcon />
+                                      </Button>
+                                      <Button
+                                        className="PrimaryWave"
+                                        onClick={() => props.onToggleModalDelete(categoriesProductsItem[1], product.id)}
+                                      >
+                                        <PencilIcon />
+                                      </Button>
+                                    </div>
                                   </ProductItem>
                                 )
                               }

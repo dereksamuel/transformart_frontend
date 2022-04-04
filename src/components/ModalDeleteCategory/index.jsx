@@ -26,12 +26,11 @@ function ModalDeleteCategory(props) {
   const onDeleteCategory = async (onToggleOverlay) => {
     setCategoryDeleted(true);
 
-    await dispatch(deleteCategory(props.state.categoryIdDelete));
+    await dispatch(deleteCategory(props.state.categoryDelete.categoriesProductId));
     dispatch(setState({
       type: SET_ALERT,
       payload: {
-        title: "Acción exitosa",
-        description: "Producto eliminado con éxito",
+        description: "Producto " + props.state.categoryDelete.category.name + " eliminado con éxito",
         theme: "Success",
         showAlert: true,
       }
