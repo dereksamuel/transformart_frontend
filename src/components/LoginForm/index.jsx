@@ -14,7 +14,7 @@ import { auth } from "../../utils/connectFirebase";
 
 import { SET_AUTH, SET_ERROR, SET_LOADING } from "../../store/types/authenticate";
 
-const LoginForm = ({ onError }) => {
+let LoginForm = ({ onError }) => {
   const loading = useSelector((state) => state.authenticate.loading);
 
   const [userName] = useModel({
@@ -94,6 +94,7 @@ LoginForm.propTypes = {
   onError: PropTypes.func
 };
 
+LoginForm = React.memo(LoginForm);
 
 export {
   LoginForm

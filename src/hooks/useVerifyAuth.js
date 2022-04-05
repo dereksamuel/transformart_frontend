@@ -19,9 +19,7 @@ const useVerifyAuth = () => {
           verifyIsAuth
         }
       `);
-      if (data.verifyIsAuth) {
-        dispatch(setState({ type: SET_LOADING, payload: false }));
-      }
+      dispatch(setState({ type: SET_LOADING, payload: false }));
       dispatch(setState({ type: SET_AUTH, payload: data.verifyIsAuth }));
       dispatch(setState({ type: SET_ERROR, payload: Boolean(error) }));
     } catch (error) {

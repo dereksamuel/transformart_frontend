@@ -47,7 +47,7 @@ function Menu() {
 
   const onLogout = async () => {
     await auth.signOut();
-    dispatch(logout());
+    await dispatch(logout());
 
     navigate({ pathname: "/login" });
   };

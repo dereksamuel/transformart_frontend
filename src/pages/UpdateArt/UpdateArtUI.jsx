@@ -94,18 +94,21 @@ function UpdateartUI(props) {
                         <p>{ categoriesProductsItem[1].category?.name }</p>
                         <div className="buttonsActions">
                           <button
+                            aria-label="Delete Category Button"
                             className="button-without-styles buttonAction"
                             onClick={() => props.onDeleteCategory(categoriesProductsItem[1])}
                           >
                             <TrashIcon />
                           </button>
                           <button
+                            aria-label="Edit Category Button"
                             className="button-without-styles buttonAction"
                             onClick={() => props.onEditCategory(categoriesProductsItem[1].category)}
                           >
                             <PencilIcon />
                           </button>
                           <button
+                            aria-label="Add Product Button"
                             className="button-without-styles buttonAction"
                             onClick={() => props.onCreateProduct(categoriesProductsItem[1])}
                           >
@@ -177,6 +180,8 @@ UpdateartUI.propTypes = {
   onHideAlert: PropTypes.func
 };
 
+const UpdateartUIMemo = React.memo(UpdateartUI);
+
 export {
-  UpdateartUI
+  UpdateartUIMemo
 };

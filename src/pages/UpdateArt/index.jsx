@@ -7,7 +7,7 @@ import { setState as setStateUtils } from "../../utils/setState";
 import "../Categories/styles.css";
 import "./styles.css";
 import { SET_ALERT } from "../../store/types/alert";
-import { UpdateartUI } from "./UpdateArtUI";
+import { UpdateartUIMemo } from "./UpdateArtUI";
 
 function UpdateArt() {
   const [state, setState] = useState({
@@ -107,7 +107,7 @@ function UpdateArt() {
   };
 
   return (
-    <UpdateartUI
+    <UpdateartUIMemo
       alert={alert}
       state={state}
       categoriesProductsArray={categoriesProductsArray}
