@@ -9,7 +9,7 @@ import { fetchQuery } from "../utils/fetchQuery";
 
 const useVerifyAuth = () => {
   const dispatch = useDispatch();
-
+  // FIXME: React memo thing to prevent two requests useCallback or useMemo 🤚🏻
   useEffect(async () => {
     dispatch(setState({ type: SET_LOADING, payload: true }));
 
@@ -19,7 +19,9 @@ const useVerifyAuth = () => {
           verifyIsAuth
         }
       `);
-      dispatch(setState({ type: SET_LOADING, payload: false }));
+      if (data.verifyIsAuth) {
+        dispatch(setState({ type: SET_LOADING, payload: false }));
+      }
       dispatch(setState({ type: SET_AUTH, payload: data.verifyIsAuth }));
       dispatch(setState({ type: SET_ERROR, payload: Boolean(error) }));
     } catch (error) {

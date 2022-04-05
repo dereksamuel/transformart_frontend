@@ -11,6 +11,7 @@ const PrivateRoute = () => {
   useVerifyAuth();
 
   useEffect(() => {
+    console.log("loading", loading);
     if (!isAuth && !loading) {
       navigate({ pathname: "/login" });
     }
