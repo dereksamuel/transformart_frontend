@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { useCP } from "../../hooks/useCP";
@@ -8,6 +8,7 @@ import "../Categories/styles.css";
 import "./styles.css";
 import { SET_ALERT } from "../../store/types/alert";
 import { UpdateartUIMemo } from "./UpdateArtUI";
+import { ModalRenders } from "../../components/ModalRenders";
 
 function UpdateArt() {
   const [state, setState] = useState({
@@ -41,43 +42,6 @@ function UpdateArt() {
     });
   };
 
-  const onCloseModalDelete = (onToggleOverlay) => {
-    setState({
-      ...state,
-      showModalDelete: false
-    });
-
-    onToggleOverlay();
-  };
-
-  const onCloseModalDeleteCategory = (onToggleOverlay) => {
-    setState({
-      ...state,
-      categoryDelete: null
-    });
-
-    onToggleOverlay();
-  };
-
-  const onCloseModalSaveCategory = (onToggleOverlay) => {
-    setState({
-      ...state,
-      showModalCreateCategory: false,
-      category: null
-    });
-
-    onToggleOverlay();
-  };
-
-  const onCloseModalAddProducts = (onToggleOverlay) => {
-    setState({
-      ...state,
-      cpItemToCreateProduct: null
-    });
-
-    onToggleOverlay();
-  };
-
   const onEditCategory = (category) => {
     setState({
       ...state,
@@ -106,23 +70,71 @@ function UpdateArt() {
     });
   };
 
-  return (
+  const onCloseModalDelete = (onToggleOverlay) => {
+    setState({
+      ...state,
+      showModalDelete: false
+    });
+
+    onToggleOverlay();
+  };
+
+  const onCloseModalDeleteCategory = (onToggleOverlay) => {
+    setState({
+      ...state,
+      categoryDelete: null
+    });
+
+    onToggleOverlay();
+  };
+
+  const onCloseModalAddProducts = (onToggleOverlay) => {
+    setState({
+      ...state,
+      cpItemToCreateProduct: null
+    });
+
+    onToggleOverlay();
+  };
+
+  const onCloseModalSaveCategory = (onToggleOverlay) => {
+    setState({
+      ...state,
+      showModalCreateCategory: false,
+      category: null
+    });
+
+    onToggleOverlay();
+  };
+
+  const toModalRenders = {
+    state,
+    alert,
+    categoriesProductsArray,
+    setState,
+    onHideAlert,
+    onCloseModalSaveCategory,
+    onCloseModalAddProducts,
+    onCloseModalDelete,
+    onCloseModalDeleteCategory
+  };
+
+  const element = useMemo(() => (
     <UpdateartUIMemo
-      alert={alert}
-      state={state}
-      categoriesProductsArray={categoriesProductsArray}
+      toModalRenders={toModalRenders}
       onToggleModalCreateCategory={onToggleModalCreateCategory}
       onToggleModalDelete={onToggleModalDelete}
       onDeleteCategory={onDeleteCategory}
       onEditCategory={onEditCategory}
       onCreateProduct={onCreateProduct}
-      setState={setState}
-      onCloseModalSaveCategory={onCloseModalSaveCategory}
-      onCloseModalDeleteCategory={onCloseModalDeleteCategory}
-      onCloseModalAddProducts={onCloseModalAddProducts}
-      onCloseModalDelete={onCloseModalDelete}
-      onHideAlert={onHideAlert}
     />
+  ), [categoriesProductsArray]);
+
+  return (
+    <>
+      <ModalRenders {...toModalRenders} />
+      { element }
+    </>
   );
 }
 

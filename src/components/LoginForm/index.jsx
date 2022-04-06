@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { LoginIcon } from "@heroicons/react/outline";
@@ -12,10 +13,11 @@ import { Button } from "../Button";
 import { setState } from "../../utils/setState";
 import { auth } from "../../utils/connectFirebase";
 
-import { SET_AUTH, SET_ERROR, SET_LOADING } from "../../store/types/authenticate";
+import { SET_AUTH, SET_ERROR, SET_LOADING_FORM } from "../../store/types/authenticate";
 
-let LoginForm = ({ onError }) => {
-  const loading = useSelector((state) => state.authenticate.loading);
+function LoginForm({ onError }) {
+  const loading = useSelector((state) => state.authenticate.loadingForm);
+  const navigate = useNavigate();
 
   const [userName] = useModel({
     initialValue: "",
@@ -30,7 +32,7 @@ let LoginForm = ({ onError }) => {
 
   const onLogin = async (event) => {
     event.preventDefault();
-    dispatch(setState({ type: SET_LOADING, payload: true }));
+    dispatch(setState({ type: SET_LOADING_FORM, payload: true }));
 
     const userCredential = await signInWithEmailAndPassword(
       auth,
@@ -41,17 +43,15 @@ let LoginForm = ({ onError }) => {
       onError();
       dispatch(setState({ type: SET_AUTH, payload: false }));
       dispatch(setState({ type: SET_ERROR, payload: true }));
-      dispatch(setState({ type: SET_LOADING, payload: false }));
+      dispatch(setState({ type: SET_LOADING_FORM, payload: false }));
     });
 
     localStorage.setItem("headerToken", userCredential.user.accessToken);
 
     dispatch(setState({ type: SET_AUTH, payload: true }));
+    dispatch(setState({ type: SET_LOADING_FORM, payload: false }));
+    navigate({ pathname: "/update_art" });
   };
-
-  useEffect(() => {
-    dispatch(setState({ type: SET_LOADING, payload: false }));
-  }, []);
 
   return (
     <form onSubmit={onLogin}>
@@ -87,14 +87,11 @@ let LoginForm = ({ onError }) => {
       </Button>
     </form>
   );
-};
-
+}
 
 LoginForm.propTypes = {
   onError: PropTypes.func
 };
-
-LoginForm = React.memo(LoginForm);
 
 export {
   LoginForm

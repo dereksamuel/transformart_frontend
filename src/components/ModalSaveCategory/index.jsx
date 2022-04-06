@@ -18,7 +18,10 @@ import { setState } from "../../utils/setState";
 
 import "./styles.css";
 
-function ModalSaveCategory(props) {
+function ModalSaveCategory({
+  updateData,
+  onCloseModalSaveCategory
+}) {
   const categoryCreatedId = useSelector((state) => state.categories.createdId);
   const [categoryName] = useModel({
     initialValue: "",
@@ -35,17 +38,17 @@ function ModalSaveCategory(props) {
     event.preventDefault();
     if (!categoryName) return;
 
-    const action = props.updateData ? updateCategory : createCategory;
+    const action = updateData ? updateCategory : createCategory;
 
-    await dispatch(action(props.updateData ? {
-      id: props.updateData.id,
+    await dispatch(action(updateData ? {
+      id: updateData.id,
       categoryName
     } : categoryName));
 
     dispatch(setState({
       type: SET_ALERT,
       payload: {
-        description: props.updateData ? `
+        description: updateData ? `
           Producto "${categoryName}" actualizado con éxito
         ` : `
           Producto "${categoryName}" creado con éxito
@@ -54,7 +57,7 @@ function ModalSaveCategory(props) {
         showAlert: true,
       }
     }));
-    props.onCloseModalSaveCategory(onToggleOverlay);
+    onCloseModalSaveCategory(onToggleOverlay);
   };
 
   useEffect(async () => {
@@ -73,7 +76,7 @@ function ModalSaveCategory(props) {
             <div className="ModalContent">
               <button
                 className="button-without-styles closeIcon"
-                onClick={() => props.onCloseModalSaveCategory(onToggleOverlay)}
+                onClick={() => onCloseModalSaveCategory(onToggleOverlay)}
               >
                 <XIcon />
               </button>
@@ -82,7 +85,7 @@ function ModalSaveCategory(props) {
                 className="SubTitle TitleModal"
               >
                 {
-                  `${props.updateData ? "Actualizar" : "Crear"} Categoria`
+                  `${updateData ? "Actualizar" : "Crear"} Categoria`
                 }
               </Title>
               <form onSubmit={(event) => onSaveCategory(event, onToggleOverlay)}>
@@ -91,7 +94,7 @@ function ModalSaveCategory(props) {
                     id="categoryName"
                     className="Input InputModalSaveCategory"
                     placeholder="Nombre de la categoria"
-                    defaultValue={props.updateData?.name || ""}
+                    defaultValue={updateData?.name || ""}
                     required
                   />
                 </div>

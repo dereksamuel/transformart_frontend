@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
 
 import logoIcon from "../../assets/images/mobile/logoIcon.svg";
 import WaveFlowHeader from "../../assets/images/mobile/WaveFlowHeader.svg";
@@ -12,13 +10,9 @@ import "./styles.css";
 import { LoginForm } from "../../components/LoginForm";
 
 function Login() {
-  const isAuth = useSelector((state) => state.authenticate.isAuth);
-
   const [stateLocal, setStateLocal] = useState({
     showAlert: false
   });
-
-  const navigate = useNavigate();
 
   const onHideAlert = () => setStateLocal({
     ...stateLocal,
@@ -31,12 +25,6 @@ function Login() {
       showAlert: true
     });
   };
-
-  useEffect(() => {
-    if (isAuth) {
-      navigate({ pathname: "/update_art" });
-    }
-  }, [isAuth]);
 
   return (
     <div className="Login">

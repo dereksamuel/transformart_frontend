@@ -1,8 +1,9 @@
-import { SET_AUTH, SET_ERROR, SET_LOADING } from "../types/authenticate";
+import { SET_AUTH, SET_ERROR, SET_LOADING, SET_LOADING_FORM } from "../types/authenticate";
 
 const initialState = {
   isAuth: false,
   loading: true,
+  loadingForm: false,
   error: false
 };
 
@@ -19,6 +20,10 @@ function authenticate(state = initialState, action) {
     [SET_LOADING]: {
       ...state,
       loading: action.payload
+    },
+    [SET_LOADING_FORM]: {
+      ...state,
+      loadingForm: action.payload
     }
   };
 

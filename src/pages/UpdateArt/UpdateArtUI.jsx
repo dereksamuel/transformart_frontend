@@ -6,86 +6,30 @@ import { Title } from "../../components/Title";
 import { Acordion } from "../../components/Acordion";
 import { ProductItem } from "../../components/ProductItem";
 import { Button } from "../../components/Button";
-import { Alert } from "../../components/Alert";
-import { ModalSaveCategory } from "../../components/ModalSaveCategory";
-import { ModalDeleteProduct } from "../../components/ModalDeleteProduct";
 
 import srcLogoIcon from "../../assets/images/mobile/logoIcon.svg";
-
-import { ModalDeleteCategory } from "../../components/ModalDeleteCategory";
-import { ModalAddProducts } from "../../components/ModalAddProducts";
 
 import "../Categories/styles.css";
 import "./styles.css";
 
-function UpdateartUI(props) {
+function UpdateartUI({
+  toModalRenders,
+  onDeleteCategory,
+  onEditCategory,
+  onCreateProduct,
+  onToggleModalDelete,
+  onToggleModalCreateCategory
+}) {
   return (
     <div className="UpdateArt">
-      {
-        (props.alert && props.alert.showAlert) && (
-          <Alert
-            description={props.alert.description}
-            theme={props.alert.theme}
-            toLeft={true}
-            onClick={props.onHideAlert}
-          />
-        )
-      }
-      {
-        props.state.showModalDelete && (
-          <ModalDeleteProduct
-            onCloseModalDelete={props.onCloseModalDelete}
-            state={props.state}
-            setState={props.setState}
-          />
-        )
-      }
-
-      {
-        props.state.showModalCreateCategory && (
-          <ModalSaveCategory
-            onCloseModalSaveCategory={props.onCloseModalSaveCategory}
-          />
-        )
-      }
-
-      {
-        props.state.category && (
-          <ModalSaveCategory
-            onCloseModalSaveCategory={props.onCloseModalSaveCategory}
-            updateData={props.state.category}
-          />
-        )
-      }
-
-      {
-        props.state.cpItemToCreateProduct && (
-          <ModalAddProducts
-            onCloseModalAddProducts={props.onCloseModalAddProducts}
-            cpItemToCreateProduct={props.state.cpItemToCreateProduct}
-            categoriesProducts={props.categoriesProductsArray}
-          />
-        )
-      }
-
-      {
-        props.state.categoryDelete && (
-          <ModalDeleteCategory
-            onCloseModalDelete={props.onCloseModalDeleteCategory}
-            state={props.state}
-            setState={props.setState}
-          />
-        )
-      }
-
       <Title className="SubTitle TitleCategories" isTitle={false}>
         <img src={srcLogoIcon} alt="srcLogoIcon" className="Categories-srcLogoIcon" />
         <span>Actualizar arte</span>
       </Title>
       <div className="AcordionContainer">
         {
-          (props.categoriesProductsArray && props.categoriesProductsArray.length) ?
-            props.categoriesProductsArray.map((categoriesProductsItem, indexCPI) => (
+          (toModalRenders.categoriesProductsArray && toModalRenders.categoriesProductsArray.length) ?
+            toModalRenders.categoriesProductsArray.map((categoriesProductsItem, indexCPI) => (
               <div key={indexCPI}>
                 {
                   categoriesProductsItem[1].category && (
@@ -96,21 +40,21 @@ function UpdateartUI(props) {
                           <button
                             aria-label="Delete Category Button"
                             className="button-without-styles buttonAction"
-                            onClick={() => props.onDeleteCategory(categoriesProductsItem[1])}
+                            onClick={() => onDeleteCategory(categoriesProductsItem[1])}
                           >
                             <TrashIcon />
                           </button>
                           <button
                             aria-label="Edit Category Button"
                             className="button-without-styles buttonAction"
-                            onClick={() => props.onEditCategory(categoriesProductsItem[1].category)}
+                            onClick={() => onEditCategory(categoriesProductsItem[1].category)}
                           >
                             <PencilIcon />
                           </button>
                           <button
                             aria-label="Add Product Button"
                             className="button-without-styles buttonAction"
-                            onClick={() => props.onCreateProduct(categoriesProductsItem[1])}
+                            onClick={() => onCreateProduct(categoriesProductsItem[1])}
                           >
                             <PlusIcon />
                           </button>
@@ -126,13 +70,13 @@ function UpdateartUI(props) {
                                     <div className="ContainerButtonsProduct">
                                       <Button
                                         className="ButtonToggleSize-danger"
-                                        onClick={() => props.onToggleModalDelete(categoriesProductsItem[1], product.id)}
+                                        onClick={() => onToggleModalDelete(categoriesProductsItem[1], product.id)}
                                       >
                                         <TrashIcon />
                                       </Button>
                                       <Button
                                         className="PrimaryWave"
-                                        onClick={() => props.onToggleModalDelete(categoriesProductsItem[1], product.id)}
+                                        onClick={() => onToggleModalDelete(categoriesProductsItem[1], product.id)}
                                       >
                                         <PencilIcon />
                                       </Button>
@@ -153,7 +97,7 @@ function UpdateartUI(props) {
       </div>
       <div className="ZoneOfButton">
         <Button
-          onClick={props.onToggleModalCreateCategory}
+          onClick={onToggleModalCreateCategory}
           className={"PrimaryWave ProductButton"}
         >
           <span>Crear Categoria</span>
@@ -164,20 +108,12 @@ function UpdateartUI(props) {
 }
 
 UpdateartUI.propTypes = {
-  state: PropTypes.any,
-  alert: PropTypes.object,
-  categoriesProductsArray: PropTypes.array,
+  toModalRenders: PropTypes.object,
   onToggleModalCreateCategory: PropTypes.func,
   onToggleModalDelete: PropTypes.func,
   onDeleteCategory: PropTypes.func,
   onEditCategory: PropTypes.func,
-  onCreateProduct: PropTypes.func,
-  setState: PropTypes.func,
-  onCloseModalSaveCategory: PropTypes.func,
-  onCloseModalDeleteCategory: PropTypes.func,
-  onCloseModalAddProducts: PropTypes.func,
-  onCloseModalDelete: PropTypes.func,
-  onHideAlert: PropTypes.func
+  onCreateProduct: PropTypes.func
 };
 
 const UpdateartUIMemo = React.memo(UpdateartUI);

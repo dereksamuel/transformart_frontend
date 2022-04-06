@@ -1,15 +1,16 @@
 import { useEffect } from "react";
-
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
 
 import { setState } from "../utils/setState";
+import { fetchQuery } from "../utils/fetchQuery";
 
 import { SET_AUTH, SET_ERROR, SET_LOADING } from "../store/types/authenticate";
-import { fetchQuery } from "../utils/fetchQuery";
 
 const useVerifyAuth = () => {
   const dispatch = useDispatch();
-  // FIXME: React memo thing to prevent two requests useCallback or useMemo 🤚🏻
+  const navigate = useNavigate();
+
   useEffect(async () => {
     dispatch(setState({ type: SET_LOADING, payload: true }));
 
@@ -19,13 +20,19 @@ const useVerifyAuth = () => {
           verifyIsAuth
         }
       `);
+
+      if (!data.verifyIsAuth) {
+        navigate({ pathname: "/login" });
+      }
+
       dispatch(setState({ type: SET_LOADING, payload: false }));
       dispatch(setState({ type: SET_AUTH, payload: data.verifyIsAuth }));
       dispatch(setState({ type: SET_ERROR, payload: Boolean(error) }));
     } catch (error) {
+      console.error(error);
       dispatch(setState({ type: SET_AUTH, payload: false }));
     }
-  }, []);
+  }, [dispatch]);
 };
 
 export {
