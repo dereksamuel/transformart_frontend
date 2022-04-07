@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 
 import "./styles.css";
 import { useSelector } from "react-redux";
 
-const SaveExistentProduct = () => {
+function SaveExistentProduct({ cpComplete }) {
   const products = useSelector((state) => state.products.all);
   const [state, setState] = useState({
     selectedSetter: new Set()
@@ -37,16 +38,20 @@ const SaveExistentProduct = () => {
             <button
               onClick={() => onToggleSelected(product.id)}
               className={`button-without-styles ${
-                state.selectedSetter.has(product.id) && "SelectedButton"
+                (state.selectedSetter.has(product.id)) && "SelectedButton"
               }`}
             >
               <img className="ProductItemSaveModal--image" src={product.srcImage} alt={product.name} />
             </button>
           </li>
-        )) : "Chao"
+        )) : ""
       }
     </div>
   );
+}
+
+SaveExistentProduct.propTypes = {
+  cpComplete: PropTypes.array
 };
 
 export {
