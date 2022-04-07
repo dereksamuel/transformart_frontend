@@ -74,6 +74,7 @@ body {
 
 .Router {
   transition: 0.5s filter ease-in;
+  height: 100%;
 }
 
 .Router div:first-child {

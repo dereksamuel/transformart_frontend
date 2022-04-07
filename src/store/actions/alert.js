@@ -2,7 +2,7 @@ import { setState } from "../../utils/setState";
 
 import { SET_ALERT } from "../types/alert";
 
-const onHideAlert = (payload) => (dispatch) => {
+const onChangeAlert = (payload) => (dispatch) => {
   dispatch(setState({
     type: SET_ALERT,
     payload
@@ -10,5 +10,5 @@ const onHideAlert = (payload) => (dispatch) => {
 };
 
 export {
-  onHideAlert
+  onChangeAlert
 };

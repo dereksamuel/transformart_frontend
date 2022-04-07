@@ -1,45 +1,46 @@
 import React, { useState } from "react";
-import { XIcon } from "@heroicons/react/solid";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
+import { XIcon } from "@heroicons/react/solid";
 
 import { Modal } from "../Modal";
 import { Title } from "../Title";
 import { Button } from "../Button";
-import { AddProduct } from "../AddProduct";
+import { SaveProduct } from "../SaveProduct";
+import { SaveExistentProduct } from "../SaveExistentProduct";
 
 import "./styles.css";
-import { useSelector } from "react-redux";
 
-function ModalAddProducts({
+function ModalSaveProducts({
   categoriesProducts,
   cpItemToCreateProduct,
-  onCloseModalAddProducts
+  onCloseModalSaveProducts
 }) {
   const products = useSelector((stateLocal) => stateLocal.products.all);
   const [state, setState] = useState({
-    view: 1
+    view: 1,
   });
-  const cpComplete = categoriesProducts.map((cpItem) => ({
-    ...cpItem[1]
-  }));
-  let relationCategories = [...cpItemToCreateProduct.products][0] ? cpComplete.filter((cp) =>
-    [...cpItemToCreateProduct.products].find(
+  const cpComplete = categoriesProducts.map((cpItem) => cpItem[1]);
+
+  let relationCategories = [...cpItemToCreateProduct.products][0] ? cpComplete.filter((cpItem) => {
+    return [...cpItemToCreateProduct.products].find(
       (product) => {
-        return [...cp.products][0] ? [...cp.products].find((productLocal) => {
+        return [...cpItem.products][0] ? [...cpItem.products].find((productLocal) => {
           return productLocal.id === product.id;
         }) : null;
       }
-    )) : [cpItemToCreateProduct.category];
-  relationCategories = [...cpItemToCreateProduct.products][0] ?
-    relationCategories.map((relationCategoryItem) => relationCategoryItem.category) :
-    relationCategories;
+    );
+  }) : [cpItemToCreateProduct.category];
 
-  const onCreateNewArt = () => {
-    setState({
-      ...state,
-      view: 2
-    });
-  };
+  const onCreateNewArt = () => setState({
+    ...state,
+    view: 2
+  });
+
+  const onCreateExistentArt = () => setState({
+    ...state,
+    view: 3
+  });
 
   return (
     <Modal>
@@ -51,7 +52,7 @@ function ModalAddProducts({
             <div className="ModalContent">
               <button
                 className="button-without-styles closeIcon"
-                onClick={() => onCloseModalAddProducts(onToggleOverlay)}
+                onClick={() => onCloseModalSaveProducts(onToggleOverlay)}
               >
                 <XIcon />
               </button>
@@ -67,6 +68,7 @@ function ModalAddProducts({
                     {
                       (products && products.length) ? (
                         <Button
+                          onClick={onCreateExistentArt}
                           className="PrimaryWave ButtonSecondaryClick ButtonSecondaryModal"
                         >
                           <span>Arte existente</span>
@@ -84,10 +86,20 @@ function ModalAddProducts({
               }
               {
                 state.view === 2 && (
-                  <AddProduct
+                  <SaveProduct
                     relationCategories={relationCategories}
                     categoriesProductId={cpItemToCreateProduct.categoriesProductId}
-                    onCloseModalAddProducts={onCloseModalAddProducts}
+                    onCloseModalSaveProducts={onCloseModalSaveProducts}
+                    onToggleOverlay={onToggleOverlay}
+                  />
+                )
+              }
+              {
+                state.view === 3 && (
+                  <SaveExistentProduct
+                    cpComplete={cpComplete}
+                    categoriesProductId={cpItemToCreateProduct.categoriesProductId}
+                    onCloseModalSaveProducts={onCloseModalSaveProducts}
                     onToggleOverlay={onToggleOverlay}
                   />
                 )
@@ -100,13 +112,13 @@ function ModalAddProducts({
   );
 }
 
-ModalAddProducts.propTypes = {
-  onCloseModalAddProducts: PropTypes.func,
+ModalSaveProducts.propTypes = {
+  onCloseModalSaveProducts: PropTypes.func,
   updateData: PropTypes.any,
   cpItemToCreateProduct: PropTypes.object,
   categoriesProducts: PropTypes.any
 };
 
 export {
-  ModalAddProducts
+  ModalSaveProducts
 };

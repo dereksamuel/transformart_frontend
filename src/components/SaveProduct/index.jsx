@@ -5,7 +5,7 @@ import { CameraIcon, PhotographIcon, VideoCameraIcon, XIcon } from "@heroicons/r
 
 import { createCategoriesProduct } from "../../store/actions/categoriesProducts";
 import { createProduct, uploadFiles } from "../../store/actions/products";
-import { onHideAlert } from "../../store/actions/alert";
+import { onChangeAlert } from "../../store/actions/alert";
 import { SET_CREATED, SET_SOURCES } from "../../store/types/products";
 
 import { setState } from "../../utils/setState";
@@ -19,9 +19,9 @@ import { Alert } from "../Alert";
 
 import "./styles.css";
 
-function AddProduct({
+function SaveProduct({
   relationCategories,
-  onCloseModalAddProducts,
+  onCloseModalSaveProducts,
   onToggleOverlay,
   srcImage,
   name,
@@ -37,7 +37,7 @@ function AddProduct({
   const alert = useSelector((stateLocal) => stateLocal.alert.alert);
   const loading = useSelector((stateLocal) => stateLocal.products.loading);
 
-  const addProductFormRef = useRef(null);
+  const saveProductFormRef = useRef(null);
 
   const [videoModel] = useModel({ initialValue: "", domEl: "#videoModel" });
   const [imageModel] = useModel({ initialValue: "", domEl: "#imageModel" });
@@ -48,7 +48,7 @@ function AddProduct({
     event.preventDefault();
 
     if (!videoModel || !imageModel) {
-      dispatch(onHideAlert({
+      dispatch(onChangeAlert({
         description: "Es requerido que subas imagen y video para el producto",
         theme: "Error",
         showAlert: true
@@ -71,12 +71,12 @@ function AddProduct({
 
     dispatch(setState({ type: SET_CREATED, payload: null }));
     dispatch(setState({ type: SET_SOURCES, payload: null }));
-    onCloseModalAddProducts(onToggleOverlay);
+    onCloseModalSaveProducts(onToggleOverlay);
   };
 
   useEffect(async () => {
     if (sources) {
-      let formData = new FormData(addProductFormRef.current);
+      let formData = new FormData(saveProductFormRef.current);
 
       const data = {
         name: formData.get("nameModel"),
@@ -101,14 +101,14 @@ function AddProduct({
   }, [createdId]);
 
   return (
-    <form onSubmit={onSaveProduct} ref={addProductFormRef}>
+    <form onSubmit={onSaveProduct} ref={saveProductFormRef}>
       {
         (alert && alert.showAlert) && (
           <Alert
             description={alert.description}
             theme={alert.theme}
             toLeft={true}
-            onClick={() => dispatch(onHideAlert({}))}
+            onClick={() => dispatch(onChangeAlert({}))}
           />
         )
       }
@@ -222,21 +222,21 @@ function AddProduct({
           {
             relationCategories.length && relationCategories.map((relationCategory) => (
               <div
-                key={relationCategory.id}
+                key={relationCategory.category.id}
                 className={relationCategories.length === 1 && "DisabledBanner"}
               >
                 <Banner>
                   <button className="button-without-styles" type="button">
                     <XIcon className="Icon" />
                   </button>
-                  <span className="Text">{ relationCategory.name }</span>
+                  <span className="Text">{ relationCategory.category.name }</span>
                 </Banner>
               </div>
             ))
           }
         </div>
         <Button
-          className="PrimaryWave ButtonModalAddProducts"
+          className="PrimaryWave ButtonModalSaveProducts"
           type="submit"
           disabled={loading}
         >
@@ -249,7 +249,7 @@ function AddProduct({
   );
 }
 
-AddProduct.propTypes = {
+SaveProduct.propTypes = {
   srcImage: PropTypes.string,
   name: PropTypes.string,
   price: PropTypes.number,
@@ -261,11 +261,11 @@ AddProduct.propTypes = {
   facebookUrl: PropTypes.string,
   instagramUrl: PropTypes.string,
   categoriesProductId: PropTypes.number,
-  onCloseModalAddProducts: PropTypes.func,
+  onCloseModalSaveProducts: PropTypes.func,
   onToggleOverlay: PropTypes.func,
   toEdit: PropTypes.bool
 };
 
 export {
-  AddProduct
+  SaveProduct
 };

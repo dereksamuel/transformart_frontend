@@ -54,7 +54,7 @@ function LoginForm({ onError }) {
   };
 
   return (
-    <form onSubmit={onLogin}>
+    <form onSubmit={onLogin} id="formLogin">
       <Input
         id="userName"
         className="Input userName"
@@ -71,7 +71,12 @@ function LoginForm({ onError }) {
         autoComplete="false"
         required
       />
-      <Button type="submit" className="PrimaryWave stylesButtonSignin" disabled={loading}>
+      <Button
+        type="submit"
+        className="PrimaryWave stylesButtonSignin"
+        disabled={loading}
+        form="formLogin"
+      >
         <div className="sessionContainer">
           {
             !loading ? (

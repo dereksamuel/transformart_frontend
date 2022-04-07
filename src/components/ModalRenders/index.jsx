@@ -5,12 +5,10 @@ import PropTypes from "prop-types";
 import { Alert } from "../Alert";
 import { ModalSaveCategory } from "../ModalSaveCategory";
 import { ModalDeleteProduct } from "../ModalDeleteProduct";
-import { ModalAddProducts } from "../ModalAddProducts";
+import { ModalSaveProducts } from "../ModalSaveProducts";
 import { ModalDeleteCategory } from "../ModalDeleteCategory";
 
-import { setState as setStateUtils } from "../../utils/setState";
-
-import { SET_ALERT } from "../../store/types/alert";
+import { onChangeAlert } from "../../store/actions/alert";
 
 function ModalRenders({
   state,
@@ -24,13 +22,6 @@ function ModalRenders({
   const alert = useSelector((stateLocal) => stateLocal.alert.alert);
   const dispatch = useDispatch();
 
-  const onHideAlert = () => {
-    dispatch(setStateUtils({
-      type: SET_ALERT,
-      payload: {}
-    }));
-  };
-
   return (
     <>
       {
@@ -39,7 +30,7 @@ function ModalRenders({
             description={alert.description}
             theme={alert.theme}
             toLeft={true}
-            onClick={onHideAlert}
+            onClick={() => dispatch(onChangeAlert({}))}
           />
         )
       }
@@ -72,8 +63,8 @@ function ModalRenders({
 
       {
         state.cpItemToCreateProduct && (
-          <ModalAddProducts
-            onCloseModalAddProducts={onCloseModalAddProducts}
+          <ModalSaveProducts
+            onCloseModalSaveProducts={onCloseModalAddProducts}
             cpItemToCreateProduct={state.cpItemToCreateProduct}
             categoriesProducts={categoriesProductsArray}
           />

@@ -1,15 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+import { useSelector } from "react-redux";
 
 import logoIcon from "../../assets/images/mobile/logoIcon.svg";
 import WaveFlowHeader from "../../assets/images/mobile/WaveFlowHeader.svg";
 
+import { useVerifyAuth } from "../../hooks/useVerifyAuth";
+
 import { IconBanner } from "../../components/IconBanner";
 import { Alert } from "../../components/Alert";
-
-import "./styles.css";
 import { LoginForm } from "../../components/LoginForm";
 
+import "./styles.css";
+
 function Login() {
+  const isAuth = useSelector((state) => state.authenticate.isAuth);
+  const navigate = useNavigate();
+  useVerifyAuth();
+
   const [stateLocal, setStateLocal] = useState({
     showAlert: false
   });
@@ -25,6 +33,12 @@ function Login() {
       showAlert: true
     });
   };
+
+  useEffect(() => {
+    if (isAuth) {
+      navigate({ pathname: "/update_art" });
+    }
+  }, [isAuth]);
 
   return (
     <div className="Login">

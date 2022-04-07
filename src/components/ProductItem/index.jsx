@@ -21,7 +21,7 @@ function ProductItem({
               </div>
             ) : null
           }
-          <img src={product.srcImage} alt={product.name} />
+          <img src={product.srcImage} alt={product.name} loading="lazy" />
           <h3>
             <span>{ product.name }</span>
             {

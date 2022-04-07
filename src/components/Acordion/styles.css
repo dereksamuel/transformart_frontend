@@ -27,7 +27,7 @@
 }
 
 .AcordionTitle p {
-  max-width: 70%;
+  max-width: 64%;
   overflow: hidden;
   text-overflow: ellipsis;
 }
