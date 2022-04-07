@@ -1,24 +1,36 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 
 import { Alert } from "../Alert";
 import { ModalSaveCategory } from "../ModalSaveCategory";
 import { ModalDeleteProduct } from "../ModalDeleteProduct";
-
-import { ModalDeleteCategory } from "../ModalDeleteCategory";
 import { ModalAddProducts } from "../ModalAddProducts";
+import { ModalDeleteCategory } from "../ModalDeleteCategory";
+
+import { setState as setStateUtils } from "../../utils/setState";
+
+import { SET_ALERT } from "../../store/types/alert";
 
 function ModalRenders({
   state,
   setState,
-  alert,
   categoriesProductsArray,
-  onHideAlert,
   onCloseModalDelete,
   onCloseModalSaveCategory,
   onCloseModalAddProducts,
   onCloseModalDeleteCategory
 }) {
+  const alert = useSelector((stateLocal) => stateLocal.alert.alert);
+  const dispatch = useDispatch();
+
+  const onHideAlert = () => {
+    dispatch(setStateUtils({
+      type: SET_ALERT,
+      payload: {}
+    }));
+  };
+
   return (
     <>
       {
@@ -82,14 +94,12 @@ function ModalRenders({
 
 ModalRenders.propTypes = {
   state: PropTypes.any,
-  alert: PropTypes.object,
   categoriesProductsArray: PropTypes.array,
   setState: PropTypes.func,
   onCloseModalSaveCategory: PropTypes.func,
   onCloseModalDeleteCategory: PropTypes.func,
   onCloseModalAddProducts: PropTypes.func,
-  onCloseModalDelete: PropTypes.func,
-  onHideAlert: PropTypes.func
+  onCloseModalDelete: PropTypes.func
 };
 
 export {

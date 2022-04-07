@@ -116,8 +116,6 @@ UpdateartUI.propTypes = {
   onCreateProduct: PropTypes.func
 };
 
-const UpdateartUIMemo = React.memo(UpdateartUI);
-
 export {
-  UpdateartUIMemo
+  UpdateartUI
 };

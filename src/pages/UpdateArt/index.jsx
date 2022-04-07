@@ -1,13 +1,10 @@
 import React, { useState, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
 
 import { useCP } from "../../hooks/useCP";
-import { setState as setStateUtils } from "../../utils/setState";
 
 import "../Categories/styles.css";
 import "./styles.css";
-import { SET_ALERT } from "../../store/types/alert";
-import { UpdateartUIMemo } from "./UpdateArtUI";
+import { UpdateartUI } from "./UpdateArtUI";
 import { ModalRenders } from "../../components/ModalRenders";
 
 function UpdateArt() {
@@ -21,9 +18,7 @@ function UpdateArt() {
     categoryDelete: null,
     cpItemToCreateProduct: null
   });
-  const alert = useSelector((stateLocal) => stateLocal.alert.alert);
   const categoriesProductsArray = useCP();
-  const dispatch = useDispatch();
 
   const onToggleModalDelete = (categoriesProductsItem1, productId) => {
     setState({
@@ -54,13 +49,6 @@ function UpdateArt() {
       ...state,
       categoryDelete
     });
-  };
-
-  const onHideAlert = () => {
-    dispatch(setStateUtils({
-      type: SET_ALERT,
-      payload: {}
-    }));
   };
 
   const onCreateProduct = (cpItemToCreateProduct) => {
@@ -109,18 +97,16 @@ function UpdateArt() {
 
   const toModalRenders = {
     state,
-    alert,
     categoriesProductsArray,
     setState,
-    onHideAlert,
     onCloseModalSaveCategory,
     onCloseModalAddProducts,
     onCloseModalDelete,
     onCloseModalDeleteCategory
   };
 
-  const element = useMemo(() => (
-    <UpdateartUIMemo
+  const UpdateartUIMemo = useMemo(() => (
+    <UpdateartUI
       toModalRenders={toModalRenders}
       onToggleModalCreateCategory={onToggleModalCreateCategory}
       onToggleModalDelete={onToggleModalDelete}
@@ -133,7 +119,7 @@ function UpdateArt() {
   return (
     <>
       <ModalRenders {...toModalRenders} />
-      { element }
+      { UpdateartUIMemo }
     </>
   );
 }
