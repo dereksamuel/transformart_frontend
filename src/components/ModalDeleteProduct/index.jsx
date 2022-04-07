@@ -11,23 +11,27 @@ import { Button } from "../Button";
 
 import "./styles.css";
 
-function ModalDeleteProduct(props) {
+function ModalDeleteProduct({
+  state,
+  setState,
+  onCloseModalDelete
+}) {
   const dispatch = useDispatch();
 
   const onDeleteProduct = async (onToggleOverlay) => {
-    if (props.state.categoriesProductsItem1.products.length === 1) {
-      await dispatch(deleteCategory(props.state.categoriesProductsItem1.category.id));
+    if (state.categoriesProductsItem1.products.length === 1) {
+      await dispatch(deleteCategory(state.categoriesProductsItem1.category.id));
     }
 
-    await dispatch(deleteProduct(props.state.productId));
+    await dispatch(deleteProduct(state.productId));
 
-    props.setState({
-      ...props.state,
+    setState({
+      ...state,
       productId: null,
       modalDeleteText: "",
       showModalDelete: false
     });
-    props.onCloseModalDelete(onToggleOverlay);
+    onCloseModalDelete(onToggleOverlay);
   };
 
   return (
@@ -40,7 +44,7 @@ function ModalDeleteProduct(props) {
             <div className="ModalContent">
               <button
                 className="button-without-styles closeIcon"
-                onClick={() => props.onCloseModalDelete(onToggleOverlay)}
+                onClick={() => onCloseModalDelete(onToggleOverlay)}
               >
                 <XIcon />
               </button>

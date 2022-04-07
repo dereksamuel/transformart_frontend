@@ -14,7 +14,10 @@ import { Button } from "../Button";
 
 import "./styles.css";
 
-function ModalDeleteCategory(props) {
+function ModalDeleteCategory({
+  state,
+  onCloseModalDelete
+}) {
   const [categoryDeleted, setCategoryDeleted] = useState(false);
   const deletedId = useSelector((state) => state.categories.deletedId);
   const dispatch = useDispatch();
@@ -26,16 +29,16 @@ function ModalDeleteCategory(props) {
   const onDeleteCategory = async (onToggleOverlay) => {
     setCategoryDeleted(true);
 
-    await dispatch(deleteCategory(props.state.categoryDelete.categoriesProductId));
+    await dispatch(deleteCategory(state.categoryDelete.categoriesProductId));
     dispatch(setState({
       type: SET_ALERT,
       payload: {
-        description: "Producto " + props.state.categoryDelete.category.name + " eliminado con éxito",
+        description: "Producto " + state.categoryDelete.category.name + " eliminado con éxito",
         theme: "Success",
         showAlert: true,
       }
     }));
-    props.onCloseModalDelete(onToggleOverlay);
+    onCloseModalDelete(onToggleOverlay);
   };
 
   useEffect(async () => {
@@ -54,7 +57,7 @@ function ModalDeleteCategory(props) {
             <div className="ModalContent">
               <button
                 className="button-without-styles closeIcon"
-                onClick={() => props.onCloseModalDelete(onToggleOverlay)}
+                onClick={() => onCloseModalDelete(onToggleOverlay)}
               >
                 <XIcon />
               </button>
@@ -76,8 +79,7 @@ function ModalDeleteCategory(props) {
 
 ModalDeleteCategory.propTypes = {
   onCloseModalDelete: PropTypes.func,
-  state: PropTypes.any,
-  setState: PropTypes.any
+  state: PropTypes.any
 };
 
 export {

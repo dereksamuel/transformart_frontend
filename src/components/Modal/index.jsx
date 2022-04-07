@@ -4,7 +4,9 @@ import PropTypes from "prop-types";
 
 import "./styles.css";
 
-function Modal(props) {
+function Modal({
+  children
+}) {
   const onToggleOverlay = () => {
     const $root = document.getElementById("root");
     const $router = document.getElementById("Router");
@@ -25,7 +27,7 @@ function Modal(props) {
   return ReactDOM.createPortal(
     <>
       <div className="Overlay"></div>
-      { props.children({
+      { children({
         onToggleOverlay
       }) }
     </>,

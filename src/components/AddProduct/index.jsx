@@ -19,7 +19,19 @@ import { Alert } from "../Alert";
 
 import "./styles.css";
 
-function AddProduct(props) {
+function AddProduct({
+  relationCategories,
+  onCloseModalAddProducts,
+  onToggleOverlay,
+  srcImage,
+  name,
+  price,
+  offer,
+  tweeterUrl,
+  description,
+  instagramUrl,
+  facebookUrl
+}) {
   const sources = useSelector((stateLocal) => stateLocal.products.sources);
   const createdId = useSelector((stateLocal) => stateLocal.products.createdId);
   const alert = useSelector((stateLocal) => stateLocal.alert.alert);
@@ -48,7 +60,7 @@ function AddProduct(props) {
   };
 
   const onCreatedProduct = () => {
-    props.relationCategories.map((relationCategoryLocal) => {
+    relationCategories.map((relationCategoryLocal) => {
       // dispatch(updateCategoriesProduct({
       //   createCategoriesProductId: props.categoriesProductId,
       //   categoriesId: relationCategoryLocal.id,
@@ -59,7 +71,7 @@ function AddProduct(props) {
 
     dispatch(setState({ type: SET_CREATED, payload: null }));
     dispatch(setState({ type: SET_SOURCES, payload: null }));
-    props.onCloseModalAddProducts(props.onToggleOverlay);
+    onCloseModalAddProducts(onToggleOverlay);
   };
 
   useEffect(async () => {
@@ -102,8 +114,8 @@ function AddProduct(props) {
       }
       <figure className="ContainerImage">
         {
-          (props.srcImage || imageModel) ? (
-            <img src={props.srcImage || toUrl(imageModel)} alt={props.name || "imageName"} />
+          (srcImage || imageModel) ? (
+            <img src={srcImage || toUrl(imageModel)} alt={name || "imageName"} />
           ) : (
             <PhotographIcon className="PhotographIcon" />
           )
@@ -146,7 +158,7 @@ function AddProduct(props) {
           placeholder="* Nombre"
           type="text"
           required
-          defaultValue={props.name}
+          defaultValue={name}
         />
         <Input
           name="priceModel"
@@ -155,13 +167,13 @@ function AddProduct(props) {
           type="number"
           min="0"
           required
-          defaultValue={props.price}
+          defaultValue={price}
         />
         <textarea
           name="descriptionModel"
           placeholder="Descripción"
           className="Input"
-          defaultValue={props.description}
+          defaultValue={description}
           required
           cols="30"
           rows="10"></textarea>
@@ -172,7 +184,7 @@ function AddProduct(props) {
           type="number"
           max="100"
           min="0"
-          defaultValue={props.offer}
+          defaultValue={offer}
           required
         />
         <p className="TitleContainer">Links de referidos:</p>
@@ -183,7 +195,7 @@ function AddProduct(props) {
               name="facebookUrlModel"
               required
               type="url"
-              defaultValue={props.facebookUrl}
+              defaultValue={facebookUrl}
               placeholder="url de Facebook" />
           </Banner>
           <Banner>
@@ -192,7 +204,7 @@ function AddProduct(props) {
               name="instagramUrlModel"
               required
               type="url"
-              defaultValue={props.instagramUrl}
+              defaultValue={instagramUrl}
               placeholder="url de Instagram" />
           </Banner>
           <Banner>
@@ -201,17 +213,17 @@ function AddProduct(props) {
               name="tweeterUrlModel"
               required
               type="url"
-              defaultValue={props.tweeterUrl}
+              defaultValue={tweeterUrl}
               placeholder="url de Tweeter" />
           </Banner>
         </div>
         <p className="TitleContainer">Categorias relacionadas:</p>
         <div className="LinksContainer">
           {
-            props.relationCategories.length && props.relationCategories.map((relationCategory) => (
+            relationCategories.length && relationCategories.map((relationCategory) => (
               <div
                 key={relationCategory.id}
-                className={props.relationCategories.length === 1 && "DisabledBanner"}
+                className={relationCategories.length === 1 && "DisabledBanner"}
               >
                 <Banner>
                   <button className="button-without-styles" type="button">

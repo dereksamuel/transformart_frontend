@@ -33,7 +33,7 @@ const fetchQuery = async (query) => {
         ...state,
         data: response.data,
         loading: false,
-        error: null
+        error: false
       };
     }
   } catch (error) {

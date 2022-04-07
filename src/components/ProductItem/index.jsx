@@ -4,33 +4,37 @@ import PropTypes from "prop-types";
 import "./styles.css";
 import { Link } from "react-router-dom";
 
-function ProductItem(props) {
+function ProductItem({
+  product,
+  toBuy,
+  children
+}) {
   return (
     <section>
-      <Link to={`/oneProduct/${props.product.id}`} className="ProductItem">
+      <Link to={`/oneProduct/${product.id}`} className="ProductItem">
         <li>
           <div className="tap"></div>
           {
-            props.product.offer ? (
+            product.offer ? (
               <div className="OfferBox">
-                Oferta del { props.product.offer }%
+                Oferta del { product.offer }%
               </div>
             ) : null
           }
-          <img src={props.product.srcImage} alt={props.product.name} />
+          <img src={product.srcImage} alt={product.name} />
           <h3>
-            <span>{ props.product.name }</span>
+            <span>{ product.name }</span>
             {
-              props.toBuy ? (
+              toBuy ? (
                 <span className="SizeProduct">
-                  { props.product.selectedSize }
+                  { product.selectedSize }
                 </span>
               ) : null
             }
           </h3>
         </li>
       </Link>
-      { props.children }
+      { children }
     </section>
   );
 }

@@ -10,23 +10,27 @@ import { AddProduct } from "../AddProduct";
 import "./styles.css";
 import { useSelector } from "react-redux";
 
-function ModalAddProducts(props) {
+function ModalAddProducts({
+  categoriesProducts,
+  cpItemToCreateProduct,
+  onCloseModalAddProducts
+}) {
   const products = useSelector((stateLocal) => stateLocal.products.all);
   const [state, setState] = useState({
     view: 1
   });
-  const cpComplete = props.categoriesProducts.map((cpItem) => ({
+  const cpComplete = categoriesProducts.map((cpItem) => ({
     ...cpItem[1]
   }));
-  let relationCategories = [...props.cpItemToCreateProduct.products][0] ? cpComplete.filter((cp) =>
-    [...props.cpItemToCreateProduct.products].find(
+  let relationCategories = [...cpItemToCreateProduct.products][0] ? cpComplete.filter((cp) =>
+    [...cpItemToCreateProduct.products].find(
       (product) => {
         return [...cp.products][0] ? [...cp.products].find((productLocal) => {
           return productLocal.id === product.id;
         }) : null;
       }
-    )) : [props.cpItemToCreateProduct.category];
-  relationCategories = [...props.cpItemToCreateProduct.products][0] ?
+    )) : [cpItemToCreateProduct.category];
+  relationCategories = [...cpItemToCreateProduct.products][0] ?
     relationCategories.map((relationCategoryItem) => relationCategoryItem.category) :
     relationCategories;
 
@@ -47,7 +51,7 @@ function ModalAddProducts(props) {
             <div className="ModalContent">
               <button
                 className="button-without-styles closeIcon"
-                onClick={() => props.onCloseModalAddProducts(onToggleOverlay)}
+                onClick={() => onCloseModalAddProducts(onToggleOverlay)}
               >
                 <XIcon />
               </button>
@@ -82,8 +86,8 @@ function ModalAddProducts(props) {
                 state.view === 2 && (
                   <AddProduct
                     relationCategories={relationCategories}
-                    categoriesProductId={props.cpItemToCreateProduct.categoriesProductId}
-                    onCloseModalAddProducts={props.onCloseModalAddProducts}
+                    categoriesProductId={cpItemToCreateProduct.categoriesProductId}
+                    onCloseModalAddProducts={onCloseModalAddProducts}
                     onToggleOverlay={onToggleOverlay}
                   />
                 )

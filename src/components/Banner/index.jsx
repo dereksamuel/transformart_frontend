@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 
 import "./styles.css";
 
-function Banner(props) {
+function Banner({ children }) {
   return (
     <div className="Banner">
-      { props.children }
+      { children }
     </div>
   );
 }

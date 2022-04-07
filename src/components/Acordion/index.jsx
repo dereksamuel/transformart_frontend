@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 
 import "./styles.css";
 
-function Acordion(props) {
+function Acordion({ children }) {
   return (
     <div className="Acordion">
-      { props.children }
+      { children }
     </div>
   );
 }

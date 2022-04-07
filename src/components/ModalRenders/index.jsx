@@ -73,7 +73,6 @@ function ModalRenders({
           <ModalDeleteCategory
             onCloseModalDelete={onCloseModalDeleteCategory}
             state={state}
-            setState={setState}
           />
         )
       }
