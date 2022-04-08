@@ -9,6 +9,7 @@ import { ModalSaveProducts } from "../ModalSaveProducts";
 import { ModalDeleteCategory } from "../ModalDeleteCategory";
 
 import { onChangeAlert } from "../../store/actions/alert";
+import { SaveProduct } from "../SaveProduct";
 
 function ModalRenders({
   state,
@@ -17,7 +18,8 @@ function ModalRenders({
   onCloseModalDelete,
   onCloseModalSaveCategory,
   onCloseModalAddProducts,
-  onCloseModalDeleteCategory
+  onCloseModalDeleteCategory,
+  onToggleModalCreateProduct
 }) {
   const alert = useSelector((stateLocal) => stateLocal.alert.alert);
   const dispatch = useDispatch();
@@ -43,7 +45,13 @@ function ModalRenders({
           />
         )
       }
-
+      {
+        state.showModalCreateProduct && (
+          <SaveProduct
+            onToggleModalCreateProduct={onToggleModalCreateProduct}
+          />
+        )
+      }
       {
         state.showModalCreateCategory && (
           <ModalSaveCategory
@@ -51,7 +59,6 @@ function ModalRenders({
           />
         )
       }
-
       {
         state.category && (
           <ModalSaveCategory
@@ -60,7 +67,6 @@ function ModalRenders({
           />
         )
       }
-
       {
         state.cpItemToCreateProduct && (
           <ModalSaveProducts
@@ -70,7 +76,6 @@ function ModalRenders({
           />
         )
       }
-
       {
         state.categoryDelete && (
           <ModalDeleteCategory
@@ -90,7 +95,8 @@ ModalRenders.propTypes = {
   onCloseModalSaveCategory: PropTypes.func,
   onCloseModalDeleteCategory: PropTypes.func,
   onCloseModalAddProducts: PropTypes.func,
-  onCloseModalDelete: PropTypes.func
+  onCloseModalDelete: PropTypes.func,
+  onToggleModalCreateProduct: PropTypes.func
 };
 
 export {

@@ -219,7 +219,7 @@ function Product() {
           </Title>
           <ul className="ContainerCategories">
             <li
-              className={`SizeBanner ${stateLocal.selectedSize === "Pequeño (120cm x 120)" && "SelecteSizeBanner"}`}
+              className={`SizeBanner ${stateLocal.selectedSize === "Pequeño (120cm x 120)" && "SelectedSizeBanner"}`}
               onClick={() => setStateLocal({
                 ...stateLocal,
                 selectedSize: "Pequeño (120cm x 120)"
@@ -228,7 +228,7 @@ function Product() {
               <span>Pequeño (120cm x 120)</span>
             </li>
             <li
-              className={`SizeBanner ${stateLocal.selectedSize === "Mediano (15m x 1m)" && "SelecteSizeBanner"}`}
+              className={`SizeBanner ${stateLocal.selectedSize === "Mediano (15m x 1m)" && "SelectedSizeBanner"}`}
               onClick={() => setStateLocal({
                 ...stateLocal,
                 selectedSize: "Mediano (15m x 1m)"
@@ -237,7 +237,7 @@ function Product() {
               <span>Mediano (15m x 1m)</span>
             </li>
             <li
-              className={`SizeBanner ${stateLocal.selectedSize === "Grande (120cm x 120)" && "SelecteSizeBanner"}`}
+              className={`SizeBanner ${stateLocal.selectedSize === "Grande (120cm x 120)" && "SelectedSizeBanner"}`}
               onClick={() => setStateLocal({
                 ...stateLocal,
                 selectedSize: "Grande (120cm x 120)"

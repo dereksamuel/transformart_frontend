@@ -12,6 +12,8 @@ import { setState } from "../../utils/setState";
 import { onClickModel, toUrl } from "../../utils/addProduct";
 import { useModel } from "../../hooks/useModel";
 
+import { Title } from "../Title";
+import { Modal } from "../Modal";
 import { Banner } from "../Banner";
 import { Input } from "../Input";
 import { Button } from "../Button";
@@ -21,7 +23,7 @@ import "./styles.css";
 
 function SaveProduct({
   relationCategories,
-  onCloseModalSaveProducts,
+  onToggleModalCreateProduct,
   onToggleOverlay,
   srcImage,
   name,
@@ -71,7 +73,7 @@ function SaveProduct({
 
     dispatch(setState({ type: SET_CREATED, payload: null }));
     dispatch(setState({ type: SET_SOURCES, payload: null }));
-    onCloseModalSaveProducts(onToggleOverlay);
+    onToggleModalCreateProduct(onToggleOverlay);
   };
 
   useEffect(async () => {
@@ -101,151 +103,157 @@ function SaveProduct({
   }, [createdId]);
 
   return (
-    <form onSubmit={onSaveProduct} ref={saveProductFormRef}>
+    <Modal>
       {
-        (alert && alert.showAlert) && (
-          <Alert
-            description={alert.description}
-            theme={alert.theme}
-            toLeft={true}
-            onClick={() => dispatch(onChangeAlert({}))}
-          />
+        ({
+          onToggleOverlay
+        }) => (
+          <div className="Modal">
+            <div className="ModalContent">
+              <button
+                className="button-without-styles closeIcon"
+                onClick={() => onToggleModalCreateProduct(onToggleOverlay)}
+              >
+                <XIcon />
+              </button>
+              <Title
+                isTitle={false}
+                className="SubTitle TitleModal"
+              >
+                Añadir productos
+              </Title>
+              <form onSubmit={onSaveProduct} ref={saveProductFormRef}>
+                {
+                  (alert && alert.showAlert) && (
+                    <Alert
+                      description={alert.description}
+                      theme={alert.theme}
+                      toLeft={true}
+                      onClick={() => dispatch(onChangeAlert({}))}
+                    />
+                  )
+                }
+                <figure className="ContainerImage">
+                  {
+                    (srcImage || imageModel) ? (
+                      <img src={srcImage || toUrl(imageModel)} alt={name || "imageName"} />
+                    ) : (
+                      <PhotographIcon className="PhotographIcon" />
+                    )
+                  }
+                  <div className="buttonActionsPicture">
+                    <Banner>
+                      <CameraIcon className="Icon" />
+                      <span className="Text">{imageModel?.name || "Imagen"}</span>
+                      <div
+                        className="tapBanner"
+                        onClick={() => onClickModel("imageModel")}
+                      ></div>
+                    </Banner>
+                    <Banner>
+                      <VideoCameraIcon className="Icon" />
+                      <span className="Text">{videoModel?.name || "Video"}</span>
+                      <div
+                        className="tapBanner"
+                        onClick={() => onClickModel("videoModel")}
+                      ></div>
+                    </Banner>
+                    <input
+                      type="file"
+                      id="videoModel"
+                      className="videoModel"
+                      accept=".mp4"
+                    />
+                    <input
+                      type="file"
+                      id="imageModel"
+                      className="imageModel"
+                      accept="image/*"
+                    />
+                  </div>
+                </figure>
+                <div className="ContainerInputs">
+                  <Input
+                    name="nameModel"
+                    className="Input"
+                    placeholder="* Nombre"
+                    type="text"
+                    required
+                    defaultValue={name}
+                  />
+                  <Input
+                    name="priceModel"
+                    className="Input"
+                    placeholder="* Precio"
+                    type="number"
+                    min="0"
+                    required
+                    defaultValue={price}
+                  />
+                  <textarea
+                    name="descriptionModel"
+                    placeholder="Descripción"
+                    className="Input"
+                    defaultValue={description}
+                    required
+                    cols="30"
+                    rows="10"></textarea>
+                  <Input
+                    name="offerModel"
+                    className="Input"
+                    placeholder="Oferta"
+                    type="number"
+                    max="100"
+                    min="0"
+                    defaultValue={offer}
+                    required
+                  />
+                  <p className="TitleContainer">Links de referidos:</p>
+                  <div className="LinksContainer">
+                    <Banner>
+                      <CameraIcon className="Icon" />
+                      <input
+                        name="facebookUrlModel"
+                        required
+                        type="url"
+                        defaultValue={facebookUrl}
+                        placeholder="url de Facebook" />
+                    </Banner>
+                    <Banner>
+                      <CameraIcon className="Icon" />
+                      <input
+                        name="instagramUrlModel"
+                        required
+                        type="url"
+                        defaultValue={instagramUrl}
+                        placeholder="url de Instagram" />
+                    </Banner>
+                    <Banner>
+                      <CameraIcon className="Icon" />
+                      <input
+                        name="tweeterUrlModel"
+                        required
+                        type="url"
+                        defaultValue={tweeterUrl}
+                        placeholder="url de Tweeter" />
+                    </Banner>
+                  </div>
+                  <Button
+                    className="PrimaryWave ButtonModalSaveProducts"
+                    type="submit"
+                    disabled={loading}
+                  >
+                    {
+                      loading ? "Guardando" : "Guardar cambios"
+                    }
+                  </Button>
+                </div>
+              </form>
+            </div>
+          </div>
         )
       }
-      <figure className="ContainerImage">
-        {
-          (srcImage || imageModel) ? (
-            <img src={srcImage || toUrl(imageModel)} alt={name || "imageName"} />
-          ) : (
-            <PhotographIcon className="PhotographIcon" />
-          )
-        }
-        <div className="buttonActionsPicture">
-          <Banner>
-            <CameraIcon className="Icon" />
-            <span className="Text">{imageModel?.name || "Imagen"}</span>
-            <div
-              className="tapBanner"
-              onClick={() => onClickModel("imageModel")}
-            ></div>
-          </Banner>
-          <Banner>
-            <VideoCameraIcon className="Icon" />
-            <span className="Text">{videoModel?.name || "Video"}</span>
-            <div
-              className="tapBanner"
-              onClick={() => onClickModel("videoModel")}
-            ></div>
-          </Banner>
-          <input
-            type="file"
-            id="videoModel"
-            className="videoModel"
-            accept=".mp4"
-          />
-          <input
-            type="file"
-            id="imageModel"
-            className="imageModel"
-            accept="image/*"
-          />
-        </div>
-      </figure>
-      <div className="ContainerInputs">
-        <Input
-          name="nameModel"
-          className="Input"
-          placeholder="* Nombre"
-          type="text"
-          required
-          defaultValue={name}
-        />
-        <Input
-          name="priceModel"
-          className="Input"
-          placeholder="* Precio"
-          type="number"
-          min="0"
-          required
-          defaultValue={price}
-        />
-        <textarea
-          name="descriptionModel"
-          placeholder="Descripción"
-          className="Input"
-          defaultValue={description}
-          required
-          cols="30"
-          rows="10"></textarea>
-        <Input
-          name="offerModel"
-          className="Input"
-          placeholder="Oferta"
-          type="number"
-          max="100"
-          min="0"
-          defaultValue={offer}
-          required
-        />
-        <p className="TitleContainer">Links de referidos:</p>
-        <div className="LinksContainer">
-          <Banner>
-            <CameraIcon className="Icon" />
-            <input
-              name="facebookUrlModel"
-              required
-              type="url"
-              defaultValue={facebookUrl}
-              placeholder="url de Facebook" />
-          </Banner>
-          <Banner>
-            <CameraIcon className="Icon" />
-            <input
-              name="instagramUrlModel"
-              required
-              type="url"
-              defaultValue={instagramUrl}
-              placeholder="url de Instagram" />
-          </Banner>
-          <Banner>
-            <CameraIcon className="Icon" />
-            <input
-              name="tweeterUrlModel"
-              required
-              type="url"
-              defaultValue={tweeterUrl}
-              placeholder="url de Tweeter" />
-          </Banner>
-        </div>
-        <p className="TitleContainer">Categorias relacionadas:</p>
-        <div className="LinksContainer">
-          {
-            relationCategories.length && relationCategories.map((relationCategory) => (
-              <div
-                key={relationCategory.category.id}
-                className={relationCategories.length === 1 && "DisabledBanner"}
-              >
-                <Banner>
-                  <button className="button-without-styles" type="button">
-                    <XIcon className="Icon" />
-                  </button>
-                  <span className="Text">{ relationCategory.category.name }</span>
-                </Banner>
-              </div>
-            ))
-          }
-        </div>
-        <Button
-          className="PrimaryWave ButtonModalSaveProducts"
-          type="submit"
-          disabled={loading}
-        >
-          {
-            loading ? "Guardando" : "Guardar cambios"
-          }
-        </Button>
-      </div>
-    </form>
+    </Modal>
   );
 }
 
@@ -261,7 +269,7 @@ SaveProduct.propTypes = {
   facebookUrl: PropTypes.string,
   instagramUrl: PropTypes.string,
   categoriesProductId: PropTypes.number,
-  onCloseModalSaveProducts: PropTypes.func,
+  onToggleModalCreateProduct: PropTypes.func,
   onToggleOverlay: PropTypes.func,
   toEdit: PropTypes.bool
 };

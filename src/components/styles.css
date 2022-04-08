@@ -107,3 +107,37 @@ body {
     opacity: 1;
   }
 }
+
+li.CategoryBanner, li.SizeBanner {
+  width: 100%;
+  max-width: 12rem;
+  margin: 0 0.5rem;
+  padding: 0.5rem;
+  list-style: none;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 1rem;
+  font-size: 1rem;
+  background-color: var(--color-dark);
+  color: var(--color-text);
+  scroll-snap-align: center;
+}
+
+li.CategoryBanner span, li.SizeBanner span {
+  display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+li.SizeBanner {
+  width: fit-content;
+  max-width: 15rem;
+  transition: filter 0.2s ease-in;
+}
+
+li.SelectedSizeBanner {
+  filter: drop-shadow(0px 0px 4px rgba(114, 203, 144, 0.877));
+  color: var(--color-secondary);
+  font-weight: bold;
+}

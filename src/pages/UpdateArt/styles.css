@@ -1,3 +1,8 @@
+.UpdateArt {
+  background-color: var(--color-primary);
+  height: 100%;
+}
+
 .UpdateArt button.ButtonToggleSize-danger svg {
   max-width: 1.5rem;
   margin-right: 0.5rem;
@@ -31,4 +36,13 @@
 
 button.buttonAction {
   margin: 0 0.25rem;
+}
+
+.ContainerCategoriesSticky {
+  will-change: transform;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  z-index: 5;
+  background-color: var(--color-primary);
 }

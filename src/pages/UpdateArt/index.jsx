@@ -1,11 +1,12 @@
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
+
+import { UpdateartUI } from "./UpdateArtUI";
+import { ModalRenders } from "../../components/ModalRenders";
 
 import { useCP } from "../../hooks/useCP";
 
 import "../Categories/styles.css";
 import "./styles.css";
-import { UpdateartUI } from "./UpdateArtUI";
-import { ModalRenders } from "../../components/ModalRenders";
 
 function UpdateArt() {
   const [state, setState] = useState({
@@ -13,6 +14,7 @@ function UpdateArt() {
     productId: null,
     categoriesProductsItem1: [],
     showModalCreateCategory: false,
+    showModalCreateProduct: false,
     showModalDelete: false,
     category: null,
     categoryDelete: null,
@@ -20,21 +22,31 @@ function UpdateArt() {
   });
   const categoriesProductsArray = useCP();
 
-  const onToggleModalDelete = (categoriesProductsItem1, productId) => {
-    setState({
-      ...state,
-      productId,
-      categoriesProductsItem1,
-      modalDeleteText: "Quieres borrar este producto",
-      showModalDelete: !state.showModalDelete
-    });
-  };
+  // const onToggleModalDelete = (categoriesProductsItem1, productId) => {
+  //   setState({
+  //     ...state,
+  //     productId,
+  //     categoriesProductsItem1,
+  //     modalDeleteText: "Quieres borrar este producto",
+  //     showModalDelete: !state.showModalDelete
+  //   });
+  // };
 
   const onToggleModalCreateCategory = () => {
     setState({
       ...state,
       showModalCreateCategory: !state.showModalCreateCategory
     });
+  };
+
+  const onToggleModalCreateProduct = (onToggleOverlay) => {
+    setState({
+      ...state,
+      showModalCreateProduct: !state.showModalCreateProduct
+    });
+
+    if (onToggleOverlay)
+      onToggleOverlay();
   };
 
   const onEditCategory = (category) => {
@@ -102,24 +114,21 @@ function UpdateArt() {
     onCloseModalSaveCategory,
     onCloseModalAddProducts,
     onCloseModalDelete,
-    onCloseModalDeleteCategory
+    onCloseModalDeleteCategory,
+    onToggleModalCreateProduct
   };
-
-  const UpdateartUIMemo = useMemo(() => (
-    <UpdateartUI
-      toModalRenders={toModalRenders}
-      onToggleModalCreateCategory={onToggleModalCreateCategory}
-      onToggleModalDelete={onToggleModalDelete}
-      onDeleteCategory={onDeleteCategory}
-      onEditCategory={onEditCategory}
-      onCreateProduct={onCreateProduct}
-    />
-  ), [categoriesProductsArray]);
 
   return (
     <>
       <ModalRenders {...toModalRenders} />
-      { UpdateartUIMemo }
+      <UpdateartUI
+        toModalRenders={toModalRenders}
+        onToggleModalCreateCategory={onToggleModalCreateCategory}
+        onToggleModalCreateProduct={onToggleModalCreateProduct}
+        onDeleteCategory={onDeleteCategory}
+        onEditCategory={onEditCategory}
+        onCreateProduct={onCreateProduct}
+      />
     </>
   );
 }
