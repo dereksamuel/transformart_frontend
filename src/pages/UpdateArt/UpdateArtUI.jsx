@@ -89,8 +89,6 @@ function UpdateartUI({
     </div>
   ), [toModalRenders.categoriesProductsArray]);
 
-  const ContainerProducts = useMemo(() => <Products />, []);
-
   const Children = useMemo(() => (
     <ul className="ContainerCategories ContainerCategoriesSticky">
       <li
@@ -113,7 +111,7 @@ function UpdateartUI({
       { Children }
       {
         state.isModeCategory ?
-          ContainerCP : ContainerProducts
+          ContainerCP : <Products />
       }
       <div className="ZoneOfButton">
         <Button

@@ -52,7 +52,7 @@ function ModalSaveProducts({ onCloseModalSaveProducts }) {
                 isTitle={false}
                 className="SubTitle TitleModal"
               >
-                Añadir productos
+                { !(products && products.length) ? "Aún no tienes ningún producto" : "Añadir productos" }
               </Title>
               <div className="SaveExistentProduct">
                 {
