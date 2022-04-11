@@ -62,6 +62,7 @@ function SaveProduct({
   };
 
   const onCreatedProduct = () => {
+    console.log(relationCategories);
     relationCategories.map((relationCategoryLocal) => {
       // dispatch(updateCategoriesProduct({
       //   createCategoriesProductId: props.categoriesProductId,
