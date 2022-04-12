@@ -25,8 +25,6 @@ function ModalRenders({
   const alert = useSelector((stateLocal) => stateLocal.alert.alert);
   const dispatch = useDispatch();
 
-  console.log(state);
-
   return (
     <>
       {

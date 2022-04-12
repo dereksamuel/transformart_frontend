@@ -1,7 +1,8 @@
 import React, { useRef, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
-import { CameraIcon, PhotographIcon, VideoCameraIcon, XIcon } from "@heroicons/react/outline";
+import { CheckIcon } from "@heroicons/react/solid";
+import { CameraIcon, LinkIcon, PhotographIcon, VideoCameraIcon, XIcon } from "@heroicons/react/outline";
 
 import { createProduct, uploadFiles } from "../../store/actions/products";
 import { onChangeAlert } from "../../store/actions/alert";
@@ -11,6 +12,7 @@ import { setState } from "../../utils/setState";
 import { onClickModel, toUrl } from "../../utils/addProduct";
 import { useModel } from "../../hooks/useModel";
 
+import { VideoContainer } from "../VideoContainer";
 import { Title } from "../Title";
 import { Modal } from "../Modal";
 import { Banner } from "../Banner";
@@ -23,6 +25,7 @@ import "./styles.css";
 function SaveProduct({
   onToggleModalCreateProduct,
   srcImage,
+  srcVideo,
   name,
   price,
   offer,
@@ -37,7 +40,8 @@ function SaveProduct({
   const loading = useSelector((stateLocal) => stateLocal.products.loading);
 
   const [stateLocal, setStateLocal] = useState({
-    onToggleOverlay: () => {}
+    onToggleOverlay: () => {},
+    modeImage: true
   });
   const saveProductFormRef = useRef(null);
 
@@ -63,6 +67,13 @@ function SaveProduct({
     }
 
     await dispatch(uploadFiles(videoModel, imageModel));
+  };
+
+  const onChangeModalImage = () => {
+    setStateLocal({
+      ...stateLocal,
+      modeImage: !stateLocal.modeImage
+    });
   };
 
   const onCreatedProduct = () => {
@@ -115,7 +126,7 @@ function SaveProduct({
                 className="SubTitle TitleModal"
               >
                 {
-                  name ? "Añadir productos" : `Editar ${name}`
+                  !name ? "Añadir productos" : `Editar ${name}`
                 }
               </Title>
               <form onSubmit={(event) => onSaveProduct(event, onToggleOverlay)} ref={saveProductFormRef}>
@@ -131,16 +142,57 @@ function SaveProduct({
                 }
                 <figure className="ContainerImage">
                   {
-                    (srcImage || imageModel) ? (
-                      <img src={srcImage || toUrl(imageModel)} alt={name || "imageName"} />
+                    (videoModel && imageModel) && (
+                      <button
+                        className="button-without-styles ChangeMode"
+                        type="button"
+                        onClick={onChangeModalImage}
+                      >
+                        {
+                          stateLocal.modeImage ? (
+                            <VideoCameraIcon className="Icon" />
+                          ) : (
+                            <CameraIcon className="Icon" />
+                          )
+                        }
+                      </button>
+                    )
+                  }
+                  {
+                    stateLocal.modeImage ? (
+                      <>
+                        {
+                          (srcImage || imageModel) ? (
+                            <>
+                              <img src={!imageModel ? srcImage : toUrl(imageModel)} alt={name || "imageName"} />
+                            </>
+                          ) : (
+                            <PhotographIcon className="PhotographIcon" />
+                          )
+                        }
+                      </>
                     ) : (
-                      <PhotographIcon className="PhotographIcon" />
+                      <>
+                        {
+                          (srcVideo || videoModel) ? (
+                            <VideoContainer
+                              srcImage={!imageModel ? srcImage : toUrl(imageModel)}
+                              srcVideo={!videoModel ? srcVideo : toUrl(videoModel)}
+                            />
+                          ) : (
+                            <PhotographIcon className="PhotographIcon" />
+                          )
+                        }
+                      </>
                     )
                   }
                   <div className="buttonActionsPicture">
                     <Banner>
                       <CameraIcon className="Icon" />
-                      <span className="Text">{imageModel?.name || "Imagen"}</span>
+                      <span className="Text">Imagen</span>
+                      {
+                        imageModel && <CheckIcon className="Icon IconCheck" />
+                      }
                       <div
                         className="tapBanner"
                         onClick={() => onClickModel("imageModel")}
@@ -148,7 +200,10 @@ function SaveProduct({
                     </Banner>
                     <Banner>
                       <VideoCameraIcon className="Icon" />
-                      <span className="Text">{videoModel?.name || "Video"}</span>
+                      <span className="Text">Video</span>
+                      {
+                        videoModel && <CheckIcon className="Icon IconCheck" />
+                      }
                       <div
                         className="tapBanner"
                         onClick={() => onClickModel("videoModel")}
@@ -207,7 +262,7 @@ function SaveProduct({
                   <p className="TitleContainer">Links de referidos:</p>
                   <div className="LinksContainer">
                     <Banner>
-                      <CameraIcon className="Icon" />
+                      <LinkIcon className="Icon" />
                       <input
                         name="facebookUrlModel"
                         required
@@ -216,7 +271,7 @@ function SaveProduct({
                         placeholder="url de Facebook" />
                     </Banner>
                     <Banner>
-                      <CameraIcon className="Icon" />
+                      <LinkIcon className="Icon" />
                       <input
                         name="instagramUrlModel"
                         required
@@ -225,7 +280,7 @@ function SaveProduct({
                         placeholder="url de Instagram" />
                     </Banner>
                     <Banner>
-                      <CameraIcon className="Icon" />
+                      <LinkIcon className="Icon" />
                       <input
                         name="tweeterUrlModel"
                         required
@@ -255,6 +310,7 @@ function SaveProduct({
 
 SaveProduct.propTypes = {
   srcImage: PropTypes.string,
+  srcVideo: PropTypes.string,
   name: PropTypes.string,
   price: PropTypes.number,
   offer: PropTypes.number,

@@ -22,12 +22,30 @@
   margin-right: 0;
 }
 
-.Banner .Icon {
+.Banner .Icon, .Icon {
   min-width: 1.5rem;
   max-width: 1.5rem;
   margin-right: 0.5rem;
 
   color: var(--color-white);
+}
+
+.Icon {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.Banner .IconCheck {
+  margin-right: 0;
+  margin-left: 0.25rem;
+  color: var(--color-secondary);
+}
+
+.Banner .IconCheck path {
+  stroke-dasharray: 0px;
+  transition: 3.5s all;
+  animation: changeStroke 3.5s ease-in forwards alternate;
 }
 
 .Banner button .Icon {

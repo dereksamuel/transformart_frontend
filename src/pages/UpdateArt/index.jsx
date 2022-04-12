@@ -65,10 +65,11 @@ function UpdateArt() {
       onToggleOverlay();
   };
 
-  const onToggleModalUpdateProduct = (onToggleOverlay) => {
+  const onToggleModalUpdateProduct = (onToggleOverlay, data) => {
     setState({
       ...state,
-      showModalUpdateProduct: !state.showModalUpdateProduct
+      showModalUpdateProduct: !state.showModalUpdateProduct,
+      ...data
     });
   
     if (onToggleOverlay)

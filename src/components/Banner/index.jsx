@@ -15,7 +15,6 @@ Banner.propTypes = {
   children: PropTypes.any,
 };
 
-
 export {
   Banner
 };

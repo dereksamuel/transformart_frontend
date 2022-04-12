@@ -12,8 +12,7 @@ import { getProduct } from "../../store/actions/products";
 import "./styles.css";
 
 function Products({
-  onToggleModalUpdateProduct,
-  onChangeToUpdateData
+  onToggleModalUpdateProduct
 }) {
   const [state, setState] = useState({
     canIChangeProducts: false
@@ -33,7 +32,7 @@ function Products({
 
   useEffect(async () => {
     if (product && state.canIChangeProducts) {
-      await onChangeToUpdateData({
+      onToggleModalUpdateProduct(null, {
         srcImageProduct: product.srcImage,
         nameProduct: product.name,
         priceProduct: product.price,
@@ -43,7 +42,6 @@ function Products({
         instagramUrlProduct: product.instagramLink,
         facebookUrlProduct: product.facebookLink
       });
-      onToggleModalUpdateProduct();
     }
   }, [product, state.canIChangeProducts]);
 
