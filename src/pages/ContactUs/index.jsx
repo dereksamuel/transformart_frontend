@@ -75,7 +75,7 @@ function ContactUs() {
   }, []);
 
   return (
-    <div className="ContactUs">
+    <div className="ContactUs page">
       <img src={WaveFlowHeader} alt="WaveFlowHeader" className="WaveFlowHeader" />
       <Title
         isTitle={false}

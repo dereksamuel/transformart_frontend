@@ -22,7 +22,7 @@ function Categories() {
   };
 
   return (
-    <div className="Categories">
+    <div className="Categories page">
       <article>
         <Title className="SubTitle TitleCategories" isTitle={false}>
           <img src={srcLogoIcon} alt="srcLogoIcon" className="Categories-srcLogoIcon" />

@@ -22,7 +22,7 @@ function Home() {
   };
 
   return (
-    <div className="Home" id="Home">
+    <div className="Home page" id="Home">
       <div className="HomeImages">
         <img src={logoSrc} alt="Logo" className="Logo" />
         <img src={pigSrc} alt="Pig" className="Pig" />

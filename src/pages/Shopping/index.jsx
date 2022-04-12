@@ -50,7 +50,7 @@ function Shopping() {
   };
 
   return (
-    <div className="Shopping">
+    <div className="Shopping page">
       <Title className="SubTitle TitleCategories" isTitle={false}>
         <img src={srcLogoIcon} alt="srcLogoIcon" className="Categories-srcLogoIcon" />
         <span>Mis compras</span>

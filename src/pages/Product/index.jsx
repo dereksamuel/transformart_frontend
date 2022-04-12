@@ -132,7 +132,7 @@ function Product() {
   }, [categoriesProductsArray, product]);
 
   return (
-    <div className="ProductContainer">
+    <div className="ProductContainer page">
       <figure className="ContainerImage">
         {
           product.offer ? (
@@ -166,7 +166,7 @@ function Product() {
       <section className="ContainerBody">
         <ul className="ContainerCategories">
           {
-            stateLocal.productsCategories.length && stateLocal.productsCategories.map((productsCategory) => (
+            stateLocal.productsCategories.length ? stateLocal.productsCategories.map((productsCategory) => (
               <li
                 className="CategoryBanner"
                 key={productsCategory[1].category.id}
@@ -176,7 +176,9 @@ function Product() {
                   { productsCategory[1].category.name }
                 </span>
               </li>
-            ))
+            )) : (
+              <p className="NoRelationShips">No hay categorias relacionadas con este producto</p>
+            )
           }
         </ul>
         <Title isTitle={true} className="Title ProductTitle">{ product.name }</Title>

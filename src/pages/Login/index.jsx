@@ -41,7 +41,7 @@ function Login() {
   }, [isAuth]);
 
   return (
-    <div className="Login">
+    <div className="Login page">
       <img src={WaveFlowHeader} alt="WaveFlowHeader" className="WaveFlowHeader" />
       {
         stateLocal.showAlert && <Alert

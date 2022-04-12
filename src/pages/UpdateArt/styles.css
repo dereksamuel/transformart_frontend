@@ -44,5 +44,4 @@ button.buttonAction {
   position: -webkit-sticky;
   top: 0;
   z-index: 5;
-  background-color: var(--color-primary);
 }

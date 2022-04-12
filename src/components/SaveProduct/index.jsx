@@ -1,9 +1,8 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import { CameraIcon, PhotographIcon, VideoCameraIcon, XIcon } from "@heroicons/react/outline";
 
-import { createCategoriesProduct } from "../../store/actions/categoriesProducts";
 import { createProduct, uploadFiles } from "../../store/actions/products";
 import { onChangeAlert } from "../../store/actions/alert";
 import { SET_CREATED, SET_SOURCES } from "../../store/types/products";
@@ -22,9 +21,7 @@ import { Alert } from "../Alert";
 import "./styles.css";
 
 function SaveProduct({
-  relationCategories,
   onToggleModalCreateProduct,
-  onToggleOverlay,
   srcImage,
   name,
   price,
@@ -39,6 +36,9 @@ function SaveProduct({
   const alert = useSelector((stateLocal) => stateLocal.alert.alert);
   const loading = useSelector((stateLocal) => stateLocal.products.loading);
 
+  const [stateLocal, setStateLocal] = useState({
+    onToggleOverlay: () => {}
+  });
   const saveProductFormRef = useRef(null);
 
   const [videoModel] = useModel({ initialValue: "", domEl: "#videoModel" });
@@ -46,8 +46,12 @@ function SaveProduct({
 
   const dispatch = useDispatch();
 
-  const onSaveProduct = async (event) => {
+  const onSaveProduct = async (event, onToggleOverlay) => {
     event.preventDefault();
+    setStateLocal({
+      ...stateLocal,
+      onToggleOverlay
+    });
 
     if (!videoModel || !imageModel) {
       dispatch(onChangeAlert({
@@ -62,19 +66,9 @@ function SaveProduct({
   };
 
   const onCreatedProduct = () => {
-    console.log(relationCategories);
-    relationCategories.map((relationCategoryLocal) => {
-      // dispatch(updateCategoriesProduct({
-      //   createCategoriesProductId: props.categoriesProductId,
-      //   categoriesId: relationCategoryLocal.id,
-      //   productsId: createdId.id
-      // }));
-      dispatch(createCategoriesProduct(relationCategoryLocal.id, createdId.id));
-    });
-
     dispatch(setState({ type: SET_CREATED, payload: null }));
     dispatch(setState({ type: SET_SOURCES, payload: null }));
-    onToggleModalCreateProduct(onToggleOverlay);
+    onToggleModalCreateProduct(stateLocal.onToggleOverlay);
   };
 
   useEffect(async () => {
@@ -118,12 +112,11 @@ function SaveProduct({
                 <XIcon />
               </button>
               <Title
-                isTitle={false}
                 className="SubTitle TitleModal"
               >
                 Añadir productos
               </Title>
-              <form onSubmit={onSaveProduct} ref={saveProductFormRef}>
+              <form onSubmit={(event) => onSaveProduct(event, onToggleOverlay)} ref={saveProductFormRef}>
                 {
                   (alert && alert.showAlert) && (
                     <Alert

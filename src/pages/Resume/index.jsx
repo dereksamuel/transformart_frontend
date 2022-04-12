@@ -30,7 +30,7 @@ function Resume () {
   }, [products]);
 
   return (
-    <div className="Resume">
+    <div className="Resume page">
       <img src={WaveFlowHeader} alt="WaveFlowHeader" className="WaveFlowHeader" />
       <Title
         isTitle={false}

@@ -103,7 +103,7 @@ function UpdateartUI({
   ), [state.isModeCategory]);
 
   return (
-    <div className="UpdateArt">
+    <div className="UpdateArt page">
       <Title className="SubTitle TitleCategories" isTitle={false}>
         <img src={srcLogoIcon} alt="srcLogoIcon" className="Categories-srcLogoIcon" />
         <span>Actualizar arte</span>
@@ -118,11 +118,9 @@ function UpdateartUI({
           onClick={() => state.isModeCategory ? onToggleModalCreateCategory() : onToggleModalCreateProduct()}
           className={"PrimaryWave ProductButton"}
         >
-          <span>
-            {
-              `Crear ${state.isModeCategory ? "categoria" : "producto"}`
-            }
-          </span>
+          {
+            `Crear ${state.isModeCategory ? "categoria" : "producto"}`
+          }
         </Button>
       </div>
     </div>

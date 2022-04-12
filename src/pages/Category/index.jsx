@@ -14,7 +14,7 @@ function Category() {
   const categoriesProductsObject = useCP(params.categoryId);
 
   return (
-    <div className="CategoriesArray">
+    <div className="CategoriesArray page">
       {
         (categoriesProductsObject && categoriesProductsObject.length) && (
           <>
