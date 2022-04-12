@@ -80,6 +80,8 @@ button.ButtonToggleSize, button.ButtonToggleSize-danger {
 }
 
 button.ButtonToggleSize {
+  background-color: var(--color-gray);
+  color: var(--color-white);
   transition: 0.25s transform ease-in;
 }
 

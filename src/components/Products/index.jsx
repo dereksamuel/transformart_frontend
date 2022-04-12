@@ -20,12 +20,14 @@ function Products() {
               {
                 products.map((product) => (
                   <ProductItem key={product.id} product={product}>
-                    <Button
-                      className="ButtonToggleSize"
-                    ><PencilIcon /></Button>
-                    <Button
-                      className="ButtonToggleSize-danger"
-                    ><TrashIcon /></Button>
+                    <div className="ContainerButtonProducts">
+                      <Button
+                        className="ButtonToggleSize-danger"
+                      ><TrashIcon /></Button>
+                      <Button
+                        className="ButtonToggleSize"
+                      ><PencilIcon /></Button>
+                    </div>
                   </ProductItem>
                 ))
               }

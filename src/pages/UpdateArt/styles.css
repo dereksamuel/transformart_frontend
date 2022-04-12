@@ -3,14 +3,12 @@
   height: 100%;
 }
 
-.UpdateArt button.ButtonToggleSize-danger svg {
+.UpdateArt button.ButtonToggleSize-danger svg, .UpdateArt button.ButtonToggleSize svg {
   max-width: 1.5rem;
-  margin-right: 0.5rem;
 }
 
-.UpdateArt button.ButtonToggleSize-danger {
+.UpdateArt button.ButtonToggleSize-danger, .UpdateArt button.ButtonToggleSize {
   padding: 0.25rem 1rem;
-  border-radius: 0.25rem;
 }
 
 .buttonsActions {
