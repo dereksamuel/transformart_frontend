@@ -18,7 +18,16 @@ function UpdateArt() {
     showModalDelete: false,
     category: null,
     categoryDelete: null,
-    cpItemToCreateProduct: null
+    cpItemToCreateProduct: null,
+    showModalUpdateProduct: false,
+    srcImageProduct: "",
+    nameProduct: "",
+    priceProduct: 0,
+    offerProduct: 0,
+    tweeterUrlProduct: "",
+    descriptionProduct: "",
+    instagramUrlProduct: "",
+    facebookUrlProduct: ""
   });
   const categoriesProductsArray = useCP();
 
@@ -39,12 +48,29 @@ function UpdateArt() {
     });
   };
 
+  const onChangeToUpdateData = async (data) => {
+    setState({
+      ...state,
+      ...data
+    });
+  };
+
   const onToggleModalCreateProduct = (onToggleOverlay) => {
     setState({
       ...state,
       showModalCreateProduct: !state.showModalCreateProduct
     });
 
+    if (onToggleOverlay)
+      onToggleOverlay();
+  };
+
+  const onToggleModalUpdateProduct = (onToggleOverlay) => {
+    setState({
+      ...state,
+      showModalUpdateProduct: !state.showModalUpdateProduct
+    });
+  
     if (onToggleOverlay)
       onToggleOverlay();
   };
@@ -115,7 +141,8 @@ function UpdateArt() {
     onCloseModalAddProducts,
     onCloseModalDelete,
     onCloseModalDeleteCategory,
-    onToggleModalCreateProduct
+    onToggleModalCreateProduct,
+    onToggleModalUpdateProduct
   };
 
   return (
@@ -124,9 +151,11 @@ function UpdateArt() {
       <UpdateartUI
         toModalRenders={toModalRenders}
         onToggleModalCreateCategory={onToggleModalCreateCategory}
+        onToggleModalUpdateProduct={onToggleModalUpdateProduct}
         onToggleModalCreateProduct={onToggleModalCreateProduct}
         onDeleteCategory={onDeleteCategory}
         onEditCategory={onEditCategory}
+        onChangeToUpdateData={onChangeToUpdateData}
         onCreateProduct={onCreateProduct}
       />
     </>

@@ -114,7 +114,9 @@ function SaveProduct({
               <Title
                 className="SubTitle TitleModal"
               >
-                Añadir productos
+                {
+                  name ? "Añadir productos" : `Editar ${name}`
+                }
               </Title>
               <form onSubmit={(event) => onSaveProduct(event, onToggleOverlay)} ref={saveProductFormRef}>
                 {

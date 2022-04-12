@@ -19,7 +19,9 @@ function UpdateartUI({
   onEditCategory,
   onCreateProduct,
   onToggleModalCreateCategory,
-  onToggleModalCreateProduct
+  onToggleModalCreateProduct,
+  onChangeToUpdateData,
+  onToggleModalUpdateProduct
 }) {
   const [state, setState] = useState({
     isModeCategory: true
@@ -111,7 +113,12 @@ function UpdateartUI({
       { Children }
       {
         state.isModeCategory ?
-          ContainerCP : <Products />
+          ContainerCP : (
+            <Products
+              onToggleModalUpdateProduct={onToggleModalUpdateProduct}
+              onChangeToUpdateData={onChangeToUpdateData}
+            />
+          )
       }
       <div className="ZoneOfButton">
         <Button
@@ -134,6 +141,8 @@ UpdateartUI.propTypes = {
   onDeleteCategory: PropTypes.func,
   onEditCategory: PropTypes.func,
   onCreateProduct: PropTypes.func,
+  onChangeToUpdateData: PropTypes.func,
+  onToggleModalUpdateProduct: PropTypes.func,
   children: PropTypes.any
 };
 

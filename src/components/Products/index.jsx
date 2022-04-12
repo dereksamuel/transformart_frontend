@@ -1,15 +1,51 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import { useDispatch, useSelector } from "react-redux";
+import { PencilIcon, TrashIcon } from "@heroicons/react/outline";
 
 import { ProductItem } from "../ProductItem";
 import { EmptyDraw } from "../EmptyDraw";
 import { Button } from "../Button";
 
-import "./styles.css";
-import { PencilIcon, TrashIcon } from "@heroicons/react/outline";
+import { getProduct } from "../../store/actions/products";
 
-function Products() {
+import "./styles.css";
+
+function Products({
+  onToggleModalUpdateProduct,
+  onChangeToUpdateData
+}) {
+  const [state, setState] = useState({
+    canIChangeProducts: false
+  });
   const products = useSelector((state) => state.products.all);
+  const product = useSelector((state) => state.products.one);
+
+  const dispatch = useDispatch();
+
+  const handleEditProduct = async (productId) => {
+    await dispatch(getProduct(productId));
+    setState({
+      ...state,
+      canIChangeProducts: true
+    });
+  };
+
+  useEffect(async () => {
+    if (product && state.canIChangeProducts) {
+      await onChangeToUpdateData({
+        srcImageProduct: product.srcImage,
+        nameProduct: product.name,
+        priceProduct: product.price,
+        offerProduct: product.offer,
+        tweeterUrlProduct: product.tweeterLink,
+        descriptionProduct: product.description,
+        instagramUrlProduct: product.instagramLink,
+        facebookUrlProduct: product.facebookLink
+      });
+      onToggleModalUpdateProduct();
+    }
+  }, [product, state.canIChangeProducts]);
 
   return (
     <>
@@ -26,6 +62,7 @@ function Products() {
                       ><TrashIcon /></Button>
                       <Button
                         className="ButtonToggleSize"
+                        onClick={() => handleEditProduct(product.id)}
                       ><PencilIcon /></Button>
                     </div>
                   </ProductItem>
@@ -42,6 +79,11 @@ function Products() {
     </>
   );
 }
+
+Products.propTypes = {
+  onToggleModalUpdateProduct: PropTypes.func,
+  onChangeToUpdateData: PropTypes.func
+};
 
 export {
   Products

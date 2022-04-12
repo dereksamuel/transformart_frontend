@@ -19,10 +19,13 @@ function ModalRenders({
   onCloseModalSaveCategory,
   onCloseModalAddProducts,
   onCloseModalDeleteCategory,
-  onToggleModalCreateProduct
+  onToggleModalCreateProduct,
+  onToggleModalUpdateProduct
 }) {
   const alert = useSelector((stateLocal) => stateLocal.alert.alert);
   const dispatch = useDispatch();
+
+  console.log(state);
 
   return (
     <>
@@ -49,6 +52,21 @@ function ModalRenders({
         state.showModalCreateProduct && (
           <SaveProduct
             onToggleModalCreateProduct={onToggleModalCreateProduct}
+          />
+        )
+      }
+      {
+        state.showModalUpdateProduct && (
+          <SaveProduct
+            onToggleModalCreateProduct={onToggleModalUpdateProduct}
+            srcImage={state.srcImageProduct}
+            name={state.nameProduct}
+            price={state.priceProduct && Number(state.priceProduct)}
+            offer={state.offerProduct && Number(state.offerProduct)}
+            tweeterUrl={state.tweeterUrlProduct}
+            description={state.descriptionProduct}
+            instagramUrl={state.instagramUrlProduct}
+            facebookUrl={state.facebookUrlProduct}
           />
         )
       }
@@ -96,7 +114,8 @@ ModalRenders.propTypes = {
   onCloseModalDeleteCategory: PropTypes.func,
   onCloseModalAddProducts: PropTypes.func,
   onCloseModalDelete: PropTypes.func,
-  onToggleModalCreateProduct: PropTypes.func
+  onToggleModalCreateProduct: PropTypes.func,
+  onToggleModalUpdateProduct: PropTypes.func
 };
 
 export {
