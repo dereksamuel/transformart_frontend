@@ -135,6 +135,8 @@ const createProduct = (data) => async (dispatch) => {
   dispatch(setState({ type: SET_CREATED, payload: dataQuery.createProduct }));
   dispatch(setState({ type: SET_LOADING, payload: false }));
   dispatch(setState({ type: SET_ERROR, payload: Boolean(error) }));
+
+  await dispatch(getProducts());
 };
 
 export {

@@ -3,8 +3,10 @@ import { useSelector } from "react-redux";
 
 import { ProductItem } from "../ProductItem";
 import { EmptyDraw } from "../EmptyDraw";
+import { Button } from "../Button";
 
 import "./styles.css";
+import { PencilIcon, TrashIcon } from "@heroicons/react/outline";
 
 function Products() {
   const products = useSelector((state) => state.products.all);
@@ -17,7 +19,14 @@ function Products() {
             <div className="CategoriesGrid">
               {
                 products.map((product) => (
-                  <ProductItem key={product.id} product={product} />
+                  <ProductItem key={product.id} product={product}>
+                    <Button
+                      className="ButtonToggleSize"
+                    ><PencilIcon /></Button>
+                    <Button
+                      className="ButtonToggleSize-danger"
+                    ><TrashIcon /></Button>
+                  </ProductItem>
                 ))
               }
             </div>
