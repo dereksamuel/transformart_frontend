@@ -58,6 +58,7 @@ function ModalRenders({
           <SaveProduct
             onToggleModalCreateProduct={onToggleModalUpdateProduct}
             srcImage={state.srcImageProduct}
+            srcVideo={state.srcVideoProduct}
             name={state.nameProduct}
             price={state.priceProduct && Number(state.priceProduct)}
             offer={state.offerProduct && Number(state.offerProduct)}

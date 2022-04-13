@@ -21,6 +21,7 @@ function UpdateArt() {
     cpItemToCreateProduct: null,
     showModalUpdateProduct: false,
     srcImageProduct: "",
+    srcVideoProduct: "",
     nameProduct: "",
     priceProduct: 0,
     offerProduct: 0,
@@ -71,7 +72,7 @@ function UpdateArt() {
       showModalUpdateProduct: !state.showModalUpdateProduct,
       ...data
     });
-  
+
     if (onToggleOverlay)
       onToggleOverlay();
   };

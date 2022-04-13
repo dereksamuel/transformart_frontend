@@ -9,12 +9,15 @@ import { Product } from "../pages/Product";
 import { Shopping } from "../pages/Shopping";
 import { ContactUs } from "../pages/ContactUs";
 import { Resume } from "../pages/Resume";
+import { UpdateArt } from "../pages/UpdateArt";
 
 import { PrivateRoute } from "./PrivateRoute";
-import { UpdateArt } from "../pages/UpdateArt";
+
+import { useVerifyAuth } from "../hooks/useVerifyAuth";
 
 function RoutesComponent() {
   const location = useLocation();
+  useVerifyAuth();
 
   useEffect(() => {
     const $root = document.getElementById("root");

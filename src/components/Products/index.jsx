@@ -34,6 +34,7 @@ function Products({
     if (product && state.canIChangeProducts) {
       onToggleModalUpdateProduct(null, {
         srcImageProduct: product.srcImage,
+        srcVideoProduct: product.srcVideo,
         nameProduct: product.name,
         priceProduct: product.price,
         offerProduct: product.offer,

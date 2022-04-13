@@ -15,7 +15,7 @@ function Alert(props) {
       <article>
         <p className="description">{ props.description }</p>
       </article>
-      <div className="Icon" {...propsWithouttoLeft}>
+      <div className="IconX" {...propsWithouttoLeft}>
         <XIcon />
       </div>
     </div>

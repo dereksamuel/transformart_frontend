@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 
 import { setState } from "../utils/setState";
 import { fetchQuery } from "../utils/fetchQuery";
@@ -8,8 +8,10 @@ import { fetchQuery } from "../utils/fetchQuery";
 import { SET_AUTH, SET_ERROR, SET_LOADING } from "../store/types/authenticate";
 
 const useVerifyAuth = () => {
-  const dispatch = useDispatch();
+  const location = useLocation();
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   useEffect(async () => {
     dispatch(setState({ type: SET_LOADING, payload: true }));
@@ -21,7 +23,7 @@ const useVerifyAuth = () => {
         }
       `);
 
-      if (!data.verifyIsAuth) {
+      if (!data.verifyIsAuth && location.pathname === "/update_art") {
         navigate({ pathname: "/login" });
       }
 

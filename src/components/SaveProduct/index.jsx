@@ -108,6 +108,12 @@ function SaveProduct({
     }
   }, [createdId]);
 
+  useEffect(() => {
+    if (videoModel || imageModel) {
+      onChangeModalImage();
+    }
+  }, [videoModel, imageModel]);
+
   return (
     <Modal>
       {
@@ -142,7 +148,7 @@ function SaveProduct({
                 }
                 <figure className="ContainerImage">
                   {
-                    (videoModel && imageModel) && (
+                    ((videoModel && imageModel) || (srcImage && srcVideo)) && (
                       <button
                         className="button-without-styles ChangeMode"
                         type="button"
@@ -180,7 +186,7 @@ function SaveProduct({
                               srcVideo={!videoModel ? srcVideo : toUrl(videoModel)}
                             />
                           ) : (
-                            <PhotographIcon className="PhotographIcon" />
+                            <p>Hola</p>
                           )
                         }
                       </>
@@ -191,7 +197,7 @@ function SaveProduct({
                       <CameraIcon className="Icon" />
                       <span className="Text">Imagen</span>
                       {
-                        imageModel && <CheckIcon className="Icon IconCheck" />
+                        (imageModel || srcImage) && <CheckIcon className="Icon IconCheck" />
                       }
                       <div
                         className="tapBanner"
@@ -202,7 +208,7 @@ function SaveProduct({
                       <VideoCameraIcon className="Icon" />
                       <span className="Text">Video</span>
                       {
-                        videoModel && <CheckIcon className="Icon IconCheck" />
+                        (videoModel || srcVideo) && <CheckIcon className="Icon IconCheck" />
                       }
                       <div
                         className="tapBanner"
