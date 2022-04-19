@@ -122,19 +122,21 @@ function SaveProduct({
         }) => (
           <div className="Modal">
             <div className="ModalContent">
-              <button
-                className="button-without-styles closeIcon"
-                onClick={() => onToggleModalCreateProduct(onToggleOverlay)}
-              >
-                <XIcon />
-              </button>
-              <Title
-                className="SubTitle TitleModal"
-              >
-                {
-                  !name ? "Añadir productos" : `Editar ${name}`
-                }
-              </Title>
+              <header className="HeaderModal">
+                <button
+                  className="button-without-styles closeIcon"
+                  onClick={() => onToggleModalCreateProduct(onToggleOverlay)}
+                >
+                  <XIcon />
+                </button>
+                <Title
+                  className="SubTitle TitleModal"
+                >
+                  {
+                    !name ? "Añadir productos" : `Editar ${name}`
+                  }
+                </Title>
+              </header>
               <form onSubmit={(event) => onSaveProduct(event, onToggleOverlay)} ref={saveProductFormRef}>
                 {
                   (alert && alert.showAlert) && (
@@ -295,15 +297,17 @@ function SaveProduct({
                         placeholder="url de Tweeter" />
                     </Banner>
                   </div>
-                  <Button
-                    className="PrimaryWave ButtonModalSaveProducts"
-                    type="submit"
-                    disabled={loading}
-                  >
-                    {
-                      loading ? "Guardando" : "Guardar cambios"
-                    }
-                  </Button>
+                  <footer className="FooterModal">
+                    <Button
+                      className="PrimaryWave ButtonModalSaveProducts"
+                      type="submit"
+                      disabled={loading}
+                    >
+                      {
+                        loading ? "Guardando" : "Guardar cambios"
+                      }
+                    </Button>
+                  </footer>
                 </div>
               </form>
             </div>

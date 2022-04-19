@@ -132,7 +132,7 @@ function UpdateArt() {
       category: null
     });
 
-    onToggleOverlay();
+    onToggleOverlay?.();
   };
 
   const toModalRenders = {

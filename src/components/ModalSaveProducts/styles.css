@@ -18,3 +18,10 @@ img.SelectedButton {
   border: 5px solid var(--color-radiant);
 }
 
+button.ButtonModalSaveProductsUpgrade {
+  width: 100%;
+}
+
+.SaveExistentProduct {
+  padding-bottom: 5rem;
+}

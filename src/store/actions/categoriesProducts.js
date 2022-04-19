@@ -102,10 +102,36 @@ const updateCategoriesProduct = ({
   dispatch(setState({ type: SET_ERROR, payload: Boolean(error) }));
 };
 
+const upsertCategoriesProduct = ({
+  createCategoriesProductId,
+  categoriesId,
+  productsId
+}) => async (dispatch) => {
+  dispatch(setState({ type: SET_LOADING, payload: true }));
+
+  const { error } = await fetchQuery(`
+    mutation {
+      upsertCategoriesProduct(
+        id: ${createCategoriesProductId}
+        categoriesId: ${categoriesId}
+        productsId: ${productsId}
+      ) {
+        id
+        categoriesId
+        productsId
+      }
+    }
+  `);
+
+  dispatch(setState({ type: SET_LOADING, payload: false }));
+  dispatch(setState({ type: SET_ERROR, payload: Boolean(error) }));
+};
+
 export {
   getCategoriesProducts,
   getCategoriesProduct,
   createCategoriesProduct,
   deleteCategoriesProduct,
-  updateCategoriesProduct
+  updateCategoriesProduct,
+  upsertCategoriesProduct
 };

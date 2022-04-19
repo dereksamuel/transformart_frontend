@@ -74,20 +74,22 @@ function ModalSaveCategory({
         }) => (
           <div className="Modal CategorySaveModal">
             <div className="ModalContent">
-              <button
-                className="button-without-styles closeIcon"
-                onClick={() => onCloseModalSaveCategory(onToggleOverlay)}
-              >
-                <XIcon />
-              </button>
-              <Title
-                isTitle={false}
-                className="SubTitle TitleModal"
-              >
-                {
-                  `${updateData ? "Actualizar" : "Crear"} Categoria`
-                }
-              </Title>
+              <header className="HeaderModal">
+                <button
+                  className="button-without-styles closeIcon"
+                  onClick={() => onCloseModalSaveCategory(onToggleOverlay)}
+                >
+                  <XIcon />
+                </button>
+                <Title
+                  isTitle={false}
+                  className="SubTitle TitleModal"
+                >
+                  {
+                    `${updateData ? "Actualizar" : "Crear"} Categoria`
+                  }
+                </Title>
+              </header>
               <form onSubmit={(event) => onSaveCategory(event, onToggleOverlay)}>
                 <div className="NameContainer">
                   <Input

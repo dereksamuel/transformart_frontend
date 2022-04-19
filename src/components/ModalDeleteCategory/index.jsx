@@ -55,12 +55,14 @@ function ModalDeleteCategory({
         }) => (
           <div className="Modal DeleteModal">
             <div className="ModalContent">
-              <button
-                className="button-without-styles closeIcon"
-                onClick={() => onCloseModalDelete(onToggleOverlay)}
-              >
-                <XIcon />
-              </button>
+              <header className="HeaderModal">
+                <button
+                  className="button-without-styles closeIcon"
+                  onClick={() => onCloseModalDelete(onToggleOverlay)}
+                >
+                  <XIcon />
+                </button>
+              </header>
               <p className="labelModal">¿Quieres eliminar esta categoria?</p>
               <div className="ContainerButtonDelete">
                 <Button

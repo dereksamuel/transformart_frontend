@@ -67,7 +67,8 @@ const useCP = (categoryId) => {
       return;
     }
 
-    setCategoriesProductsArray(Object.entries(renderCategoriesProduct));
+    const renderCategoriesProductFinal = Object.entries(renderCategoriesProduct).map((rcp) => rcp[1]);
+    setCategoriesProductsArray(renderCategoriesProductFinal);
   };
 
   useEffect(() => {

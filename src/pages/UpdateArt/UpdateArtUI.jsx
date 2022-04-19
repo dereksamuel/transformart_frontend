@@ -41,29 +41,29 @@ function UpdateartUI({
           toModalRenders.categoriesProductsArray.map((categoriesProductsItem, indexCPI) => (
             <div key={indexCPI}>
               {
-                categoriesProductsItem[1].category && (
+                categoriesProductsItem.category && (
                   <Acordion>
                     <div className="AcordionTitle">
-                      <p>{ categoriesProductsItem[1].category?.name }</p>
+                      <p>{ categoriesProductsItem.category?.name }</p>
                       <div className="buttonsActions">
                         <button
                           aria-label="Delete Category Button"
                           className="button-without-styles buttonAction"
-                          onClick={() => onDeleteCategory(categoriesProductsItem[1])}
+                          onClick={() => onDeleteCategory(categoriesProductsItem)}
                         >
                           <TrashIcon />
                         </button>
                         <button
                           aria-label="Edit Category Button"
                           className="button-without-styles buttonAction"
-                          onClick={() => onEditCategory(categoriesProductsItem[1].category)}
+                          onClick={() => onEditCategory(categoriesProductsItem.category)}
                         >
                           <PencilIcon />
                         </button>
                         <button
                           aria-label="Add Product Button"
                           className="button-without-styles buttonAction"
-                          onClick={() => onCreateProduct(categoriesProductsItem[1])}
+                          onClick={() => onCreateProduct(categoriesProductsItem)}
                         >
                           <PhotographIcon />
                         </button>
@@ -71,7 +71,7 @@ function UpdateartUI({
                     </div>
                     <div className="CategoriesGrid">
                       {
-                        [...categoriesProductsItem[1].products].map((product, index) => (
+                        [...categoriesProductsItem.products].map((product, index) => (
                           <div key={product ? product.id : index}>
                             {
                               product && (

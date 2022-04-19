@@ -122,7 +122,7 @@ function Product() {
 
   useEffect(() => {
     const filteredCP = categoriesProductsArray.filter((categoriesProductsItem) =>
-      [...categoriesProductsItem[1].products].filter((productLocal) =>
+      [...categoriesProductsItem.products].filter((productLocal) =>
         productLocal.id === product.id).length);
 
     setStateLocal({
@@ -169,11 +169,11 @@ function Product() {
             stateLocal.productsCategories.length ? stateLocal.productsCategories.map((productsCategory) => (
               <li
                 className="CategoryBanner"
-                key={productsCategory[1].category.id}
-                onClick={() => onNavigateToProducts(productsCategory[1].categoriesProductId)}
+                key={productsCategory.category.id}
+                onClick={() => onNavigateToProducts(productsCategory.categoriesProductId)}
               >
                 <span>
-                  { productsCategory[1].category.name }
+                  { productsCategory.category.name }
                 </span>
               </li>
             )) : (
