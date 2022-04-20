@@ -33,6 +33,7 @@ function Products({
   useEffect(async () => {
     if (product && state.canIChangeProducts) {
       onToggleModalUpdateProduct(null, {
+        idProduct: product.id,
         srcImageProduct: product.srcImage,
         srcVideoProduct: product.srcVideo,
         nameProduct: product.name,

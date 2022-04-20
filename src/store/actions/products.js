@@ -139,10 +139,49 @@ const createProduct = (data) => async (dispatch) => {
   await dispatch(getProducts());
 };
 
+const updateProduct = ({ id, data }) => async (dispatch) => {
+  dispatch(setState({ type: SET_LOADING, payload: true }));
+
+  const { data: dataQuery, error } = await fetchQuery(`
+    mutation {
+      updateProduct(
+        id: ${id}
+        name: "${data.name}"
+        price: ${data.price}
+        offer: ${data.offer}
+        description: "${data.description}"
+        srcImage: "${data.srcImage}"
+        srcVideo: "${data.srcVideo}"
+        facebookLink: "${data.facebookLink}"
+        instagramLink: "${data.instagramLink}"
+        tweeterLink: "${data.tweeterLink}"
+      ) {
+        id
+        name
+        price
+        offer
+        description
+        srcImage
+        srcVideo
+        facebookLink
+        instagramLink
+        tweeterLink
+      }
+    }
+  `);
+
+  dispatch(setState({ type: SET_CREATED, payload: dataQuery.updateProduct }));
+  dispatch(setState({ type: SET_LOADING, payload: false }));
+  dispatch(setState({ type: SET_ERROR, payload: Boolean(error) }));
+
+  await dispatch(getProducts());
+};
+
 export {
   getProducts,
   getProduct,
   deleteProduct,
   uploadFiles,
-  createProduct
+  createProduct,
+  updateProduct
 };

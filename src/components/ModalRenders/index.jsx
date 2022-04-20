@@ -56,6 +56,7 @@ function ModalRenders({
       {
         state.showModalUpdateProduct && (
           <SaveProduct
+            id={state.idProduct}
             onToggleModalCreateProduct={onToggleModalUpdateProduct}
             srcImage={state.srcImageProduct}
             srcVideo={state.srcVideoProduct}

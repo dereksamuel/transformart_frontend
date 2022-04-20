@@ -104,7 +104,7 @@ function ModalSaveCategory({
                   <Button
                     type="submit"
                     className="PrimaryWave ButtonSaveCategory"
-                  >Guardar Cambios</Button>
+                  >Guardar cambios</Button>
                 </div>
               </form>
             </div>

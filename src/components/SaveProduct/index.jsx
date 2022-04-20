@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { CheckIcon } from "@heroicons/react/solid";
 import { CameraIcon, LinkIcon, PhotographIcon, VideoCameraIcon, XIcon } from "@heroicons/react/outline";
 
-import { createProduct, uploadFiles } from "../../store/actions/products";
+import { createProduct, uploadFiles, updateProduct } from "../../store/actions/products";
 import { onChangeAlert } from "../../store/actions/alert";
 import { SET_CREATED, SET_SOURCES } from "../../store/types/products";
 
@@ -26,6 +26,7 @@ function SaveProduct({
   onToggleModalCreateProduct,
   srcImage,
   srcVideo,
+  id,
   name,
   price,
   offer,
@@ -57,7 +58,7 @@ function SaveProduct({
       onToggleOverlay
     });
 
-    if (!videoModel || !imageModel) {
+    if (id ? (!srcImage || !srcVideo) : (!videoModel || !imageModel)) {
       dispatch(onChangeAlert({
         description: "Es requerido que subas imagen y video para el producto",
         theme: "Error",
@@ -66,7 +67,11 @@ function SaveProduct({
       return;
     }
 
-    await dispatch(uploadFiles(videoModel, imageModel));
+    if (videoModel, imageModel)
+      await dispatch(uploadFiles(videoModel, imageModel));
+    else {
+      onSaveData();
+    }
   };
 
   const onChangeModalImage = () => {
@@ -82,23 +87,30 @@ function SaveProduct({
     onToggleModalCreateProduct(stateLocal.onToggleOverlay);
   };
 
+  const onSaveData = async () => {
+    let formData = new FormData(saveProductFormRef.current);
+    const action = id ? updateProduct : createProduct;
+
+    const data = {
+      name: formData.get("nameModel"),
+      price: Number(formData.get("priceModel")),
+      description: formData.get("descriptionModel"),
+      offer: Number(formData.get("offerModel")),
+      tweeterLink: formData.get("tweeterUrlModel"),
+      facebookLink: formData.get("facebookUrlModel"),
+      instagramLink: formData.get("instagramUrlModel"),
+      srcVideo: sources?.srcVideo || srcVideo,
+      srcImage: sources?.srcImage || srcImage,
+    };
+
+    console.log(data);
+
+    await dispatch(action(id ? { id, data } : data));
+  };
+
   useEffect(async () => {
     if (sources) {
-      let formData = new FormData(saveProductFormRef.current);
-
-      const data = {
-        name: formData.get("nameModel"),
-        price: Number(formData.get("priceModel")),
-        description: formData.get("descriptionModel"),
-        offer: Number(formData.get("offerModel")),
-        tweeterLink: formData.get("tweeterUrlModel"),
-        facebookLink: formData.get("facebookUrlModel"),
-        instagramLink: formData.get("instagramUrlModel"),
-        srcVideo: sources.srcVideo,
-        srcImage: sources.srcImage,
-      };
-
-      await dispatch(createProduct(data));
+      onSaveData();
     }
   }, [sources]);
 
@@ -321,6 +333,7 @@ function SaveProduct({
 SaveProduct.propTypes = {
   srcImage: PropTypes.string,
   srcVideo: PropTypes.string,
+  id: PropTypes.number,
   name: PropTypes.string,
   price: PropTypes.number,
   offer: PropTypes.number,
