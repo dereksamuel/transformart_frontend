@@ -4,8 +4,6 @@ import { storage } from "../../utils/connectFirebase";
 import { fetchQuery } from "../../utils/fetchQuery";
 import { setState } from "../../utils/setState";
 import { SET_ALL, SET_CREATED, SET_ERROR, SET_LOADING, SET_ONE, SET_SOURCES } from "../types/products";
-import { getCategories } from "./categories";
-import { getCategoriesProducts } from "./categoriesProducts";
 
 const expectedValues = `
   id
@@ -64,9 +62,7 @@ const deleteProduct = (productId) => async (dispatch) => {
   dispatch(setState({ type: SET_LOADING, payload: false }));
   dispatch(setState({ type: SET_ERROR, payload: Boolean(error) }));
 
-  await dispatch(getCategoriesProducts());
   dispatch(getProducts());
-  dispatch(getCategories());
 };
 
 const uploadFiles = (video, image) => async (dispatch) => {

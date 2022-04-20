@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { XIcon } from "@heroicons/react/solid";
 import PropTypes from "prop-types";
 
-import { deleteCategory } from "../../store/actions/categories";
 import { deleteProduct } from "../../store/actions/products";
 
 import { Modal } from "../Modal";
@@ -14,15 +13,11 @@ import "./styles.css";
 function ModalDeleteProduct({
   state,
   setState,
-  onCloseModalDelete
+  onToggleModalDeleteProduct
 }) {
   const dispatch = useDispatch();
 
   const onDeleteProduct = async (onToggleOverlay) => {
-    if (state.categoriesProductsItem1.products.length === 1) {
-      await dispatch(deleteCategory(state.categoriesProductsItem1.category.id));
-    }
-
     await dispatch(deleteProduct(state.productId));
 
     setState({
@@ -31,7 +26,10 @@ function ModalDeleteProduct({
       modalDeleteText: "",
       showModalDelete: false
     });
-    onCloseModalDelete(onToggleOverlay);
+
+    //FIXME: To show alert when delete a product 📍📍📍📍📍📍📍📍📍📍📍📍📍📍                                       
+
+    onToggleModalDeleteProduct(null, onToggleOverlay);
   };
 
   return (
@@ -42,13 +40,15 @@ function ModalDeleteProduct({
         }) => (
           <div className="Modal DeleteModal">
             <div className="ModalContent">
-              <button
-                className="button-without-styles closeIcon"
-                onClick={() => onCloseModalDelete(onToggleOverlay)}
-              >
-                <XIcon />
-              </button>
-              <p className="labelModal">¿Quieres eliminar este producto?</p>
+              <header className="HeaderModal">
+                <button
+                  className="button-without-styles closeIcon"
+                  onClick={() => onToggleModalDeleteProduct(null, onToggleOverlay)}
+                >
+                  <XIcon />
+                </button>
+                <p className="labelModal">¿Quieres eliminar este producto?</p>
+              </header>
               <div className="ContainerButtonDelete">
                 <Button
                   className="PrimaryWave DeleteButton"
@@ -65,7 +65,7 @@ function ModalDeleteProduct({
 
 
 ModalDeleteProduct.propTypes = {
-  onCloseModalDelete: PropTypes.func,
+  onToggleModalDeleteProduct: PropTypes.func,
   state: PropTypes.any,
   setState: PropTypes.any
 };

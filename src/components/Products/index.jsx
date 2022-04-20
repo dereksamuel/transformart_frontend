@@ -12,7 +12,8 @@ import { getProduct } from "../../store/actions/products";
 import "./styles.css";
 
 function Products({
-  onToggleModalUpdateProduct
+  onToggleModalUpdateProduct,
+  onDeleteProduct
 }) {
   const [state, setState] = useState({
     canIChangeProducts: false
@@ -59,6 +60,7 @@ function Products({
                     <div className="ContainerButtonProducts">
                       <Button
                         className="ButtonToggleSize-danger"
+                        onClick={() => onDeleteProduct(product.id)}
                       ><TrashIcon /></Button>
                       <Button
                         className="ButtonToggleSize"
@@ -82,7 +84,8 @@ function Products({
 
 Products.propTypes = {
   onToggleModalUpdateProduct: PropTypes.func,
-  onChangeToUpdateData: PropTypes.func
+  onChangeToUpdateData: PropTypes.func,
+  onDeleteProduct: PropTypes.func
 };
 
 export {

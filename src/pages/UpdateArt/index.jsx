@@ -32,16 +32,6 @@ function UpdateArt() {
   });
   const categoriesProductsArray = useCP();
 
-  // const onToggleModalDelete = (categoriesProductsItem1, productId) => {
-  //   setState({
-  //     ...state,
-  //     productId,
-  //     categoriesProductsItem1,
-  //     modalDeleteText: "Quieres borrar este producto",
-  //     showModalDelete: !state.showModalDelete
-  //   });
-  // };
-
   const onToggleModalCreateCategory = () => {
     setState({
       ...state,
@@ -98,13 +88,15 @@ function UpdateArt() {
     });
   };
 
-  const onCloseModalDelete = (onToggleOverlay) => {
+  const onToggleModalDeleteProduct = (productId, onToggleOverlay) => {
     setState({
       ...state,
-      showModalDelete: false
+      productId,
+      showModalDelete: Boolean(productId)
     });
 
-    onToggleOverlay();
+    if (onToggleOverlay)
+      onToggleOverlay();
   };
 
   const onCloseModalDeleteCategory = (onToggleOverlay) => {
@@ -141,7 +133,7 @@ function UpdateArt() {
     setState,
     onCloseModalSaveCategory,
     onCloseModalAddProducts,
-    onCloseModalDelete,
+    onToggleModalDeleteProduct,
     onCloseModalDeleteCategory,
     onToggleModalCreateProduct,
     onToggleModalUpdateProduct
@@ -152,6 +144,7 @@ function UpdateArt() {
       <ModalRenders {...toModalRenders} />
       <UpdateartUI
         toModalRenders={toModalRenders}
+        onDeleteProduct={onToggleModalDeleteProduct}
         onToggleModalCreateCategory={onToggleModalCreateCategory}
         onToggleModalUpdateProduct={onToggleModalUpdateProduct}
         onToggleModalCreateProduct={onToggleModalCreateProduct}

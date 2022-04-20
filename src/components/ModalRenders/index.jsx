@@ -15,7 +15,7 @@ function ModalRenders({
   state,
   setState,
   categoriesProductsArray,
-  onCloseModalDelete,
+  onToggleModalDeleteProduct,
   onCloseModalSaveCategory,
   onCloseModalAddProducts,
   onCloseModalDeleteCategory,
@@ -40,7 +40,7 @@ function ModalRenders({
       {
         state.showModalDelete && (
           <ModalDeleteProduct
-            onCloseModalDelete={onCloseModalDelete}
+            onToggleModalDeleteProduct={onToggleModalDeleteProduct}
             state={state}
             setState={setState}
           />
@@ -113,7 +113,7 @@ ModalRenders.propTypes = {
   onCloseModalSaveCategory: PropTypes.func,
   onCloseModalDeleteCategory: PropTypes.func,
   onCloseModalAddProducts: PropTypes.func,
-  onCloseModalDelete: PropTypes.func,
+  onToggleModalDeleteProduct: PropTypes.func,
   onToggleModalCreateProduct: PropTypes.func,
   onToggleModalUpdateProduct: PropTypes.func
 };

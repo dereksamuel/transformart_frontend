@@ -16,6 +16,7 @@ import "./styles.css";
 function UpdateartUI({
   toModalRenders,
   onDeleteCategory,
+  onDeleteProduct,
   onEditCategory,
   onCreateProduct,
   onToggleModalCreateCategory,
@@ -116,6 +117,7 @@ function UpdateartUI({
           ContainerCP : (
             <Products
               onToggleModalUpdateProduct={onToggleModalUpdateProduct}
+              onDeleteProduct={onDeleteProduct}
               onChangeToUpdateData={onChangeToUpdateData}
             />
           )
@@ -139,6 +141,7 @@ UpdateartUI.propTypes = {
   onToggleModalCreateCategory: PropTypes.func,
   onToggleModalCreateProduct: PropTypes.func,
   onDeleteCategory: PropTypes.func,
+  onDeleteProduct: PropTypes.func,
   onEditCategory: PropTypes.func,
   onCreateProduct: PropTypes.func,
   onChangeToUpdateData: PropTypes.func,
