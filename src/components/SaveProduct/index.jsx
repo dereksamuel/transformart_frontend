@@ -21,6 +21,7 @@ import { Button } from "../Button";
 import { Alert } from "../Alert";
 
 import "./styles.css";
+import { SET_ALERT } from "../../store/types/alert";
 
 function SaveProduct({
   onToggleModalCreateProduct,
@@ -103,9 +104,31 @@ function SaveProduct({
       srcImage: sources?.srcImage || srcImage,
     };
 
-    console.log(data);
-
-    await dispatch(action(id ? { id, data } : data));
+    try {
+      await dispatch(action(id ? { id, data } : data));
+      dispatch(setState({
+        type: SET_ALERT,
+        payload: {
+          description: id ? `
+            Producto "${formData.get("nameModel")}" actualizado con éxito
+          ` : `
+            Producto "${formData.get("nameModel")}" creado con éxito
+          `,
+          theme: "Success",
+          showAlert: true,
+        }
+      }));
+    } catch (error) {
+      console.error("[error-SaveProduct]:", error);
+      dispatch(setState({
+        type: SET_ALERT,
+        payload: {
+          description: "Hubo un error al guardar sus cambios",
+          theme: "Error",
+          showAlert: true,
+        }
+      }));
+    }
   };
 
   useEffect(async () => {
@@ -121,7 +144,7 @@ function SaveProduct({
   }, [createdId]);
 
   useEffect(() => {
-    if (videoModel || imageModel) {
+    if ((videoModel || imageModel) && (srcImage && srcVideo)) {
       onChangeModalImage();
     }
   }, [videoModel, imageModel]);
@@ -200,7 +223,7 @@ function SaveProduct({
                               srcVideo={!videoModel ? srcVideo : toUrl(videoModel)}
                             />
                           ) : (
-                            <p>Hola</p>
+                            <></>
                           )
                         }
                       </>

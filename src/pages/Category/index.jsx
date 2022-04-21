@@ -18,7 +18,7 @@ function Category() {
       {
         (categoriesProductsObject && categoriesProductsObject.length) && (
           <>
-            <Title className="SubTitle TitleCategories" isTitle={false}>
+            <Title className="SubTitle TitleButterFly" isTitle={false}>
               <img src={srcLogoIcon} alt="srcLogoIcon" className="Categories-srcLogoIcon" />
               <span>{ categoriesProductsObject[0][1].category.name }</span>
             </Title>

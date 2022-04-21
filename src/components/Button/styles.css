@@ -122,3 +122,15 @@ button.ButtonSecondaryModal {
 button.ButtonModalAddProducts {
   width: 100%;
 }
+
+button.ButtonSearch {
+  width: 100%;
+  border-radius: 0px 0.25rem 0.25rem 0px;
+  margin-left: -2px;
+  padding: 1rem;
+
+  display: flex;
+  align-items: center;
+
+  color: var(--color-dark);
+}

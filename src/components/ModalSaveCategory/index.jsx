@@ -49,9 +49,9 @@ function ModalSaveCategory({
       type: SET_ALERT,
       payload: {
         description: updateData ? `
-          Producto "${categoryName}" actualizado con éxito
+          Categoria "${categoryName}" actualizada con éxito
         ` : `
-          Producto "${categoryName}" creado con éxito
+          Categoria "${categoryName}" creada con éxito
         `,
         theme: "Success",
         showAlert: true,

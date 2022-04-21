@@ -24,7 +24,7 @@ function Categories() {
   return (
     <div className="Categories page">
       <article>
-        <Title className="SubTitle TitleCategories" isTitle={false}>
+        <Title className="SubTitle TitleButterFly" isTitle={false}>
           <img src={srcLogoIcon} alt="srcLogoIcon" className="Categories-srcLogoIcon" />
           <span>Productos</span>
         </Title>

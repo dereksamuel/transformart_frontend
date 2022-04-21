@@ -1,0 +1,14 @@
+.SearchForm {
+  display: flex;
+  max-width: 265px;
+  width: 100%;
+  margin: auto;
+}
+
+.BannerContainer {
+  display: flex;
+  padding: 2rem;
+  padding-top: 1rem;
+  max-width: 100%;
+  overflow-x: auto;
+}

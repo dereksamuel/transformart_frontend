@@ -51,7 +51,7 @@ function Shopping() {
 
   return (
     <div className="Shopping page">
-      <Title className="SubTitle TitleCategories" isTitle={false}>
+      <Title className="SubTitle TitleButterFly" isTitle={false}>
         <img src={srcLogoIcon} alt="srcLogoIcon" className="Categories-srcLogoIcon" />
         <span>Mis compras</span>
       </Title>

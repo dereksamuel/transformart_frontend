@@ -3,7 +3,9 @@ import { useDispatch } from "react-redux";
 import { XIcon } from "@heroicons/react/solid";
 import PropTypes from "prop-types";
 
-import { deleteProduct } from "../../store/actions/products";
+import { deleteProduct, deleteFiles } from "../../store/actions/products";
+import { setState as setStateRedux } from "../../utils/setState";
+import { SET_ALERT } from "../../store/types/alert";
 
 import { Modal } from "../Modal";
 import { Button } from "../Button";
@@ -18,16 +20,25 @@ function ModalDeleteProduct({
   const dispatch = useDispatch();
 
   const onDeleteProduct = async (onToggleOverlay) => {
+    await dispatch(deleteFiles(state.showModalDelete));
+
     await dispatch(deleteProduct(state.productId));
 
     setState({
       ...state,
       productId: null,
       modalDeleteText: "",
-      showModalDelete: false
+      showModalDelete: null
     });
 
-    //FIXME: To show alert when delete a product 📍📍📍📍📍📍📍📍📍📍📍📍📍📍                                       
+    dispatch(setStateRedux({
+      type: SET_ALERT,
+      payload: {
+        description: "Producto borrado con éxito",
+        theme: "Success",
+        showAlert: true,
+      }
+    }));
 
     onToggleModalDeleteProduct(null, onToggleOverlay);
   };

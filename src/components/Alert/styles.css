@@ -27,8 +27,8 @@
   width: 1.8rem;
   height: 1.8rem;
   border-radius: 50%;
-  background-color: var(--color-dark);
-  color: var(--color-white);
+  /* background-color: var(--color-dark); */
+  color: var(--color-dark);
 }
 
 .IconX {

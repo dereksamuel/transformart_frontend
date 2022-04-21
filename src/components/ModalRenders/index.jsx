@@ -1,14 +1,11 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 
-import { Alert } from "../Alert";
 import { ModalSaveCategory } from "../ModalSaveCategory";
 import { ModalDeleteProduct } from "../ModalDeleteProduct";
 import { ModalSaveProducts } from "../ModalSaveProducts";
 import { ModalDeleteCategory } from "../ModalDeleteCategory";
 
-import { onChangeAlert } from "../../store/actions/alert";
 import { SaveProduct } from "../SaveProduct";
 
 function ModalRenders({
@@ -22,21 +19,8 @@ function ModalRenders({
   onToggleModalCreateProduct,
   onToggleModalUpdateProduct
 }) {
-  const alert = useSelector((stateLocal) => stateLocal.alert.alert);
-  const dispatch = useDispatch();
-
   return (
     <>
-      {
-        (alert && alert.showAlert) && (
-          <Alert
-            description={alert.description}
-            theme={alert.theme}
-            toLeft={true}
-            onClick={() => dispatch(onChangeAlert({}))}
-          />
-        )
-      }
       {
         state.showModalDelete && (
           <ModalDeleteProduct

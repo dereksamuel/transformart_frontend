@@ -23,13 +23,13 @@ function ModalDeleteCategory({
   const dispatch = useDispatch();
 
   const onDeleteCategoriesProduct = async () => {
-    await dispatch(deleteCategoriesProduct(deletedId));
+    await dispatch(deleteCategoriesProduct(deletedId, null, state.categoryDelete.categoriesProductId));
   };
 
   const onDeleteCategory = async (onToggleOverlay) => {
     setCategoryDeleted(true);
 
-    await dispatch(deleteCategory(state.categoryDelete.categoriesProductId));
+    await dispatch(deleteCategory(state.categoryDelete.category.id));
     dispatch(setState({
       type: SET_ALERT,
       payload: {

@@ -10,6 +10,7 @@ import { Shopping } from "../pages/Shopping";
 import { ContactUs } from "../pages/ContactUs";
 import { Resume } from "../pages/Resume";
 import { UpdateArt } from "../pages/UpdateArt";
+import { Search } from "../pages/Search";
 
 import { PrivateRoute } from "./PrivateRoute";
 
@@ -31,7 +32,7 @@ function RoutesComponent() {
     <main className="Router" id="Router">
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/search" element={<div>Hello search</div>} />
+        <Route path="/search" element={<Search />} />
         <Route path="/products" element={<Categories />} />
         <Route path="/products/:categoryId" element={<Category />} />
         <Route path="/oneProduct/:productId" element={<Product />} />

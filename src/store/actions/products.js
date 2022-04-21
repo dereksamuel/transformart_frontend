@@ -1,9 +1,9 @@
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { getDownloadURL, ref, uploadBytes, deleteObject } from "firebase/storage";
 
 import { storage } from "../../utils/connectFirebase";
 import { fetchQuery } from "../../utils/fetchQuery";
 import { setState } from "../../utils/setState";
-import { SET_ALL, SET_CREATED, SET_ERROR, SET_LOADING, SET_ONE, SET_SOURCES } from "../types/products";
+import { SET_ALL, SET_CREATED, SET_ERROR, SET_LOADING, SET_ONE, SET_SOURCES, SET_DELETED_FILES } from "../types/products";
 
 const expectedValues = `
   id
@@ -98,6 +98,29 @@ const uploadFiles = (video, image) => async (dispatch) => {
   }
 };
 
+const deleteFiles = ({ srcVideo, srcImage }) => async (dispatch) => {
+  dispatch(setState({ type: SET_LOADING, payload: true }));
+  dispatch(setState({ type: SET_DELETED_FILES, payload: false }));
+
+  const storageImageRef = ref(storage, srcImage);
+  const storageVideoRef = ref(storage, srcVideo);
+
+  try {
+    await Promise.all([
+      deleteObject(storageImageRef),
+      deleteObject(storageVideoRef)
+    ]);
+
+    dispatch(setState({ type: SET_LOADING, payload: false }));
+    dispatch(setState({ type: SET_DELETED_FILES, payload: true }));
+  } catch (error) {
+    console.log("[error-fb-storage]:", error);
+
+    dispatch(setState({ type: SET_LOADING, payload: false }));
+    dispatch(setState({ type: SET_ERROR, payload: Boolean(error) }));
+  }
+};
+
 const createProduct = (data) => async (dispatch) => {
   dispatch(setState({ type: SET_LOADING, payload: true }));
 
@@ -179,5 +202,6 @@ export {
   deleteProduct,
   uploadFiles,
   createProduct,
-  updateProduct
+  updateProduct,
+  deleteFiles
 };

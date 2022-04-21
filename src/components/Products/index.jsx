@@ -60,7 +60,7 @@ function Products({
                     <div className="ContainerButtonProducts">
                       <Button
                         className="ButtonToggleSize-danger"
-                        onClick={() => onDeleteProduct(product.id)}
+                        onClick={() => onDeleteProduct(product)}
                       ><TrashIcon /></Button>
                       <Button
                         className="ButtonToggleSize"
@@ -74,7 +74,7 @@ function Products({
           </div>
         ) : (
           <div className="CategoriesEmpty ContainerProducts">
-            <EmptyDraw titleEmpty="Aún no tienes ningún producto" />
+            <EmptyDraw titleEmpty="Aún no tienes productos" />
           </div>
         )
       }

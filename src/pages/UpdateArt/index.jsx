@@ -15,7 +15,7 @@ function UpdateArt() {
     categoriesProductsItem1: [],
     showModalCreateCategory: false,
     showModalCreateProduct: false,
-    showModalDelete: false,
+    showModalDelete: null,
     category: null,
     categoryDelete: null,
     cpItemToCreateProduct: null,
@@ -88,11 +88,11 @@ function UpdateArt() {
     });
   };
 
-  const onToggleModalDeleteProduct = (productId, onToggleOverlay) => {
+  const onToggleModalDeleteProduct = (product, onToggleOverlay) => {
     setState({
       ...state,
-      productId,
-      showModalDelete: Boolean(productId)
+      productId: product?.id,
+      showModalDelete: product
     });
 
     if (onToggleOverlay)
@@ -114,7 +114,7 @@ function UpdateArt() {
       cpItemToCreateProduct: null
     });
 
-    onToggleOverlay();
+    onToggleOverlay?.();
   };
 
   const onCloseModalSaveCategory = (onToggleOverlay) => {

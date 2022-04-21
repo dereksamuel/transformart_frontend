@@ -6,7 +6,7 @@
   object-position: bottom;
 }
 
-.TitleCategories {
+.TitleButterFly {
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -16,13 +16,13 @@
   color: var(--color-radiant);
 }
 
-.TitleCategories span {
+.TitleButterFly span {
   margin-left: 1rem;
 }
 
 .TitleEachCategory {
   padding-top: 0;
-  margin-left: 2rem;
+  margin-left: 1rem;
   font-style: normal;
   font-weight: 700;
   font-size: 16px;

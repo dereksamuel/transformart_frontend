@@ -7,10 +7,13 @@ import { Modal } from "../Modal";
 import { Title } from "../Title";
 import { Button } from "../Button";
 
-import { createCategoriesProduct } from "../../store/actions/categoriesProducts";
+import { createCategoriesProduct, deleteCategoriesProduct } from "../../store/actions/categoriesProducts";
+import { SET_ALERT } from "../../store/types/alert";
+
+import { setState as setStateRedux } from "../../utils/setState";
+import { refreshQueries } from "../../utils/refreshQueries";
 
 import "./styles.css";
-import { refreshQueries } from "../../utils/refreshQueries";
 
 function ModalSaveProducts({ onCloseModalSaveProducts, cpItemToCreateProduct, categoriesProducts }) {
   const products = useSelector((state) => state.products.all);
@@ -44,12 +47,39 @@ function ModalSaveProducts({ onCloseModalSaveProducts, cpItemToCreateProduct, ca
 
   const onAddProducts = async (onToggleOverlay) => {
     if (state.selectedSetter) {
-      const action = createCategoriesProduct;
+      const selectedProducts = products.map((product) => ({
+        ...product,
+        selected: [...state.selectedSetter].find((selected) => selected === product.id),
+        isInDB: [...cpItemToCreateProduct.products].some((productCp) => productCp.id === product.id)
+      }));
 
-      [...state.selectedSetter].map((productId) => {
-        dispatch(action(cpItemToCreateProduct.category.id, productId));
-      });
+      for (const selectedProduct of selectedProducts) {
+        if (!(selectedProduct.isInDB && selectedProduct.selected)) {
+          if (!selectedProduct.isInDB && selectedProduct.selected) {
+            dispatch(createCategoriesProduct(cpItemToCreateProduct.category.id, selectedProduct.id));
+          }
+
+          if (selectedProduct.isInDB && !selectedProduct.selected) {
+            await dispatch(deleteCategoriesProduct(
+              cpItemToCreateProduct.categoriesProductId,
+              selectedProduct.id,
+              cpItemToCreateProduct.category.id
+            ));
+          }
+        }
+      }
+
       await refreshQueries(dispatch);
+
+      dispatch(setStateRedux({
+        type: SET_ALERT,
+        payload: {
+          description: "Productos actualizados dentro de la categoria",
+          theme: "Success",
+          showAlert: true,
+        }
+      }));
+
       onToggleOverlay();
       onCloseModalSaveProducts();
     }
@@ -121,12 +151,16 @@ function ModalSaveProducts({ onCloseModalSaveProducts, cpItemToCreateProduct, ca
                   )) : ""
                 }
               </div>
-              <footer className="FooterModal">
-                <Button
-                  onClick={() => onAddProducts(onToggleOverlay)}
-                  className="PrimaryWave ButtonModalSaveProductsUpgrade"
-                >Guardar cambios</Button>
-              </footer>
+              {
+                products && products.length ? (
+                  <footer className="FooterModal">
+                    <Button
+                      onClick={() => onAddProducts(onToggleOverlay)}
+                      className="PrimaryWave ButtonModalSaveProductsUpgrade"
+                    >Guardar cambios</Button>
+                  </footer>
+                ) : ""
+              }
             </div>
           </div>
         )

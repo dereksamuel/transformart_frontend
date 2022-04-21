@@ -1,14 +1,18 @@
 import React, { useMemo, useState } from "react";
 import PropTypes from "prop-types";
 import { PencilIcon, PhotographIcon, TrashIcon } from "@heroicons/react/outline";
+import { useDispatch, useSelector } from "react-redux";
 
+import { Alert } from "../../components/Alert";
 import { Title } from "../../components/Title";
 import { Acordion } from "../../components/Acordion";
 import { ProductItem } from "../../components/ProductItem";
 import { Button } from "../../components/Button";
 import { Products } from "../../components/Products";
+import { EmptyDraw } from "../../components/EmptyDraw";
 
 import srcLogoIcon from "../../assets/images/mobile/logoIcon.svg";
+import { onChangeAlert } from "../../store/actions/alert";
 
 import "../Categories/styles.css";
 import "./styles.css";
@@ -24,9 +28,13 @@ function UpdateartUI({
   onChangeToUpdateData,
   onToggleModalUpdateProduct
 }) {
+  const alert = useSelector((stateLocal) => stateLocal.alert.alert);
+  const products = useSelector((state) => state.products.all);
+  const categories = useSelector((state) => state.categories.all);
   const [state, setState] = useState({
     isModeCategory: true
   });
+  const dispatch = useDispatch();
 
   const onChangeModeCategory = (isModeCategoryVal) => {
     setState({
@@ -87,7 +95,11 @@ function UpdateartUI({
                 )
               }
             </div>
-          )) : ""
+          )) : (
+            <div className="CategoriesEmpty ContainerProducts">
+              <EmptyDraw titleEmpty="Aún no tienes categorias" />
+            </div>
+          )
       }
     </div>
   ), [toModalRenders.categoriesProductsArray]);
@@ -97,17 +109,27 @@ function UpdateartUI({
       <li
         onClick={onChangeModeCategory}
         className={`SizeBanner ${state.isModeCategory && "SelectedSizeBanner"}`}
-      >Categorias</li>
+      >Categorias ({categories.length})</li>
       <li
         onClick={() => onChangeModeCategory(false)}
         className={`SizeBanner ${!state.isModeCategory && "SelectedSizeBanner"}`}
-      >Productos</li>
+      >Productos ({products.length})</li>
     </ul>
-  ), [state.isModeCategory]);
+  ), [state.isModeCategory, products.length, categories.length]);
 
   return (
     <div className="UpdateArt page">
-      <Title className="SubTitle TitleCategories" isTitle={false}>
+      {
+        (alert && alert.showAlert) && (
+          <Alert
+            description={alert.description}
+            theme={alert.theme}
+            toLeft={true}
+            onClick={() => dispatch(onChangeAlert({}))}
+          />
+        )
+      }
+      <Title className="SubTitle TitleButterFly" isTitle={false}>
         <img src={srcLogoIcon} alt="srcLogoIcon" className="Categories-srcLogoIcon" />
         <span>Actualizar arte</span>
       </Title>

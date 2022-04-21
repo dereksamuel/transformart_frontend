@@ -1,4 +1,13 @@
-import { SET_ALL, SET_ERROR, SET_LOADING, SET_ONE, SET_SELECTED, SET_SOURCES, SET_CREATED } from "../types/products";
+import {
+  SET_ALL,
+  SET_ERROR,
+  SET_LOADING,
+  SET_ONE,
+  SET_SELECTED,
+  SET_SOURCES,
+  SET_CREATED,
+  SET_DELETED_FILES
+} from "../types/products";
 
 const initialState = {
   all: [],
@@ -7,7 +16,8 @@ const initialState = {
   sources: null,
   loading: false,
   error: true,
-  createdId: null
+  createdId: null,
+  deletedFiles: false
 };
 
 function products(state = initialState, action) {
@@ -15,6 +25,10 @@ function products(state = initialState, action) {
     [SET_ALL]: {
       ...state,
       all: action.payload
+    },
+    [SET_DELETED_FILES]: {
+      ...state,
+      deletedFiles: action.payload
     },
     [SET_ONE]: {
       ...state,
