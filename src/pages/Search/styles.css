@@ -11,4 +11,20 @@
   padding-top: 1rem;
   max-width: 100%;
   overflow-x: auto;
+  scroll-snap-align: center;
+}
+
+.BannerLi {
+  list-style: none;
+  margin-right: 1rem;
+}
+
+.BannerLi .Banner, .BannerLi {
+  height: 100%;
+}
+
+.SelectedBanner .Banner {
+  filter: drop-shadow(0px 0px 4px rgba(114, 203, 144, 0.877));
+  color: var(--color-secondary);
+  font-weight: bold;
 }

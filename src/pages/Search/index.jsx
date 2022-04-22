@@ -52,21 +52,28 @@ function Search() {
       </form>
       <div className="BannerContainer">
         {
-          (categories && categories.length) && categories.map((category, inbexCategory) => (
-            <Banner key={inbexCategory}>
-              {
-                state.filters.has(category.id) && (
-                  <XIcon
-                    className="Icon"
-                    onClick={() => onChangeFilter(category.id, "delete")}
-                  />
-                )
+          (categories && categories.length) && categories.map((category, indexCategory) => (
+            <li
+              key={indexCategory}
+              className={
+                `BannerLi ${state.filters.has(category.id) && "SelectedBanner"}`
               }
-              <span
-                className="Text"
-                onClick={() => onChangeFilter(category.id, "add")}
-              >{category.name}</span>
-            </Banner>
+            >
+              <Banner>
+                {
+                  state.filters.has(category.id) && (
+                    <XIcon
+                      className="Icon"
+                      onClick={() => onChangeFilter(category.id, "delete")}
+                    />
+                  )
+                }
+                <span
+                  className="Text"
+                  onClick={() => onChangeFilter(category.id, "add")}
+                >{category.name}</span>
+              </Banner>
+            </li>
           ))
         }
       </div>
