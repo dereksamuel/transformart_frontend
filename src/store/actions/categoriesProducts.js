@@ -3,7 +3,7 @@ import { refreshQueries } from "../../utils/refreshQueries";
 import { setState } from "../../utils/setState";
 import { SET_ALL, SET_ERROR, SET_LOADING, SET_ONE } from "../types/categoriesProducts";
 
-const getCategoriesProducts = () => async (dispatch) => {
+const getCategoriesProducts = (where) => async (dispatch) => {
   dispatch(setState({ type: SET_LOADING, payload: true }));
 
   const { data, error } = await fetchQuery(`
@@ -14,7 +14,9 @@ const getCategoriesProducts = () => async (dispatch) => {
         productsId
       }
     }
-  `);
+  `, {
+    filtersWhereCP: JSON.stringify(where)
+  });
 
   dispatch(setState({ type: SET_ALL, payload: data.getCategoriesProducts }));
   dispatch(setState({ type: SET_LOADING, payload: false }));
