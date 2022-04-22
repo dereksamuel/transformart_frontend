@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { SearchIcon, XIcon } from "@heroicons/react/outline";
 import { useSelector } from "react-redux";
 
@@ -15,7 +15,24 @@ import "./styles.css";
 
 function Search() {
   const categories = useSelector((state) => state.categories.all);
+  const [state, setState] = useState({
+    filters: new Set()
+  });
+
   useCP();
+
+  const onChangeFilter = (value, type) => {
+    const newFiltersSetter = new Set(state.filters);
+
+    if (type === "delete")
+      newFiltersSetter.delete(value);
+    else newFiltersSetter.add(value);
+
+    setState({
+      ...state,
+      filters: newFiltersSetter
+    });
+  };
 
   return (
     <div className="Search">
@@ -37,12 +54,18 @@ function Search() {
         {
           (categories && categories.length) && categories.map((category, inbexCategory) => (
             <Banner key={inbexCategory}>
-              <XIcon className="Icon" />
-              <span className="Text">{category.name}</span>
-              <div
-                className="tapBanner"
-                // onClick={() => onClickModel("imageModel")}
-              ></div>
+              {
+                state.filters.has(category.id) && (
+                  <XIcon
+                    className="Icon"
+                    onClick={() => onChangeFilter(category.id, "delete")}
+                  />
+                )
+              }
+              <span
+                className="Text"
+                onClick={() => onChangeFilter(category.id, "add")}
+              >{category.name}</span>
             </Banner>
           ))
         }

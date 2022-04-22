@@ -45,6 +45,12 @@ button.Icon {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  color: var(--color-dark);
+}
+
+button.ButtonSecondaryClick.PrimaryWave.Icon {
+  color: var(--color-white);
 }
 
 button.Icon span {
