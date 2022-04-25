@@ -39,3 +39,7 @@ textarea.Input {
   min-width: 100%;
   min-height: 5rem;
 }
+
+input.InputSearch {
+  flex: 1;
+}

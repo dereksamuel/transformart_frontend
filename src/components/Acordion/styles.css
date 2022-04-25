@@ -26,8 +26,35 @@
   color: var(--color-white);
 }
 
+.AcordionTitleIcon {
+  max-width: 24px;
+  transition: 1s all;
+}
+
 .AcordionTitle p {
   max-width: 64%;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.AcordionTitle.Dark {
+  background-color: var(--color-dark);
+}
+
+.AcordionBodyDark {
+  background-color: var(--color-gray);
+  color: var(--color-white);
+}
+
+.AcordionTitle__Svg {
+  display: flex;
+  align-items: center;
+
+  max-width: 116px;
+  width: 100%;
+}
+
+.AcordionTitle__Text {
+  margin-left: 0.5rem;
+  font-size: 1rem;
 }

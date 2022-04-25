@@ -3,16 +3,17 @@ import PropTypes from "prop-types";
 
 import "./styles.css";
 
-function Acordion({ children }) {
+function Acordion({ children, className }) {
   return (
-    <div className="Acordion">
+    <div className={"Acordion " + className}>
       { children }
     </div>
   );
 }
 
 Acordion.propTypes = {
-  children: PropTypes.any
+  children: PropTypes.any,
+  className: PropTypes.string
 };
 
 export {

@@ -1,13 +1,15 @@
 .SearchForm {
   display: flex;
-  max-width: 265px;
+  max-width: 580px;
   width: 100%;
+
+  padding: 0 1rem;
   margin: auto;
 }
 
 .BannerContainer {
   display: flex;
-  padding: 2rem;
+  padding: 2rem 1rem;
   padding-top: 1rem;
   max-width: 100%;
   overflow-x: auto;
@@ -27,4 +29,38 @@
   filter: drop-shadow(0px 0px 4px rgba(114, 203, 144, 0.877));
   color: var(--color-secondary);
   font-weight: bold;
+}
+
+.FilterContainer {
+  padding: 2rem 1rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.FilterItem {
+  max-width: 550px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 0;
+}
+
+.filterText {
+  padding: 1rem;
+  padding-bottom: 0;
+}
+
+.ButtonAcordionTitle {
+  width: 100%;
+}
+
+button.FilterLinkClean {
+  color: var(--color-white);
+  opacity: 0.65;
+  margin-top: 0.5rem;
+
+  text-decoration: underline;
+  font-size: 1rem;
 }
