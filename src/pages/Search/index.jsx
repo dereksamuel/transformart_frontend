@@ -51,18 +51,14 @@ function Search() {
 
     for (const filter of state.filters) {
       queriesArray.push({
-        categoriesId: {
+        categories_id: {
           $eq: filter
         }
       });
     }
 
     dispatch(
-      getCategoriesProducts({
-        where: {
-          $or: queriesArray
-        }
-      })
+      getCategoriesProducts(queriesArray)
     );
   };
 

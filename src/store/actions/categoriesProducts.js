@@ -3,7 +3,7 @@ import { refreshQueries } from "../../utils/refreshQueries";
 import { setState } from "../../utils/setState";
 import { SET_ALL, SET_ERROR, SET_LOADING, SET_ONE } from "../types/categoriesProducts";
 
-const getCategoriesProducts = (where) => async (dispatch) => {
+const getCategoriesProducts = ($or) => async (dispatch) => {
   dispatch(setState({ type: SET_LOADING, payload: true }));
 
   const { data, error } = await fetchQuery(`
@@ -15,7 +15,7 @@ const getCategoriesProducts = (where) => async (dispatch) => {
       }
     }
   `, {
-    filtersWhereCP: JSON.stringify(where)
+    filters$orcp: $or ? JSON.stringify($or) : ""
   });
 
   dispatch(setState({ type: SET_ALL, payload: data.getCategoriesProducts }));
