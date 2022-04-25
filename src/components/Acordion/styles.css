@@ -43,7 +43,7 @@
 
 .AcordionBodyDark {
   background-color: var(--color-gray);
-  color: var(--color-white);
+  color: var(--color-gray-dark);
 }
 
 .AcordionTitle__Svg {
@@ -57,4 +57,8 @@
 .AcordionTitle__Text {
   margin-left: 0.5rem;
   font-size: 1rem;
+}
+
+.AcordionTitleIcon, .AcordionTitle__Text {
+  opacity: 0.8;
 }

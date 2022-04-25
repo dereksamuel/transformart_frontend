@@ -1,8 +1,7 @@
 import React from "react";
-import { HomeIcon, SearchIcon, CurrencyDollarIcon, PhotographIcon, PencilIcon, LoginIcon } from "@heroicons/react/outline";
+import { HomeIcon, CurrencyDollarIcon, PhotographIcon, PencilIcon, LoginIcon } from "@heroicons/react/outline";
 
 import srcHome from "../assets/images/mobile/HomeInfo.svg";
-import srcSearch from "../assets/images/mobile/SearchInfo.svg";
 import srcMyShoppingInfo from "../assets/images/mobile/MyShoppingInfo.svg";
 import srcProductsInfo from "../assets/images/mobile/ProductsInfo.svg";
 import srcUpdateArtInfo from "../assets/images/mobile/UpdateArtInfo.svg";
@@ -16,13 +15,6 @@ function knowInformationPath(pathname) {
       img: <img src={srcHome} alt="srcHome" className="imgInformative srcHome" />,
       icon: <HomeIcon />,
       to: "/"
-    },
-    "/search": {
-      name: "Buscar",
-      description: "Por aquí puedes buscar el producto que más te guste de TransformArt",
-      img: <img src={srcSearch} alt="srcSearch" className="imgInformative srcSearch" />,
-      icon: <SearchIcon />,
-      to: "/search"
     },
     "/products": {
       name: "Productos",
