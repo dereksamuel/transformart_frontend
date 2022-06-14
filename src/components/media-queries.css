@@ -1,4 +1,4 @@
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 860px) {
   .page {
     padding-top: 83.71px;
   }
@@ -25,6 +25,11 @@
 
   .ContainerLinks {
     display: flex;
+    justify-content: center;
+  }
+
+  .ContainerLinks a {
+    margin: 0 1rem;
   }
 
   .Menu {
@@ -32,6 +37,7 @@
     height: 83.71px;
     display: flex;
     align-items: center;
+    padding-top: 0;
   }
 
   .Menu-hide {
@@ -44,5 +50,9 @@
 
   .blur {
     filter: blur(0);
+  }
+
+  .PCActions {
+    margin: 0;
   }
 }

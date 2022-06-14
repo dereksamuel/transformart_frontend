@@ -6,7 +6,7 @@ import { ChevronLeftIcon } from "@heroicons/react/solid";
 
 import { Button } from "../Button";
 
-import LogoTipoSm from "../../assets/images/mobile/LogoTipoSm.png";
+import LogoTipoSm from "../../assets/images/mobile/LogoTipoSm.svg";
 
 import { logout } from "../../store/actions/authenticate";
 
