@@ -5,6 +5,7 @@ import { Menu } from "./Menu";
 import { RoutesComponent } from "./RoutesComponent";
 
 import "./styles.css";
+import "./media-queries.css";
 
 function App() {
   return (

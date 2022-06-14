@@ -58,7 +58,8 @@ function knowInformationPath(pathname) {
   return {
     pathsInfo,
     pathsAction,
-    onlyPath: pathsInfo[pathname] || pathsAction[pathname]
+    onlyPath: pathsInfo[pathname] || pathsAction[pathname] || pathsAction["/login"],
+    isNotShowedDesc: Boolean(pathsInfo[pathname] || pathsAction[pathname])
   };
 }
 

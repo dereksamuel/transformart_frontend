@@ -20,6 +20,15 @@
   overflow-y: auto;
 }
 
+.PCActions {
+  display: none;
+}
+
+.Menu-hide {
+  display: none;
+  opacity: 0;
+}
+
 .Menu-link, .Menu-link-empty {
   display: flex;
   align-items: center;

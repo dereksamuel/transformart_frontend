@@ -6,7 +6,7 @@ import { ChevronLeftIcon } from "@heroicons/react/solid";
 
 import { Button } from "../Button";
 
-import LogoTipoSm from "../../assets/images/mobile/LogoTipoSm.svg";
+import LogoTipoSm from "../../assets/images/mobile/LogoTipoSm.png";
 
 import { logout } from "../../store/actions/authenticate";
 
@@ -19,25 +19,29 @@ function Menu() {
   const isAuth = useSelector((state) => state.authenticate.isAuth);
   const location = useLocation();
   const $button = useRef(null);
+  const $menu = useRef(null);
   const [state, setState] = useState({
     isMenuDisplayed: false,
     informationPage: null,
     pathsInfo: {},
-    pathsAction: {}
+    pathsAction: {},
+    isNotShowedDesc: false
   });
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const onShowMenu = () => {
+  const onShowMenu = (val) => {
     const $router = document.getElementById("Router");
 
     $button.current.classList.toggle("rotate360");
     $router.classList.toggle("blur");
 
+    $menu.current.classList.toggle("Menu-hide");
+
     setState({
       ...state,
-      isMenuDisplayed: !state.isMenuDisplayed
+      isMenuDisplayed: val || !state.isMenuDisplayed
     });
   };
 
@@ -52,76 +56,84 @@ function Menu() {
     navigate({ pathname: "/login" });
   };
 
+  const menuActions = (isPc) => (
+    <div className={isPc ? "ContainerActions PCActions" : "ContainerActions"}>
+      {
+        !isAuth ? <Link to={{ pathname: state.pathsAction["/login"].to }} className="link-without-styles">
+          <button className="ButtonSecondary">
+            { renderIcon(state.pathsAction["/login"]) }
+            <span>{state.pathsAction["/login"].name}</span>
+          </button>
+        </Link> : (
+          <>
+            <Link to={{ pathname: state.pathsAction["/update_art"].to }} className={
+              location.pathname === state.pathsAction["/update_art"].to ?
+                "Menu-link" :
+                "Menu-link-empty"
+            }>
+              { renderIcon(state.pathsAction["/update_art"]) }
+              <span>{state.pathsAction["/update_art"].name}</span>
+            </Link>
+            <button className="ButtonSecondary" onClick={onLogout}>
+              { renderIcon(state.pathsAction["/register"]) }
+              <span>{state.pathsAction["/register"].name}</span>
+            </button>
+          </>
+        )
+      }
+    </div>
+  );
+
   useEffect(() => {
-    const { pathsInfo, onlyPath, pathsAction } = knowInformationPath(location.pathname);
+    const { pathsInfo, onlyPath, pathsAction, isNotShowedDesc } = knowInformationPath(location.pathname);
 
     setState({
       ...state,
       informationPage: onlyPath,
       pathsInfo,
-      pathsAction
+      pathsAction,
+      isNotShowedDesc
     });
   }, [location.pathname]);
+
+  // FIXME: Fix the problem with TO and the pathname
 
   return (
     <header className="ContainerMenu" id="ContainerMenu">
       <Button refel={$button} onClick={onShowMenu} className="ButtonMenu" aria-label="ButtonMenu">
         <ChevronLeftIcon />
       </Button>
-      {
-        state.isMenuDisplayed && (
-          <div className="Menu">
-            <img src={LogoTipoSm} alt="LogoTipoSm" className="LogoTipoSm" />
-            <div className="ContainerGeneralLinks">
-              <div className="ContainerLinks">
-                {
-                  Object.values(state.pathsInfo).map((valuePage, index) => (
-                    <Link to={{ pathname: valuePage.to }} className={
-                      location.pathname === valuePage.to ? "Menu-link" : "Menu-link-empty"
-                    } key={index}>
-                      { renderIcon(valuePage) }
-                      <span>{valuePage.name}</span>
-                    </Link>
-                  ))
-                }
-              </div>
-              <div className="ContainerActions">
-                {
-                  !isAuth ? <Link to={{ pathname: state.pathsAction["/login"].to }} className="link-without-styles">
-                    <button className="ButtonSecondary">
-                      { renderIcon(state.pathsAction["/login"]) }
-                      <span>{state.pathsAction["/login"].name}</span>
-                    </button>
-                  </Link> : (
-                    <>
-                      <Link to={{ pathname: state.pathsAction["/update_art"].to }} className={
-                        location.pathname === state.pathsAction["/update_art"].to ?
-                          "Menu-link" :
-                          "Menu-link-empty"
-                      }>
-                        { renderIcon(state.pathsAction["/update_art"]) }
-                        <span>{state.pathsAction["/update_art"].name}</span>
-                      </Link>
-                      <button className="ButtonSecondary" onClick={onLogout}>
-                        { renderIcon(state.pathsAction["/register"]) }
-                        <span>{state.pathsAction["/register"].name}</span>
-                      </button>
-                    </>
-                  )
-                }
-              </div>
-            </div>
+      <div className="Menu Menu-hide" ref={$menu}>
+        <img src={LogoTipoSm} alt="LogoTipoSm" className="LogoTipoSm" />
+        <div className="ContainerGeneralLinks">
+          <div className="ContainerLinks">
             {
-              state.informationPage ? (
-                <div className="ContainerDesc">
-                  <p>{ state.informationPage.description }</p>
-                  { state.informationPage.img }
-                </div>
-              ) : <div className="ContainerHidden"></div>
+              Object.values(state.pathsInfo).map((valuePage, index) => (
+                <Link to={{ pathname: valuePage.to }} className={
+                  location.pathname === valuePage.to ? "Menu-link" : "Menu-link-empty"
+                } key={index}>
+                  { renderIcon(valuePage) }
+                  <span>{valuePage.name}</span>
+                </Link>
+              ))
             }
           </div>
-        )
-      }
+          {
+            state.informationPage && menuActions()
+          }
+        </div>
+        {
+          state.informationPage && menuActions(true)
+        }
+        {
+          (state.informationPage && state.isNotShowedDesc) ? (
+            <div className="ContainerDesc">
+              <p>{ state.informationPage.description }</p>
+              { state.informationPage.img }
+            </div>
+          ) : <div className="ContainerHidden"></div>
+        }
+      </div>
     </header>
   );
 }

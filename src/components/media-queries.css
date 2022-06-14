@@ -1,0 +1,48 @@
+@media screen and (min-width: 768px) {
+  .page {
+    padding-top: 83.71px;
+  }
+
+  .ContainerMenu {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    align-items: center;
+  }
+
+  .ContainerGeneralLinks {
+    flex: 1;
+  }
+
+  .ContainerDesc, .ContainerActions {
+    display: none;
+  }
+
+  .PCActions {
+    display: block;
+  }
+
+  .ContainerLinks {
+    display: flex;
+  }
+
+  .Menu {
+    max-width: 100%;
+    height: 83.71px;
+    display: flex;
+    align-items: center;
+  }
+
+  .Menu-hide {
+    opacity: 1;
+  }
+
+  button.ButtonMenu {
+    display: none;
+  }
+
+  .blur {
+    filter: blur(0);
+  }
+}
