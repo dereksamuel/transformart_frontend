@@ -3,6 +3,10 @@
     padding-top: 83.71px;
   }
 
+  .ContainerMenu .LogoTipoSm {
+    max-width: 200px;
+  }
+
   .ContainerMenu {
     position: fixed;
     left: 0;

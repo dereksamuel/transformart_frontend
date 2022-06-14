@@ -126,12 +126,12 @@ function Menu() {
           state.informationPage && menuActions(true)
         }
         {
-          (state.informationPage && state.isNotShowedDesc) ? (
+          (state.informationPage && state.isNotShowedDesc) && (
             <div className="ContainerDesc">
               <p>{ state.informationPage.description }</p>
               { state.informationPage.img }
             </div>
-          ) : <div className="ContainerHidden"></div>
+          )
         }
       </div>
     </header>
