@@ -42,6 +42,8 @@
     display: flex;
     align-items: center;
     padding-top: 0;
+    animation: none;
+    transform: none;
   }
 
   .Menu-hide {
