@@ -33,7 +33,7 @@
   }
 
   .ContainerLinks a {
-    margin: 0 1rem;
+    margin: 0 4%;
   }
 
   .Menu {
@@ -44,6 +44,23 @@
     padding-top: 0;
     animation: none;
     transform: none;
+  }
+
+  .Menu-link {
+    border: none;
+    position: relative;
+  }
+
+  .Menu-link::after {
+    content: "";
+    width: 100%;
+    position: absolute;
+    bottom: -30px;
+    left: 0;
+    height: 0.2rem;
+    display: block;
+    color: var(--color-white);
+    z-index: 2;
   }
 
   .Menu-hide {
