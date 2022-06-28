@@ -25,8 +25,8 @@
 
 .svg path {
   stroke-dasharray: 5px;
-  transition: 3.5s all;
-  animation: changeStroke 3.5s ease-in infinite alternate-reverse;
+  transition: 2.5s all;
+  animation: changeStroke 2.5s ease-in infinite alternate-reverse;
 }
 
 .relative {

@@ -58,7 +58,7 @@ body {
   margin: 0;
   border: none;
   outline: none;
-  cursor: pointer;
+  cursor: auto;
 }
 
 .link-without-styles {

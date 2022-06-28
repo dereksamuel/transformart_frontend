@@ -46,25 +46,25 @@
     transform: none;
   }
 
-  .Menu-link {
+  .Menu-link, .Menu-link-empty {
     border: none;
     position: relative;
   }
 
-  .Menu-link::after {
-    content: "";
-    width: 100%;
-    position: absolute;
-    bottom: -30px;
-    left: 0;
-    height: 0.2rem;
-    display: block;
-    color: var(--color-white);
-    z-index: 2;
-  }
-
   .Menu-hide {
     opacity: 1;
+  }
+
+  .pc-Underline {
+    display: block;
+  }
+
+  .Button-link-Menu {
+    position: relative;
+  }
+
+  .Button-link-Menu .pc-Underline {
+    bottom: -22px;
   }
 
   button.ButtonMenu {
@@ -76,6 +76,24 @@
   }
 
   .PCActions {
+    display: flex;
+    align-items: center;
     margin: 0;
+  }
+
+  .Dots {
+    width: 28pt;
+    height: 28pt;
+    border-radius: 50%;
+    margin-left: 18pt;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-gray);
+    color: var(--color-white);
+  }
+
+  .Dots svg {
+    width: 25px;
   }
 }

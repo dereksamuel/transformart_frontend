@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { ChevronLeftIcon } from "@heroicons/react/solid";
+import { ChevronLeftIcon, DotsHorizontalIcon } from "@heroicons/react/solid";
 
 import { Button } from "../Button";
 
@@ -25,7 +25,8 @@ function Menu() {
     informationPage: null,
     pathsInfo: {},
     pathsAction: {},
-    isNotShowedDesc: false
+    isNotShowedDesc: false,
+    showDots: false
   });
 
   const navigate = useNavigate();
@@ -56,13 +57,23 @@ function Menu() {
     navigate({ pathname: "/login" });
   };
 
+  const onShowDots = () => {
+    setState({
+      ...state,
+      showDots: !state.showDots
+    });
+  };
+
+  const pcUnderline = (valuePage) => location.pathname === valuePage.to && <span className="pc-Underline"></span>;
+
   const menuActions = (isPc) => (
     <div className={isPc ? "ContainerActions PCActions" : "ContainerActions"}>
       {
-        !isAuth ? <Link to={{ pathname: state.pathsAction["/login"].to }} className="link-without-styles">
+        !isAuth ? <Link to={{ pathname: state.pathsAction["/login"].to }} className="link-without-styles Button-link-Menu">
           <button className="ButtonSecondary">
             { renderIcon(state.pathsAction["/login"]) }
             <span>{state.pathsAction["/login"].name}</span>
+            { pcUnderline(state.pathsAction["/login"]) }
           </button>
         </Link> : (
           <>
@@ -73,12 +84,21 @@ function Menu() {
             }>
               { renderIcon(state.pathsAction["/update_art"]) }
               <span>{state.pathsAction["/update_art"].name}</span>
+              { pcUnderline(state.pathsAction["/update_art"]) }
             </Link>
             <button className="ButtonSecondary" onClick={onLogout}>
               { renderIcon(state.pathsAction["/register"]) }
               <span>{state.pathsAction["/register"].name}</span>
+              { pcUnderline(state.pathsAction["/register"]) }
             </button>
           </>
+        )
+      }
+      {
+        isPc && (
+          <button onClick={onShowDots} className="Dots button-without-styles">
+            <DotsHorizontalIcon />
+          </button>
         )
       }
     </div>
@@ -114,6 +134,7 @@ function Menu() {
                 } key={index}>
                   { renderIcon(valuePage) }
                   <span>{valuePage.name}</span>
+                  { pcUnderline(valuePage) }
                 </Link>
               ))
             }

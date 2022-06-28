@@ -112,8 +112,8 @@
 
 .IconMenuLink svg path {
   stroke-dasharray: 5px;
-  transition: 3.5s all;
-  animation: changeStroke 3.5s ease-in forwards alternate;
+  transition: 2.5s all;
+  animation: changeStroke 2.5s ease-in forwards alternate;
 }
 
 .ContainerHidden {
@@ -121,6 +121,17 @@
   display: block;
   text-align: center;
   width: 235px;
+}
+
+.pc-Underline {
+  display: none;
+  width: 100%;
+  position: absolute;
+  bottom: -30px;
+  left: 0;
+  height: 2pt;
+  background-color: var(--color-white);
+  z-index: 2;
 }
 
 @keyframes scaleMenu {
