@@ -66,43 +66,65 @@ function Menu() {
 
   const pcUnderline = (valuePage) => location.pathname === valuePage.to && <span className="pc-Underline"></span>;
 
-  const menuActions = (isPc) => (
-    <div className={isPc ? "ContainerActions PCActions" : "ContainerActions"}>
-      {
-        !isAuth ? <Link to={{ pathname: state.pathsAction["/login"].to }} className="link-without-styles Button-link-Menu">
-          <button className="ButtonSecondary">
-            { renderIcon(state.pathsAction["/login"]) }
-            <span>{state.pathsAction["/login"].name}</span>
-            { pcUnderline(state.pathsAction["/login"]) }
-          </button>
-        </Link> : (
-          <>
-            <Link to={{ pathname: state.pathsAction["/update_art"].to }} className={
-              location.pathname === state.pathsAction["/update_art"].to ?
-                "Menu-link" :
-                "Menu-link-empty"
-            }>
-              { renderIcon(state.pathsAction["/update_art"]) }
-              <span>{state.pathsAction["/update_art"].name}</span>
-              { pcUnderline(state.pathsAction["/update_art"]) }
-            </Link>
-            <button className="ButtonSecondary" onClick={onLogout}>
-              { renderIcon(state.pathsAction["/register"]) }
-              <span>{state.pathsAction["/register"].name}</span>
-              { pcUnderline(state.pathsAction["/register"]) }
+  const menuActions = (isPc) => {
+    const updateArtLink = (updateArtUnderline) => (
+      <Link to={{ pathname: state.pathsAction["/update_art"].to }} className={
+        location.pathname === state.pathsAction["/update_art"].to ?
+          "Menu-link" :
+          "Menu-link-empty"
+      }>
+        { renderIcon(state.pathsAction["/update_art"]) }
+        <span>{state.pathsAction["/update_art"].name}</span>
+        { updateArtUnderline && pcUnderline(state.pathsAction["/update_art"]) }
+      </Link>
+    );
+
+    return (
+      <div className={isPc ? "ContainerActions PCActions" : "ContainerActions"}>
+        {
+          !isAuth ? <Link to={{ pathname: state.pathsAction["/login"].to }} className="link-without-styles Button-link-Menu">
+            <button className="ButtonSecondary">
+              { renderIcon(state.pathsAction["/login"]) }
+              <span>{state.pathsAction["/login"].name}</span>
+              { pcUnderline(state.pathsAction["/login"]) }
             </button>
-          </>
-        )
-      }
-      {
-        isPc && (
-          <button onClick={onShowDots} className="Dots button-without-styles">
-            <DotsHorizontalIcon />
-          </button>
-        )
-      }
-    </div>
-  );
+          </Link> : (
+            <>
+              { updateArtLink(true) }
+              <button className="ButtonSecondary" onClick={onLogout}>
+                { renderIcon(state.pathsAction["/register"]) }
+                <span>{state.pathsAction["/register"].name}</span>
+                { pcUnderline(state.pathsAction["/register"]) }
+              </button>
+            </>
+          )
+        }
+        {
+          isPc && (
+            <button onClick={onShowDots} className="Dots button-without-styles">
+              <DotsHorizontalIcon />
+            </button>
+          )
+        }
+        {
+          (state.showDots && isPc) && (
+            <div className="DotsContainer">
+              <Link to={{ pathname: state.pathsAction["/my_own_art"].to }} className={
+                location.pathname === state.pathsAction["/my_own_art"].to ?
+                  "Menu-link" :
+                  "Menu-link-empty"
+              }>
+                { renderIcon(state.pathsAction["/my_own_art"]) }
+                <span>{state.pathsAction["/my_own_art"].name}</span>
+                {/* { pcUnderline(state.pathsAction["/my_own_art"]) } */}
+              </Link>
+              { updateArtLink() }
+            </div>
+          )
+        }
+      </div>
+    );
+  };
 
   useEffect(() => {
     const { pathsInfo, onlyPath, pathsAction, isNotShowedDesc } = knowInformationPath(location.pathname);
@@ -155,6 +177,11 @@ function Menu() {
           )
         }
       </div>
+      {
+        state.showDots && (
+          <div className="ModalOverlayDots"></div>
+        )
+      }
     </header>
   );
 }

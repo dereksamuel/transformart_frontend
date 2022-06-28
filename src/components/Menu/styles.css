@@ -116,6 +116,14 @@
   animation: changeStroke 2.5s ease-in forwards alternate;
 }
 
+.ModalOverlayDots {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: var(--color-dark);
+}
+
 .ContainerHidden {
   margin: 1rem auto;
   display: block;
