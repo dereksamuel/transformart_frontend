@@ -142,6 +142,25 @@
   z-index: 2;
 }
 
+.OverlayDotsDefault, .OverlayDots {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.589);
+  z-index: 2;
+  opacity: 0;
+  transition: 0.5s opacity;
+  animation: restoreOpacity 0.5s forwards;
+}
+
+.OverlayDots {
+  opacity: 1;
+  transition: 0.5s opacity;
+  animation: restoreOpacityInverse 0.5s forwards;
+}
+
 @keyframes scaleMenu {
   0% {
     transform: scaleX(0);
@@ -166,5 +185,25 @@
   }
   100% {
     stroke-dasharray: 200px;
+  }
+}
+
+@keyframes restoreOpacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes restoreOpacityInverse {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    position: absolute;
+    opacity: 0;
+    z-index: -999;
   }
 }

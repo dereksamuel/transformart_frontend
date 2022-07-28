@@ -78,6 +78,7 @@
   }
 
   .Dots {
+    position: relative;
     width: 28pt;
     height: 28pt;
     border-radius: 50%;
@@ -87,6 +88,7 @@
     justify-content: center;
     background-color: var(--color-gray);
     color: var(--color-white);
+    z-index: 5;
   }
 
   .DotsContainer {

@@ -28,6 +28,7 @@ function Menu() {
     isNotShowedDesc: false,
     showDots: false
   });
+  const $overlayDots = useRef(null);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -57,7 +58,11 @@ function Menu() {
     navigate({ pathname: "/login" });
   };
 
-  const onShowDots = () => {
+  const onShowDots = (event) => {
+    event.stopPropagation();
+    $overlayDots.current.classList.toggle("OverlayDotsDefault");
+    $overlayDots.current.classList.toggle("OverlayDots");
+
     setState({
       ...state,
       showDots: !state.showDots
@@ -81,6 +86,7 @@ function Menu() {
 
     return (
       <div className={isPc ? "ContainerActions PCActions" : "ContainerActions"}>
+        <div ref={$overlayDots} className="OverlayDots"></div>
         {
           !isAuth ? <Link to={{ pathname: state.pathsAction["/login"].to }} className="link-without-styles Button-link-Menu">
             <button className="ButtonSecondary">
@@ -108,7 +114,7 @@ function Menu() {
         }
         {
           (state.showDots && isPc) && (
-            <div className="DotsContainer">
+            <div className="DotsContainer" onClick={(event) => event.stopPropagation()}>
               <Link to={{ pathname: state.pathsAction["/my_own_art"].to }} className={
                 location.pathname === state.pathsAction["/my_own_art"].to ?
                   "Menu-link" :
@@ -125,6 +131,30 @@ function Menu() {
       </div>
     );
   };
+
+  useEffect(() => {
+    const eventHandler = () => {
+      $overlayDots.current.classList.toggle("OverlayDotsDefault");
+      $overlayDots.current.classList.toggle("OverlayDots");
+
+      setState({
+        ...state,
+        showDots: false
+      });
+    };
+
+    const startEventCloseMenu = () => {
+      window.addEventListener("click", eventHandler);
+    };
+
+    if (state.showDots) {
+      startEventCloseMenu();
+    }
+
+    return () => {
+      window.removeEventListener("click", eventHandler);
+    };
+  }, [state.showDots]);
 
   useEffect(() => {
     const { pathsInfo, onlyPath, pathsAction, isNotShowedDesc } = knowInformationPath(location.pathname);
