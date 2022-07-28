@@ -35,6 +35,10 @@ body {
   background-color: var(--color-primary);
 }
 
+.PC__ContainerHero {
+  display: none;
+}
+
 .page {
   box-shadow: inset 0px 86px 69px var(--color-dark);
   overflow: auto;

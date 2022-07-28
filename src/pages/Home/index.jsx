@@ -24,6 +24,11 @@ function Home() {
   return (
     <div className="Home page" id="Home">
       <div className="HomeImages">
+        <div className="PC__ContainerHero">
+          <p>Bienvenido a transform art</p>
+          <h3>Donde <strong>embellecemos</strong></h3>
+          <h3>tu arte</h3>
+        </div>
         <img src={logoSrc} alt="Logo" className="Logo" />
         <img src={pigSrc} alt="Pig" className="Pig" />
       </div>

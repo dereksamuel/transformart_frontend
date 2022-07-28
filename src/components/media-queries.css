@@ -113,4 +113,45 @@
   .Dots svg {
     width: 25px;
   }
+
+  .Pig {
+    max-width: 435.71px;
+    margin: 0;
+  }
+
+  .Logo {
+    display: none;
+  }
+
+  .PC__ContainerHero {
+    display: block;
+    margin-right: 108px;
+  }
+
+  .PC__ContainerHero p {
+    font-size: 20px;
+    color: var(--color-text);
+  }
+
+  .PC__ContainerHero h3 {
+    font-style: normal;
+    font-weight: 900;
+    font-size: 40px;
+    line-height: 49px;
+
+    color: var(--color-white);
+  }
+
+  .PC__ContainerHero h3 strong {
+    font-weight: 900;
+    color: var(--color-radiant);
+  }
+
+  .HomeImages {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 80px;
+    padding: 2rem;
+  }
 }
