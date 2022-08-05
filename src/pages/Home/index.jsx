@@ -37,33 +37,41 @@ function Home() {
           <Button className="PrimaryWave" onClick={onGoToCategories}>Ver productos</Button>
         </div>
         <div className="BackgroundWave-Container_text">
-          <Title isTitle={false}>Sobre nosotros...</Title>
-          <p>Lorem ipsum es el texto que se usa habitualmente en diseño gráfico en demostraciones de tipografías o de borradores de diseño para probar el diseño visual antes de insertar el texto final.</p>
-          <div className="BackgroundWave-Video_Container">
-            <PlayIcon className="PlayIcon" />
-            <video src="" className="BackgroundWave-Video"></video>
+          <div className="AboutUs">
+            <Title isTitle={false}>Sobre nosotros...</Title>
+            <p>Lorem ipsum es el texto que se usa habitualmente en diseño gráfico en demostraciones de tipografías o de borradores de diseño para probar el diseño visual antes de insertar el texto final.</p>
+            <div className="BackgroundWave-Video_Container">
+              <PlayIcon className="PlayIcon" />
+              <video src="" className="BackgroundWave-Video"></video>
+            </div>
           </div>
-          <p className="SubTitleSecondaryContainer"><strong className="SubTitleSecondary">Datos de contacto</strong></p>
-          <p className="SubTitleThered"><strong>Tel</strong><span>: 22453</span></p>
-          <p className="SubTitleThered"><strong>Cel</strong><span>: 3156979296</span></p>
-          <p className="SubTitleThered"><span>hectorpaulc@gmail.com</span></p>
-          <p className="SubTitleSecondaryContainer centered socialMediaText"><strong className="SubTitleSecondary">Redes Sociales</strong></p>
-          <div className="IconsContainer">
-            <Button className="button-without-styles">
-              <IconBanner className="IconBanner facebookIcon">
-                <img src={facebookIcon} alt="facebookIcon" />
-              </IconBanner>
-            </Button>
-            <Button className="button-without-styles">
-              <IconBanner className="IconBanner tweeterIcon">
-                <img src={tweeterIcon} alt="tweeterIcon" />
-              </IconBanner>
-            </Button>
-            <Button className="button-without-styles">
-              <IconBanner className="IconBanner instagramIcon">
-                <img src={instagramIcon} alt="instagramIcon" />
-              </IconBanner>
-            </Button>
+          <div className="ContactIcons">
+            <div className="ContactDetails">
+              <p className="SubTitleSecondaryContainer"><strong className="SubTitleSecondary">Datos de contacto</strong></p>
+              <p className="SubTitleThered"><strong>Tel</strong><span>: 22453</span></p>
+              <p className="SubTitleThered"><strong>Cel</strong><span>: 3156979296</span></p>
+              <p className="SubTitleThered"><span>hectorpaulc@gmail.com</span></p>
+            </div>
+            <div className="ContainerIconsTitle">
+              <p className="SubTitleSecondaryContainer centered socialMediaText"><strong className="SubTitleSecondary">Conocenos más en:</strong></p>
+              <div className="IconsContainer">
+                <Button className="button-without-styles">
+                  <IconBanner className="IconBanner facebookIcon">
+                    <img src={facebookIcon} alt="facebookIcon" />
+                  </IconBanner>
+                </Button>
+                <Button className="button-without-styles">
+                  <IconBanner className="IconBanner tweeterIcon">
+                    <img src={tweeterIcon} alt="tweeterIcon" />
+                  </IconBanner>
+                </Button>
+                <Button className="button-without-styles">
+                  <IconBanner className="IconBanner instagramIcon">
+                    <img src={instagramIcon} alt="instagramIcon" />
+                  </IconBanner>
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
         <div className="centered copyright">

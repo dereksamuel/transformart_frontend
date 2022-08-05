@@ -152,6 +152,73 @@
     align-items: center;
     justify-content: center;
     margin-top: 80px;
-    padding: 2rem;
+    padding: 2rem 3rem;
+  }
+
+  .BackgroundWave {
+    min-height: 350px;
+    background: url(../assets/images/pc/Wave.svg);
+    background-size: cover;
+    background-position-x: center;
+    background-repeat: no-repeat;
+    position: relative;
+    padding-top: 1rem;
+    margin-top: -100px;
+  }
+
+  .bgWave {
+    display: none;
+    border-radius: 50% 50% 0 0;
+    min-height: 200px;
+  }
+
+  .BackgroundWave-ButtonContainer {
+    padding-top: 7rem;
+  }
+
+  .BackgroundWave-Container_text {
+    padding-top: 5rem;
+    max-width: 1046px;
+    margin: auto;
+    display: flex;
+  }
+
+  .AboutUs {
+    padding-right: 192px;
+    padding-left: 3rem;
+  }
+
+  .BackgroundWave-Container_text p {
+    max-width: 727px;
+    margin: 0;
+  }
+
+  .BackgroundWave-Video {
+    margin: 0;
+    max-width: 100%;
+  }
+
+  .SubTitle {
+    padding-top: 0;
+  }
+
+  .ContactIcons {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 3rem;
+  }
+
+  .IconsContainer {
+    margin-bottom: 60px;
+  }
+
+  p.SubTitleSecondaryContainer {
+    padding-bottom: 1.5rem;
+  }
+
+  p.SubTitleThered {
+    margin-bottom: 1rem;
   }
 }
