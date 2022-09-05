@@ -10,4 +10,4 @@ export {
   app,
   auth,
   storage
-};
+}
