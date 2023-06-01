@@ -17,6 +17,7 @@ import { SET_SELECTED } from "../../store/types/products";
 import { getLocalStorage, setLocalStorage } from "../../utils/localStorage";
 
 import "./styles.css";
+import "./product-media-queries.css";
 
 function Product() {
   const [stateLocal, setStateLocal] = useState({
@@ -134,6 +135,65 @@ function Product() {
     });
   }, [categoriesProductsArray, product]);
 
+  const containerCategories = (
+    <ul className="ContainerCategories">
+      {
+        stateLocal.productsCategories.length ? stateLocal.productsCategories.map((productsCategory) => (
+          productsCategory.category && (
+            <li
+              className="CategoryBanner"
+              key={productsCategory.category.id}
+              onClick={() => onNavigateToProducts(productsCategory.categoriesProductId)}
+            >
+              <span>
+                { productsCategory.category.name }
+              </span>
+            </li>
+          )
+        )) : (
+          <p className="NoRelationShips">No hay categorias relacionadas con este producto</p>
+        )
+      }
+    </ul>
+  );
+
+  const containerSizes = (
+    <>
+      <Title className="SubTitle SubTitle-sub">
+            Primero Elige el tamaño de { product.name }:
+      </Title>
+      <ul className="ContainerCategories">
+        <li
+          className={`SizeBanner ${stateLocal.selectedSize === "Pequeño (120cm x 120)" && "SelectedSizeBanner"}`}
+          onClick={() => setStateLocal({
+            ...stateLocal,
+            selectedSize: "Pequeño (120cm x 120)"
+          })}
+        >
+          <span>Pequeño (120cm x 120)</span>
+        </li>
+        <li
+          className={`SizeBanner ${stateLocal.selectedSize === "Mediano (15m x 1m)" && "SelectedSizeBanner"}`}
+          onClick={() => setStateLocal({
+            ...stateLocal,
+            selectedSize: "Mediano (15m x 1m)"
+          })}
+        >
+          <span>Mediano (15m x 1m)</span>
+        </li>
+        <li
+          className={`SizeBanner ${stateLocal.selectedSize === "Grande (120cm x 120)" && "SelectedSizeBanner"}`}
+          onClick={() => setStateLocal({
+            ...stateLocal,
+            selectedSize: "Grande (120cm x 120)"
+          })}
+        >
+          <span>Grande (120cm x 120)</span>
+        </li>
+      </ul>
+    </>
+  );
+
   return (
     <div className="ProductContainer page">
       <figure className="ContainerImage">
@@ -148,6 +208,11 @@ function Product() {
               className="BackgroundWave-Video_Container imageContainerVideo"
               onClick={onPlayVideo}
             >
+              {
+                product.offer ? (
+                  <p className="OfferPC">Oferta del { product.offer }%</p>
+                ) : null
+              }
               {
                 !stateLocal.playingVideo && (
                   <PlayIcon className="PlayIcon" />
@@ -165,27 +230,14 @@ function Product() {
             <img src={product.srcImage} alt={product.name} />
           )
         }
+        <div className="ContainerCategoriesPC">
+          <h2 className="SubTitle SubTitle-sub SubTitle2">Categorias:</h2>
+          {containerCategories}
+          {containerSizes}
+        </div>
       </figure>
       <section className="ContainerBody">
-        <ul className="ContainerCategories">
-          {
-            stateLocal.productsCategories.length ? stateLocal.productsCategories.map((productsCategory) => (
-              productsCategory.category && (
-                <li
-                  className="CategoryBanner"
-                  key={productsCategory.category.id}
-                  onClick={() => onNavigateToProducts(productsCategory.categoriesProductId)}
-                >
-                  <span>
-                    { productsCategory.category.name }
-                  </span>
-                </li>
-              )
-            )) : (
-              <p className="NoRelationShips">No hay categorias relacionadas con este producto</p>
-            )
-          }
-        </ul>
+        {containerCategories}
         <Title isTitle={true} className="Title ProductTitle">{ product.name }</Title>
         <p className={`Price ${product.offer && "Disabled"}`}>
           Precio:
@@ -220,39 +272,20 @@ function Product() {
             <a href={product.instagramLink} target="_blank" className="Link" rel="noreferrer">instagram</a>
           </li>
         </ul>
+        <div className="ButtonPcContainer">
+          <a
+            className="containerSizesClassName"
+            href="#containerSizes"
+            ref={refLink}
+            onClick={onAddToPay}
+          >
+            <Button
+              className={`PrimaryWave ProductButton ${!stateLocal.selectedSize && "Disabled"}`}
+            >Agregar a mis compras</Button>
+          </a>
+        </div>
         <div className="ContainerSizes" id="containerSizes">
-          <Title className="SubTitle SubTitle-sub">
-            Primero Elige el tamaño de { product.name }:
-          </Title>
-          <ul className="ContainerCategories">
-            <li
-              className={`SizeBanner ${stateLocal.selectedSize === "Pequeño (120cm x 120)" && "SelectedSizeBanner"}`}
-              onClick={() => setStateLocal({
-                ...stateLocal,
-                selectedSize: "Pequeño (120cm x 120)"
-              })}
-            >
-              <span>Pequeño (120cm x 120)</span>
-            </li>
-            <li
-              className={`SizeBanner ${stateLocal.selectedSize === "Mediano (15m x 1m)" && "SelectedSizeBanner"}`}
-              onClick={() => setStateLocal({
-                ...stateLocal,
-                selectedSize: "Mediano (15m x 1m)"
-              })}
-            >
-              <span>Mediano (15m x 1m)</span>
-            </li>
-            <li
-              className={`SizeBanner ${stateLocal.selectedSize === "Grande (120cm x 120)" && "SelectedSizeBanner"}`}
-              onClick={() => setStateLocal({
-                ...stateLocal,
-                selectedSize: "Grande (120cm x 120)"
-              })}
-            >
-              <span>Grande (120cm x 120)</span>
-            </li>
-          </ul>
+          {containerSizes}
         </div>
         <div className="ZoneOfButton">
           <a

@@ -243,7 +243,18 @@
   }
 
   .TitleButterFly {
-    padding-top: 1rem;
+    padding-top: 5rem;
     font-weight: bolder;
+    font-family: var(--font-2), sans-serif;
+    font-size: 1.5625rem;
+  }
+
+  .TitleButterFly span {
+    padding-bottom: 0.25rem;
+    margin: 0;
+  }
+
+  .TitleButterFly img {
+    display: none;
   }
 }

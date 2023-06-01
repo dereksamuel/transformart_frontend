@@ -8,8 +8,7 @@
     /* grid-auto-rows: 1fr; */
     max-width: 1046px;
     margin: 0 auto;
-    padding: 0 1rem;
-    padding-top: 3.6875rem;
+    padding: 3.6875rem 1rem;
   }
 
   a.ProductItem,

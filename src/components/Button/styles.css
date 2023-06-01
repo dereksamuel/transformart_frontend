@@ -70,6 +70,22 @@ button.ButtonSecondaryClick {
   color: var(--color-white);
 }
 
+button.Gmail {
+  width: 100%;
+  max-width: 8rem;
+  padding: 0.85rem 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: var(--color-gray-dark);
+}
+
+button.Gmail span {
+  color: var(--color-white);
+}
+
 button.ButtonSecondaryClick svg {
   max-width: 30px;
 }

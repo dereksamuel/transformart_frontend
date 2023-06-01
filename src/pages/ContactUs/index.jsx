@@ -98,7 +98,7 @@ function ContactUs() {
           <span>Por Whatsapp</span>
         </Button>
         <Button
-          className="ButtonSecondaryClick PrimaryWave Icon"
+          className="Gmail PrimaryWave Icon"
           onClick={onOpenGmailLink}
         >
           <img src={Gmail} alt="Gmail" className="Gmail" />

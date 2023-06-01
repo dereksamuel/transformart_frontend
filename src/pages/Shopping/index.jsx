@@ -60,31 +60,32 @@ function Shopping() {
           <div className="CategoriesGrid">
             {
               (products && products.length) && products.map((product) => (
-                <ProductItem
-                  key={`${product.id} ${product.selectedSize}`}
-                  product={product}
-                  toBuy={true}>
-                  <div className="ZoneButtons">
-                    {
-                      product.count > 1 ? (
-                        <Button
-                          className="ButtonToggleSize"
-                          onClick={() => toggleOneProduct(true, `${product.id} ${product.selectedSize}`)}
-                        ><MinusIcon /></Button>
-                      ) : (
-                        <Button
-                          className="ButtonToggleSize-danger"
-                          onClick={() => deleteProduct(`${product.id} ${product.selectedSize}`)}
-                        ><TrashIcon /></Button>
-                      )
-                    }
-                    <p className="Count">{product.count}</p>
-                    <Button
-                      className="ButtonToggleSize"
-                      onClick={() => toggleOneProduct(false, `${product.id} ${product.selectedSize}`)}
-                    ><PlusIcon /></Button>
-                  </div>
-                </ProductItem>
+                <section key={`${product.id} ${product.selectedSize}`}>
+                  <ProductItem
+                    product={product}
+                    toBuy={true}>
+                    <div className="ZoneButtons">
+                      {
+                        product.count > 1 ? (
+                          <Button
+                            className="ButtonToggleSize"
+                            onClick={() => toggleOneProduct(true, `${product.id} ${product.selectedSize}`)}
+                          ><MinusIcon /></Button>
+                        ) : (
+                          <Button
+                            className="ButtonToggleSize-danger"
+                            onClick={() => deleteProduct(`${product.id} ${product.selectedSize}`)}
+                          ><TrashIcon /></Button>
+                        )
+                      }
+                      <p className="Count">{product.count}</p>
+                      <Button
+                        className="ButtonToggleSize"
+                        onClick={() => toggleOneProduct(false, `${product.id} ${product.selectedSize}`)}
+                      ><PlusIcon /></Button>
+                    </div>
+                  </ProductItem>
+                </section>
               ))
             }
           </div>

@@ -46,6 +46,7 @@ function RoutesComponent() {
           <Route exact path="/update_art" element={<UpdateArt />}/>
         </Route>
       </Routes>
+      {/* <div className="rectangleBg"></div> */}
       {isHiddenTriangle && <div className="triangle-pc"></div>}
     </main>
   );
