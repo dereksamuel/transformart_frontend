@@ -116,7 +116,10 @@ function Product() {
         playingVideo: true
       });
 
-      refVideo.current.play();
+      const timer = setTimeout(() => {
+        refVideo.current.play();
+        clearTimeout(timer);
+      }, 10);
     }
   };
 
@@ -167,15 +170,17 @@ function Product() {
         <ul className="ContainerCategories">
           {
             stateLocal.productsCategories.length ? stateLocal.productsCategories.map((productsCategory) => (
-              <li
-                className="CategoryBanner"
-                key={productsCategory.category.id}
-                onClick={() => onNavigateToProducts(productsCategory.categoriesProductId)}
-              >
-                <span>
-                  { productsCategory.category.name }
-                </span>
-              </li>
+              productsCategory.category && (
+                <li
+                  className="CategoryBanner"
+                  key={productsCategory.category.id}
+                  onClick={() => onNavigateToProducts(productsCategory.categoriesProductId)}
+                >
+                  <span>
+                    { productsCategory.category.name }
+                  </span>
+                </li>
+              )
             )) : (
               <p className="NoRelationShips">No hay categorias relacionadas con este producto</p>
             )

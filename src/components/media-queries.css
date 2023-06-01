@@ -221,4 +221,12 @@
   p.SubTitleThered {
     margin-bottom: 1rem;
   }
+
+  .Home { 
+    height: calc(100vh - 83.7px);
+  }
+
+  .TitleButterFly {
+    padding-top: 1rem;
+  }
 }

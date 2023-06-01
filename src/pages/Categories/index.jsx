@@ -16,6 +16,7 @@ import { useCP } from "../../hooks/useCP";
 import { getCategoriesProducts } from "../../store/actions/categoriesProducts";
 
 import "./styles.css";
+import "./categories-media-queries.css";
 
 function Categories() {
   const categoriesProductsArray = useCP();
@@ -283,38 +284,42 @@ function Categories() {
             ) : ""
           }
         </div>
-        {
-          state.categoriesProductsArray.length ? state.categoriesProductsArray.map((categoriesProductsItem, indexCP) => (
-            <div className="CategoriesArray" key={categoriesProductsItem.category?.id || indexCP}>
-              <Title
-                className="SubTitle TitleEachCategory"
-              >{categoriesProductsItem.category?.name}</Title>
-              <div className="CategoriesGrid">
+        <ul className="CategoriesArrayContainer">
+          {
+            state.categoriesProductsArray.length ? state.categoriesProductsArray.map((categoriesProductsItem, indexCP) => (
+              <div className="CategoriesArray" key={categoriesProductsItem.category?.id || indexCP}>
+                <Title
+                  className="SubTitle TitleEachCategory"
+                >{categoriesProductsItem.category?.name} <Button
+                    className="ButtonSecondaryClick"
+                  > <p>Ver más</p> <EyeIcon /> </Button></Title>
+                <div className="CategoriesGrid">
+                  {
+                    [...categoriesProductsItem.products].map((product, indexProduct) => (
+                      ((indexProduct + 1) <= 4 && product) &&
+                        <ProductItem key={product.id} product={product} />
+                    ))
+                  }
+                </div>
                 {
-                  [...categoriesProductsItem.products].map((product, indexProduct) => (
-                    ((indexProduct + 1) <= 4 && product) &&
-                      <ProductItem key={product.id} product={product} />
-                  ))
+                  [...categoriesProductsItem.products].length > 4 && (
+                    <Button
+                      className="PrimaryWave ButtonSecondaryClick"
+                      onClick={() => onSeeMore(categoriesProductsItem.categoriesProductId)}
+                    >
+                      <span>Ver más</span>
+                      <span className="IconSeeMore"><EyeIcon /></span>
+                    </Button>
+                  )
                 }
               </div>
-              {
-                [...categoriesProductsItem.products].length > 4 && (
-                  <Button
-                    className="PrimaryWave ButtonSecondaryClick"
-                    onClick={() => onSeeMore(categoriesProductsItem.categoriesProductId)}
-                  >
-                    <span>Ver más</span>
-                    <span className="IconSeeMore"><EyeIcon /></span>
-                  </Button>
-                )
-              }
-            </div>
-          )) : (
-            <div className="CategoriesEmpty">
-              <EmptyDraw titleEmpty="No hay productos" />
-            </div>
-          )
-        }
+            )) : (
+              <div className="CategoriesEmpty">
+                <EmptyDraw titleEmpty="No hay productos" />
+              </div>
+            )
+          }
+        </ul>
       </article>
     </div>
   );

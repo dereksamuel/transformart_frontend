@@ -10,7 +10,7 @@ function ProductItem({
   children
 }) {
   return (
-    <section>
+    <>
       <Link to={`/oneProduct/${product.id}`} className="ProductItem">
         <li>
           <div className="tap"></div>
@@ -21,7 +21,7 @@ function ProductItem({
               </div>
             ) : null
           }
-          <img src={product.srcImage} alt={product.name} loading="lazy" />
+          <img className={product.offer && "ImageOffer"} src={product.srcImage} alt={product.name} loading="lazy" />
           <h3>
             <span>{ product.name }</span>
             {
@@ -35,7 +35,7 @@ function ProductItem({
         </li>
       </Link>
       { children }
-    </section>
+    </>
   );
 }
 

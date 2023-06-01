@@ -16,7 +16,7 @@ function Category() {
   return (
     <div className="CategoriesArray page">
       {
-        (categoriesProductsObject && categoriesProductsObject.length) && (
+        (categoriesProductsObject && categoriesProductsObject.length && categoriesProductsObject[0][1].category) && (
           <>
             <Title className="SubTitle TitleButterFly" isTitle={false}>
               <img src={srcLogoIcon} alt="srcLogoIcon" className="Categories-srcLogoIcon" />
