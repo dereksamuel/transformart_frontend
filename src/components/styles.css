@@ -135,6 +135,10 @@ li.SelectedSizeBanner {
   animation: rotateArrow 0.5s ease-in forwards;
 }
 
+.TitleEachCategory button {
+  display: none;
+}
+
 @keyframes rotateArrow {
   0% {
     transform: rotate(0);
