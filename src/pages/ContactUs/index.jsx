@@ -7,14 +7,16 @@ import { Button } from "../../components/Button";
 
 import WaveFlowHeader from "../../assets/images/mobile/WaveFlowHeader.svg";
 import PigDone from "../../assets/images/mobile/PigDone.svg";
+import PigDonePC from "../../assets/images/pc/PigDonePC.svg";
 import Whatsapp from "../../assets/images/mobile/Whatsapp.svg";
 import Gmail from "../../assets/images/mobile/Gmail.svg";
 
 import { totalToPay } from "../../utils/totalToPay";
+import { setLocalStorage } from "../../utils/localStorage";
 import { useStorage } from "../../hooks/useStorage";
 
 import "./styles.css";
-import { setLocalStorage } from "../../utils/localStorage";
+import "./contactus-media-queries.css";
 
 function ContactUs() {
   const {
@@ -86,9 +88,10 @@ function ContactUs() {
       <div className="InformativeBox">
         <img src={PigDone} alt="PigDone" className="PigDone" />
         <p className="InformativeBox--message">
-          Contactanos por Whatsapp o Gmail y enviaremos tus compras allí:
+          Contactanos por Whatsapp o Gmail y enviaremos tus compras allí a nuestro correo o cuenta empresarial
         </p>
       </div>
+      <img src={PigDonePC} alt="PigDonePC" className="PigDonePC" />
       <div className="buttonContainer">
         <Button
           className="PrimaryWave Icon"

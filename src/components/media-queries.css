@@ -242,8 +242,8 @@
     height: calc(100vh - 83.7px);
   }
 
-  .TitleButterFly, .Resume .SubTitle {
-    padding-top: 5rem;
+  .TitleButterFly, .Resume .SubTitle, .ContactUs .SubTitle {
+    padding-top: 4rem;
     font-weight: 900;
     font-family: var(--font-2), sans-serif;
     font-size: 1.5625rem;

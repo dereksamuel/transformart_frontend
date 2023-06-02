@@ -1,0 +1,36 @@
+@media screen and (min-width: 860px) {
+  .InformativeBox .PigDone, .ContactUs .WaveFlowHeader {
+    display: none;
+  }
+
+  .ContactUs .buttonContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 30rem;
+  }
+
+  .InformativeBox {
+    max-width: 30rem;
+  }
+
+  .InformativeBox--message {
+    padding-left: 0;
+    margin-bottom: 2rem;
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .ContactUs button.Icon:first-child {
+    /* max-width: fit-content; */
+    margin: 0;
+    margin-right: 1rem;
+  }
+
+  .PigDonePC {
+    position: relative;
+    max-width: fit-content;
+    margin: 0 auto;
+    display: block;
+  }
+}
