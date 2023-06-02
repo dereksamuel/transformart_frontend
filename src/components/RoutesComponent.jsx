@@ -14,6 +14,7 @@ import { UpdateArt } from "../pages/UpdateArt";
 import { PrivateRoute } from "./PrivateRoute";
 
 import { useVerifyAuth } from "../hooks/useVerifyAuth";
+import { ResumeWave } from "./ResumeWave";
 
 function RoutesComponent() {
   const location = useLocation();
@@ -46,6 +47,7 @@ function RoutesComponent() {
           <Route exact path="/update_art" element={<UpdateArt />}/>
         </Route>
       </Routes>
+      {location.pathname === "/resume" && <div className="wave-pc"><ResumeWave /></div>}
       {isHiddenTriangle && <div className="triangle-pc"></div>}
     </main>
   );

@@ -12,6 +12,7 @@ import { priceConverter } from "../../utils/priceConverter";
 import { totalToPay } from "../../utils/totalToPay";
 
 import "./styles.css";
+import "./resume-media-queries.css";
 
 function Resume () {
   const {
@@ -45,12 +46,14 @@ function Resume () {
               key={`${product.id} ${product.selectedSize}`}
               className="ItemList"
             >
-              <p className="ProductName">
-                {product.name} - {product.selectedSize}
-              </p>
-              <p className="ProductSize">
-                Cantidad: {product.count}
-              </p>
+              <div className="ItemListFirst">
+                <p className="ProductName">
+                  {product.name} - {product.selectedSize}
+                </p>
+                <p className="ProductSize">
+                  Cantidad: {product.count}
+                </p>
+              </div>
               <p className="ProductPrice">
                 Precio: ${priceConverter(product.price)}
               </p>
@@ -58,7 +61,18 @@ function Resume () {
           ))
         }
       </ul>
-      <p className="TotalPrice">Total: ${ (products && products.length) && totalToPay(products) }</p>
+      <p className="TotalPrice MobilePrice">Total: ${ (products && products.length) && totalToPay(products) }</p>
+      <div className="TotalPriceContainerPC">
+        <p className="TotalPrice">Total: ${ (products && products.length) && totalToPay(products) }</p>
+        <Link to={{
+          pathname: "/contact_us"
+        }} className="link-without-styles">
+          <Button
+            disabled={!products || !products.length}
+            className={"PrimaryWave"}
+          >Contactanos</Button>
+        </Link>
+      </div>
       <div className="spaceButton"></div>
       <div className="ZoneOfButton">
         <Link to={{

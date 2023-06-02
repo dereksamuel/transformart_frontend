@@ -177,3 +177,7 @@ li.SelectedSizeBanner {
 ::-webkit-scrollbar-thumb {
   background: var(--color-gray-dark);
 }
+
+.wave-pc {
+  display: none;
+}

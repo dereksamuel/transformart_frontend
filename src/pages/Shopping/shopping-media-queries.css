@@ -1,4 +1,8 @@
 @media screen and (min-width: 860px) {
+  .Shopping {
+    padding-bottom: 2rem;
+  }
+
   .Shopping .ZoneOfButton, .Shopping .TitleButterFly {
     display: none;
   }

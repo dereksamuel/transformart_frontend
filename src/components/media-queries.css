@@ -242,7 +242,7 @@
     height: calc(100vh - 83.7px);
   }
 
-  .TitleButterFly {
+  .TitleButterFly, .Resume .SubTitle {
     padding-top: 5rem;
     font-weight: 900;
     font-family: var(--font-2), sans-serif;
@@ -256,5 +256,15 @@
 
   .TitleButterFly img {
     display: none;
+  }
+
+  .wave-pc {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    top: auto;
+    display: block;
+    width: 100%;
+    height: fit-content;
   }
 }

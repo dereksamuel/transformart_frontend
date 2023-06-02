@@ -38,3 +38,7 @@ p.TotalPrice {
   color: var(--color-secondary);
   background-color: var(--color-dark);
 }
+
+.TotalPriceContainerPC {
+  display: none;
+}
