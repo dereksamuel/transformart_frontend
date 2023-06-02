@@ -1,0 +1,19 @@
+@media screen and (min-width: 860px) {
+  .CategoryPageInd {
+    width: 100%;
+  }
+
+  .CategoryPageInd .CategoriesGrid a {
+    max-width: 12.5rem;
+    width: 100%;
+  }
+
+  .CategoryPageInd .CategoriesGrid {
+    grid-template-columns: repeat(auto-fit, 12.5rem);
+    grid-template-rows: repeat(auto-fill, minmax(1.5rem, 12.5rem));
+    padding: 0 1rem;
+    margin: 0 auto;
+    justify-content: center;
+    max-width: 1300px;
+  }
+}

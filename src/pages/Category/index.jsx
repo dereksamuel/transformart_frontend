@@ -8,13 +8,14 @@ import { useCP } from "../../hooks/useCP";
 import { ProductItem } from "../../components/ProductItem";
 
 import "../Categories/styles.css";
+import "./category-media-queries.css";
 
 function Category() {
   const params = useParams();
   const categoriesProductsObject = useCP(params.categoryId);
 
   return (
-    <div className="CategoriesArray page">
+    <div className="CategoriesArray CategoryPageInd page">
       {
         (categoriesProductsObject && categoriesProductsObject.length && categoriesProductsObject[0][1].category) && (
           <>

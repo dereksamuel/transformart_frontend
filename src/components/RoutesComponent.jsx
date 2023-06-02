@@ -17,7 +17,7 @@ import { useVerifyAuth } from "../hooks/useVerifyAuth";
 
 function RoutesComponent() {
   const location = useLocation();
-  const isHiddenTriangle = location.pathname === "/products" || location.pathname === "/myshopping";
+  const isHiddenTriangle = location.pathname.includes("/products") || location.pathname === "/myshopping";
   useVerifyAuth();
 
   useEffect(() => {
@@ -46,7 +46,6 @@ function RoutesComponent() {
           <Route exact path="/update_art" element={<UpdateArt />}/>
         </Route>
       </Routes>
-      {/* <div className="rectangleBg"></div> */}
       {isHiddenTriangle && <div className="triangle-pc"></div>}
     </main>
   );

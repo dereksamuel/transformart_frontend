@@ -290,21 +290,24 @@ function Categories() {
               <div className="CategoriesArray" key={categoriesProductsItem.category?.id || indexCP}>
                 <Title
                   className="SubTitle TitleEachCategory"
-                >{categoriesProductsItem.category?.name} <Button
-                    className="ButtonSecondaryClick"
-                  > <p>Ver más</p> <EyeIcon /> </Button></Title>
+                >{categoriesProductsItem.category?.name} {[...categoriesProductsItem.products].length > 3 && (
+                    <Button
+                      className="ButtonSecondaryClick"
+                      onClick={() => onSeeMore(categoriesProductsItem.categoriesProductId)}
+                    > <p>Ver más</p> <EyeIcon /> </Button>
+                  )}</Title>
                 <div className="CategoriesGrid">
                   {
                     [...categoriesProductsItem.products].map((product, indexProduct) => (
-                      ((indexProduct + 1) <= 4 && product) &&
+                      ((indexProduct + 1) <= 3 && product) &&
                         <ProductItem key={product.id} product={product} />
                     ))
                   }
                 </div>
                 {
-                  [...categoriesProductsItem.products].length > 4 && (
+                  [...categoriesProductsItem.products].length > 3 && (
                     <Button
-                      className="PrimaryWave ButtonSecondaryClick"
+                      className="PrimaryWave ButtonSecondaryClick SeeMoreMobile"
                       onClick={() => onSeeMore(categoriesProductsItem.categoriesProductId)}
                     >
                       <span>Ver más</span>
