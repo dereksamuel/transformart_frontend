@@ -56,3 +56,7 @@ button.ButtonSecondaryClick.PrimaryWave.Icon {
 button.Icon span {
   margin-left: 1rem;
 }
+
+.PigDonePC {
+  display: none;
+}

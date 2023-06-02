@@ -51,6 +51,7 @@ function Login() {
           onClick={onHideAlert}
         />
       }
+      <div className="LabelMain"></div>
       <div className="FormLogin">
         <IconBanner className="IconBanner logoIcon">
           <img src={logoIcon} alt="logoIcon" />
