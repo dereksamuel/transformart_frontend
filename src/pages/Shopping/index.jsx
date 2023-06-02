@@ -14,6 +14,7 @@ import { setLocalStorage } from "../../utils/localStorage";
 
 import "../Categories/styles.css";
 import "./styles.css";
+import "./shopping-media-queries.css";
 
 function Shopping() {
   const {
@@ -49,11 +50,25 @@ function Shopping() {
     setLocalStorage("products", productsCopy);
   };
 
+  const totalProductsCount = (products && products.length) ? products.reduce((acc, current) => acc + current.count, 0) : 0;
+
   return (
     <div className="Shopping page">
       <Title className="SubTitle TitleButterFly" isTitle={false}>
         <img src={srcLogoIcon} alt="srcLogoIcon" className="Categories-srcLogoIcon" />
         <span>Mis compras</span>
+      </Title>
+      <Title className="SubTitle TitleButterFly TitleButterFlyPC" isTitle={false}>
+        <img src={srcLogoIcon} alt="srcLogoIcon" className="Categories-srcLogoIcon" />
+        <p>Mis compras <span className="descPCTB">(Tienes {totalProductsCount} producto{`${totalProductsCount !== 1 ? "s" : ""}`})</span></p>
+        <Link to={{
+          pathname: "/resume"
+        }} className="link-without-styles">
+          <Button
+            disabled={!products || !products.length}
+            className={"PrimaryWave ProductButton"}
+          >Vamos a comprar</Button>
+        </Link>
       </Title>
       {
         (products && products.length) ? (

@@ -17,7 +17,7 @@ import { useVerifyAuth } from "../hooks/useVerifyAuth";
 
 function RoutesComponent() {
   const location = useLocation();
-  const isHiddenTriangle = location.pathname === "/products";
+  const isHiddenTriangle = location.pathname === "/products" || location.pathname === "/myshopping";
   useVerifyAuth();
 
   useEffect(() => {

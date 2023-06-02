@@ -1,0 +1,35 @@
+@media screen and (min-width: 860px) {
+  .Shopping .ZoneOfButton, .Shopping .TitleButterFly {
+    display: none;
+  }
+
+  .Shopping .CategoriesGrid {
+    max-width: 69.75rem;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 1rem;
+  }
+
+  .Shopping .CategoriesGrid section {
+    max-width: 12.5625rem;
+  }
+
+  .Shopping .TitleButterFly.TitleButterFlyPC {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 69.75rem;
+    margin: 0 auto;
+    padding-left: 1rem;
+  }
+
+  .TitleButterFly.TitleButterFlyPC .descPCTB {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18px;
+
+    color: var(--color-text);
+  }
+}

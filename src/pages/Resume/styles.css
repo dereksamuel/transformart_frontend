@@ -23,6 +23,8 @@ p.ProductPrice {
 }
 
 p.TotalPrice {
+  position: relative;
+  z-index: 8;
   display: block;
   text-align: center;
 

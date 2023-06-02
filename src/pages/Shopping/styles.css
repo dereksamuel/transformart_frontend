@@ -9,6 +9,10 @@
   margin-top: -0.25rem;
 }
 
+.TitleButterFlyPC {
+  display: none;
+}
+
 .ZoneButtons svg {
   max-width: 1.5rem;
   width: 100%;

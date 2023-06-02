@@ -33,10 +33,20 @@
     /* flex: 1 auto 300px; */
   }
 
+  div.CategoriesGrid {
+    padding-top: 0;
+  }
+
+  .ButtonPcContainer a {
+    width: fit-content;
+    display: block;
+  }
+
   .TitleEachCategory {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-left: 0;
   }
   
   div.CategoriesGrid {
