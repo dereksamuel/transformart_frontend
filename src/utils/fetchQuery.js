@@ -1,5 +1,5 @@
 const fetchQuery = async (query, headers) => {
-  const URL = "http://localhost:4001/api/v1/gql";
+  const URL = "https://transformartbackend-production.up.railway.app/api/v1/gql";
   const headerToken = localStorage.getItem("headerToken");
   const headersFinal = headers || {};
   let state = {
