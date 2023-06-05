@@ -95,10 +95,10 @@
 
   .Dots {
     position: relative;
-    width: 28pt;
-    height: 28pt;
+    width: 60px;
+    height: 40px;
     border-radius: 50%;
-    margin-left: 18pt;
+    margin-left: 18px;
     display: flex;
     align-items: center;
     justify-content: center;

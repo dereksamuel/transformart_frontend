@@ -96,7 +96,7 @@ function Menu() {
             </button>
           </Link> : (
             <>
-              { updateArtLink(true) }
+              {/* { updateArtLink(true) } */}
               <button className="ButtonSecondary" onClick={onLogout}>
                 { renderIcon(state.pathsAction["/register"]) }
                 <span>{state.pathsAction["/register"].name}</span>
@@ -106,7 +106,7 @@ function Menu() {
           )
         }
         {
-          isPc && (
+          (isPc && isAuth) && (
             <button onClick={onShowDots} className="Dots button-without-styles">
               <DotsHorizontalIcon />
             </button>

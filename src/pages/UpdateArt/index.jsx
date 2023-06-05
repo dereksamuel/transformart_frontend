@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 
 import { UpdateartUI } from "./UpdateArtUI";
 import { ModalRenders } from "../../components/ModalRenders";
@@ -30,7 +32,9 @@ function UpdateArt() {
     instagramUrlProduct: "",
     facebookUrlProduct: ""
   });
+  const navigate = useNavigate();
   const categoriesProductsArray = useCP();
+  const isAuth = useSelector((stateLocal) => stateLocal.authenticate.isAuth);
 
   const onToggleModalCreateCategory = () => {
     setState({
@@ -126,6 +130,14 @@ function UpdateArt() {
 
     onToggleOverlay?.();
   };
+
+  useEffect(() => {
+    if (!isAuth) {
+      navigate({
+        pathname: "/"
+      });
+    }
+  }, [isAuth]);
 
   const toModalRenders = {
     state,
