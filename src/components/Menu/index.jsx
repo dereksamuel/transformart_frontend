@@ -115,15 +115,15 @@ function Menu() {
         {
           (state.showDots && isPc) && (
             <div className="DotsContainer" onClick={(event) => event.stopPropagation()}>
-              <Link to={{ pathname: state.pathsAction["/my_own_art"].to }} className={
+              {/* <Link to={{ pathname: state.pathsAction["/my_own_art"].to }} className={
                 location.pathname === state.pathsAction["/my_own_art"].to ?
                   "Menu-link" :
                   "Menu-link-empty"
               }>
                 { renderIcon(state.pathsAction["/my_own_art"]) }
-                <span>{state.pathsAction["/my_own_art"].name}</span>
-                {/* { pcUnderline(state.pathsAction["/my_own_art"]) } */}
-              </Link>
+                <span>{state.pathsAction["/my_own_art"].name}</span> */}
+              {/* { pcUnderline(state.pathsAction["/my_own_art"]) } */}
+              {/* </Link> */}
               { updateArtLink() }
             </div>
           )

@@ -12,6 +12,7 @@ import { Resume } from "../pages/Resume";
 import { UpdateArt } from "../pages/UpdateArt";
 
 import { PrivateRoute } from "./PrivateRoute";
+import WaveLogin from "../assets/images/pc/WaveLogin.png";
 
 import { useVerifyAuth } from "../hooks/useVerifyAuth";
 import { ResumeWave } from "./ResumeWave";
@@ -48,6 +49,7 @@ function RoutesComponent() {
         </Route>
       </Routes>
       {location.pathname === "/resume" && <div className="wave-pc"><ResumeWave /></div>}
+      {location.pathname === "/login" && <img src={WaveLogin} alt="WaveLogin" className="wave-login-pc" />}
       {isHiddenTriangle && <div className="triangle-pc"></div>}
     </main>
   );

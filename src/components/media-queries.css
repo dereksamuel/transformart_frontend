@@ -110,8 +110,8 @@
   .DotsContainer {
     position: absolute;
     z-index: 5;
-    bottom: -74px;
-    height: 90px;
+    bottom: -45px;
+    height: 60px;
     overflow-y: auto;
     overflow-x: hidden;
     right: 30px;
@@ -258,7 +258,7 @@
     display: none;
   }
 
-  .wave-pc {
+  .wave-pc, .wave-login-pc {
     position: fixed;
     inset: 0;
     z-index: -2;
@@ -266,5 +266,11 @@
     display: block;
     width: 100%;
     height: fit-content;
+  }
+
+  .wave-login-pc {
+    top: 83.7px;
+    bottom: 0;
+    height: 100vh;
   }
 }

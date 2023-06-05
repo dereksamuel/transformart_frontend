@@ -1,0 +1,36 @@
+@media screen and (min-width: 860px) {
+  .Login .WaveFlowHeader {
+    display: none;
+  }
+
+  .Login {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+
+  .FormLogin {
+    margin: 0;
+  }
+
+  .LabelMain {
+    margin-right: 7vw;
+    position: relative;
+  }
+
+  .LabelMain h3 {
+    position: relative;
+    z-index: 1;
+  }
+
+  .LabelMain img {
+    position: absolute;
+    left: -180px;
+    top: -25px;
+    right: 0;
+    bottom: 0;
+    display: block;
+  }
+}

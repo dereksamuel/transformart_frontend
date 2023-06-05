@@ -48,14 +48,14 @@ function knowInformationPath(pathname) {
       typeButton: true,
       to: "/login"
     },
-    "/my_own_art": {
-      name: "Crea tu obra de arte",
-      description: "En esta sección puedes crear tu arte favorito con nuestra IA llamada Piggy",
-      img: <img src={srcLoginInfo} alt="srcLoginInfo" className="imgInformative srcLoginInfo sectionTwo" />,
-      icon: <LoginIcon />,
-      typeButton: true,
-      to: "/my_own_art"
-    }
+    // "/my_own_art": {
+    //   name: "Crea tu obra de arte",
+    //   description: "En esta sección puedes crear tu arte favorito con nuestra IA llamada Piggy",
+    //   img: <img src={srcLoginInfo} alt="srcLoginInfo" className="imgInformative srcLoginInfo sectionTwo" />,
+    //   icon: <LoginIcon />,
+    //   typeButton: true,
+    //   to: "/my_own_art"
+    // }
   };
 
   pathsAction["/register"] = {

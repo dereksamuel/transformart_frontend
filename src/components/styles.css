@@ -178,6 +178,6 @@ li.SelectedSizeBanner {
   background: var(--color-gray-dark);
 }
 
-.wave-pc {
+.wave-pc, .wave-login-pc {
   display: none;
 }
