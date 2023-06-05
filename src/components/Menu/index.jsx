@@ -96,7 +96,7 @@ function Menu() {
             </button>
           </Link> : (
             <>
-              {/* { updateArtLink(true) } */}
+              { !isPc && updateArtLink(true) }
               <button className="ButtonSecondary" onClick={onLogout}>
                 { renderIcon(state.pathsAction["/register"]) }
                 <span>{state.pathsAction["/register"].name}</span>

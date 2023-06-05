@@ -181,3 +181,7 @@ li.SelectedSizeBanner {
 .wave-pc, .wave-login-pc {
   display: none;
 }
+
+main.blurUpdate {
+  filter: blur(15px);
+}

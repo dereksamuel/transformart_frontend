@@ -132,6 +132,14 @@ function UpdateartUI({
       <Title className="SubTitle TitleButterFly" isTitle={false}>
         <img src={srcLogoIcon} alt="srcLogoIcon" className="Categories-srcLogoIcon" />
         <span>Actualizar arte</span>
+        <Button
+          onClick={() => state.isModeCategory ? onToggleModalCreateCategory() : onToggleModalCreateProduct()}
+          className={"PrimaryWave ProductButton PCBtnUpdate"}
+        >
+          {
+            `Crear ${state.isModeCategory ? "categoria" : "producto"}`
+          }
+        </Button>
       </Title>
       { Children }
       {

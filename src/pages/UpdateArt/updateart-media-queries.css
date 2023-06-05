@@ -1,0 +1,48 @@
+@media screen and (min-width: 860px) {
+  .AcordionContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 4.0625rem;
+  }
+
+  .AcordionContainer, ul.ContainerCategoriesSticky, .UpdateArt .TitleButterFly, .ContainerProducts {
+    max-width: 1140px;
+    margin: 0 auto;
+  }
+
+  .UpdateArt .ZoneOfButton {
+    display: none;
+  }
+
+  .UpdateArt .AcordionTitle {
+    font-weight: 700;
+    font-size: 15px;
+  }
+
+  button.PCBtnUpdate {
+    display: block;
+  }
+
+  .UpdateArt .TitleButterFly {
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .UpdateArt .CategoriesGrid {
+    grid-template-rows: repeat(auto-fill, 12.5rem);
+  }
+
+  .UpdateArt .CategoriesGrid > div {
+    height: 100%;
+    max-height: 100%;
+  }
+
+  .UpdateArt a.ProductItem img.ImageOffer {
+    height: calc(100% - 43px);
+  }
+
+  .UpdateArt .CategoriesGrid > section {
+    height: 100%;
+  }
+}
+

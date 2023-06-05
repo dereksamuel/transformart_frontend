@@ -9,6 +9,7 @@ import { useCP } from "../../hooks/useCP";
 
 import "../Categories/styles.css";
 import "./styles.css";
+import "./updateart-media-queries.css";
 
 function UpdateArt() {
   const [state, setState] = useState({

@@ -119,7 +119,7 @@ function ModalSaveProducts({ onCloseModalSaveProducts, cpItemToCreateProduct, ca
         ({
           onToggleOverlay
         }) => (
-          <div className="Modal CategorySaveModal">
+          <div className="Modal CategorySaveModal ProductUpgrade">
             <div className="ModalContent">
               <header className="HeaderModal">
                 <button

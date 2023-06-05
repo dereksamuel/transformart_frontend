@@ -155,7 +155,7 @@ function SaveProduct({
         ({
           onToggleOverlay
         }) => (
-          <div className="Modal">
+          <div className="Modal ProductUpgradePC">
             <div className="ModalContent">
               <header className="HeaderModal">
                 <button
@@ -302,8 +302,8 @@ function SaveProduct({
                     defaultValue={offer}
                     required
                   />
-                  <p className="TitleContainer">Links de referidos:</p>
-                  <div className="LinksContainer">
+                  <p className="TitleContainer isPCContainer">Links de referidos:</p>
+                  <div className="LinksContainer isPCContainer">
                     <Banner>
                       <LinkIcon className="Icon" />
                       <input
