@@ -56,7 +56,9 @@ function Products({
             <div className="CategoriesGrid">
               {
                 products.map((product) => (
-                  <ProductItem key={product.id} product={product}>
+                  <section key={product.id}>
+                    <ProductItem product={product}>
+                    </ProductItem>
                     <div className="ContainerButtonProducts">
                       <Button
                         className="ButtonToggleSize-danger"
@@ -67,7 +69,7 @@ function Products({
                         onClick={() => handleEditProduct(product.id)}
                       ><PencilIcon /></Button>
                     </div>
-                  </ProductItem>
+                  </section>
                 ))
               }
             </div>
