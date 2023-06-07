@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { PlayIcon } from "@heroicons/react/outline";
 import { useNavigate } from "react-router";
 
@@ -6,7 +6,8 @@ import logoSrc from "../../assets/images/mobile/LogoTipo.svg";
 import pigSrc from "../../assets/images/mobile/Pig.svg";
 import instagramIcon from "../../assets/images/mobile/InstagramIcon.svg";
 import facebookIcon from "../../assets/images/mobile/FacebookIcon.svg";
-import tweeterIcon from "../../assets/images/mobile/TweeterIcon.svg";
+import whatsappIcon from "../../assets/images/mobile/WhatsappIcon.svg";
+import welcomeSrc from "../../assets/images/pc/Bienvenido a TransformArt.mp4";
 
 import { Button } from "../../components/Button";
 import { Title } from "../../components/Title";
@@ -15,10 +16,20 @@ import { IconBanner } from "../../components/IconBanner";
 import "./styles.css";
 
 function Home() {
+  const [isHiddenIcon, setIsHiddenIcon] = useState(false);
   const navigate = useNavigate();
 
   const onGoToCategories = () => {
     navigate({ pathname: "/products" });
+  };
+
+  const onPlay = () => {
+    const timer = setTimeout(() => {
+      const $videoWelcome = document.getElementById("videoWelcome");
+      $videoWelcome.play();
+      setIsHiddenIcon(true);
+      clearTimeout(timer);
+    }, 100);
   };
 
   return (
@@ -38,11 +49,11 @@ function Home() {
         </div>
         <div className="BackgroundWave-Container_text">
           <div className="AboutUs">
-            <Title isTitle={false}>Sobre nosotros...</Title>
-            <p>Lorem ipsum es el texto que se usa habitualmente en diseño gráfico en demostraciones de tipografías o de borradores de diseño para probar el diseño visual antes de insertar el texto final.</p>
-            <div className="BackgroundWave-Video_Container">
-              <PlayIcon className="PlayIcon" />
-              <video src="" className="BackgroundWave-Video"></video>
+            <Title isTitle={false}>¿Quiénes somos?</Title>
+            <p>Nos dedicamos a <i>transformar</i> tus obras de arte para darles vida en relieve con un arte que no se consigue en otras partes. Por eso mismo te damos la bienvenida a nuestra página web esperando tus pedidos.</p>
+            <div className="BackgroundWave-Video_Container" onClick={onPlay}>
+              {isHiddenIcon ? null : <PlayIcon className="PlayIcon" />}
+              <video controls={isHiddenIcon} src={welcomeSrc} className="BackgroundWave-Video" id="videoWelcome"></video>
             </div>
           </div>
           <div className="ContactIcons">
@@ -55,21 +66,27 @@ function Home() {
             <div className="ContainerIconsTitle">
               <p className="SubTitleSecondaryContainer centered socialMediaText"><strong className="SubTitleSecondary">Conocenos más en:</strong></p>
               <div className="IconsContainer">
-                <Button className="button-without-styles">
-                  <IconBanner className="IconBanner facebookIcon">
-                    <img src={facebookIcon} alt="facebookIcon" />
-                  </IconBanner>
-                </Button>
-                <Button className="button-without-styles">
-                  <IconBanner className="IconBanner tweeterIcon">
-                    <img src={tweeterIcon} alt="tweeterIcon" />
-                  </IconBanner>
-                </Button>
-                <Button className="button-without-styles">
-                  <IconBanner className="IconBanner instagramIcon">
-                    <img src={instagramIcon} alt="instagramIcon" />
-                  </IconBanner>
-                </Button>
+                <a href="https://www.facebook.com/profile.php?id=100076232175404&mibextid=ZbWKwL" target="__blank__">
+                  <Button className="button-without-styles">
+                    <IconBanner className="IconBanner facebookIcon">
+                      <img src={facebookIcon} alt="facebookIcon" />
+                    </IconBanner>
+                  </Button>
+                </a>
+                <a href="https://wa.me/573156979296" target="__blank__">
+                  <Button className="button-without-styles">
+                    <IconBanner className="IconBanner tweeterIcon">
+                      <img src={whatsappIcon} alt="whatsappIcon" />
+                    </IconBanner>
+                  </Button>
+                </a>
+                <a href="https://instagram.com/transformart_belleza_en_arte?igshid=NTc4MTIwNjQ2YQ==" target="__blank__">
+                  <Button className="button-without-styles">
+                    <IconBanner className="IconBanner instagramIcon">
+                      <img src={instagramIcon} alt="instagramIcon" />
+                    </IconBanner>
+                  </Button>
+                </a>
               </div>
             </div>
           </div>
