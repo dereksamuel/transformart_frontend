@@ -100,8 +100,8 @@ function SaveProduct({
       tweeterLink: formData.get("tweeterUrlModel"),
       facebookLink: formData.get("facebookUrlModel"),
       instagramLink: formData.get("instagramUrlModel"),
-      srcVideo: sources?.srcVideo || srcVideo,
-      srcImage: sources?.srcImage || srcImage,
+      srcVideo: sources.srcVideo || srcVideo,
+      srcImage: sources.srcImage || srcImage,
     };
 
     try {

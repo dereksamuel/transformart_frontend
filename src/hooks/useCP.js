@@ -78,8 +78,10 @@ const useCP = (categoryId) => {
   }, []);
 
   useEffect(() => {
-    if (categoriesProducts?.length || categories?.length || products?.length) {
-      onDoCategoriesProducts();
+    if (categoriesProducts, categories, products) {
+      if (categoriesProducts.length || categories.length || products.length) {
+        onDoCategoriesProducts();
+      }
     }
   }, [categoriesProducts, categories, products]);
 

@@ -53,7 +53,7 @@ function UpdateartUI({
                 categoriesProductsItem.category && (
                   <Acordion>
                     <div className="AcordionTitle">
-                      <p>{ categoriesProductsItem.category?.name }</p>
+                      <p>{ categoriesProductsItem.category ? categoriesProductsItem.category.name : "" }</p>
                       <div className="buttonsActions">
                         <button
                           aria-label="Delete Category Button"

@@ -287,10 +287,10 @@ function Categories() {
         <ul className="CategoriesArrayContainer">
           {
             state.categoriesProductsArray.length ? state.categoriesProductsArray.map((categoriesProductsItem, indexCP) => (
-              <div className="CategoriesArray" key={categoriesProductsItem.category?.id || indexCP}>
+              <div className="CategoriesArray" key={(categoriesProductsItem.category && categoriesProductsItem.category.id) || indexCP}>
                 <Title
                   className="SubTitle TitleEachCategory"
-                >{categoriesProductsItem.category?.name} {[...categoriesProductsItem.products].length > 3 && (
+                >{categoriesProductsItem.category ? categoriesProductsItem.category.name : ""} {[...categoriesProductsItem.products].length > 3 && (
                     <Button
                       className="ButtonSecondaryClick"
                       onClick={() => onSeeMore(categoriesProductsItem.categoriesProductId)}

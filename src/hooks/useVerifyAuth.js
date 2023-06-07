@@ -26,7 +26,6 @@ const useVerifyAuth = () => {
         type: SET_SUBSCRIBER,
         payload: auth.onIdTokenChanged((user) => {
           // si quieres que se unsubscribe con x = askaskla x();
-          console.log(user);
           if (!user) {
             if (location.pathname === "/update_art") {
               navigate({ pathname: "/login" });

@@ -29,7 +29,7 @@ function ContactUs() {
   const finalMessage = `
     Hola, quisiera pagar por estos productos:
     ${
-      (products && products.length) && products?.map((product) => {
+      (products && products.length) && products.map((product) => {
         return `
       - ${product.name}
         | Precio: $${product.priceText}

@@ -96,7 +96,7 @@ function UpdateArt() {
   const onToggleModalDeleteProduct = (product, onToggleOverlay) => {
     setState({
       ...state,
-      productId: product?.id,
+      productId: product ? product.id : null,
       showModalDelete: product
     });
 
@@ -119,7 +119,7 @@ function UpdateArt() {
       cpItemToCreateProduct: null
     });
 
-    onToggleOverlay?.();
+    if (onToggleOverlay) onToggleOverlay();
   };
 
   const onCloseModalSaveCategory = (onToggleOverlay) => {
@@ -129,7 +129,7 @@ function UpdateArt() {
       category: null
     });
 
-    onToggleOverlay?.();
+    if (onToggleOverlay) onToggleOverlay();
   };
 
   useEffect(() => {

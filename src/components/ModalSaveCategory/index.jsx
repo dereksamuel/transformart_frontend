@@ -96,7 +96,7 @@ function ModalSaveCategory({
                     id="categoryName"
                     className="Input InputModalSaveCategory"
                     placeholder="Nombre de la categoria"
-                    defaultValue={updateData?.name || ""}
+                    defaultValue={updateData ? updateData.name : ""}
                     required
                   />
                 </div>

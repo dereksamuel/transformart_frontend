@@ -11,10 +11,13 @@ function useModel({ initialValue = "", domEl }) {
   };
 
   useEffect(() => {
-    document.querySelector(domEl)?.addEventListener("change", onChangeModel);
+    if (document.querySelector(domEl))
+      document.querySelector(domEl).addEventListener("change", onChangeModel);
 
     return () => {
-      return document.querySelector(domEl)?.removeEventListener("change", onChangeModel);
+      if (document.querySelector(domEl)) {
+        return document.querySelector(domEl).removeEventListener("change", onChangeModel);
+      }
     };
   }, []);
 
