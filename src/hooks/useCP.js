@@ -35,7 +35,10 @@ const useCP = (categoryId) => {
 
     for (const categoriesProduct of categoriesProducts) {
       let byCategories = categoriesProduct.categoriesId;
-      const product = products.find((product) => product.id === categoriesProduct.productsId);
+      let product;
+      if (products) {
+        product = products.find((product) => product.id === categoriesProduct.productsId);
+      }
 
       if (!renderCategoriesProduct[byCategories]) {
         renderCategoriesProduct[byCategories] = {
@@ -78,7 +81,7 @@ const useCP = (categoryId) => {
   }, []);
 
   useEffect(() => {
-    if (categoriesProducts, categories, products) {
+    if (categoriesProducts || categories || products) {
       if (categoriesProducts.length || categories.length || products.length) {
         onDoCategoriesProducts();
       }

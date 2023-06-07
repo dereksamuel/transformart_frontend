@@ -263,13 +263,10 @@ function Product() {
         </Title>
         <ul className="ContainerLinks">
           <li className="ContainerLink">
-            <a href={product.facebookLink} target="_blank" className="Link" rel="noreferrer">facebook</a>
+            <a href={product.facebookLink} target="_blank" className="Link" rel="noopener noreferrer">facebook</a>
           </li>
           <li className="ContainerLink">
-            <a href={product.tweeterLink} target="_blank" className="Link" rel="noreferrer">tweeter</a>
-          </li>
-          <li className="ContainerLink">
-            <a href={product.instagramLink} target="_blank" className="Link" rel="noreferrer">instagram</a>
+            <a href={product.instagramLink} target="_blank" className="Link" rel="noopener noreferrer">instagram</a>
           </li>
         </ul>
         <div className="ButtonPcContainer">

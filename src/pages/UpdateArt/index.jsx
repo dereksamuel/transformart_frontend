@@ -28,7 +28,6 @@ function UpdateArt() {
     nameProduct: "",
     priceProduct: 0,
     offerProduct: 0,
-    tweeterUrlProduct: "",
     descriptionProduct: "",
     instagramUrlProduct: "",
     facebookUrlProduct: ""

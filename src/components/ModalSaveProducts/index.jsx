@@ -103,14 +103,19 @@ function ModalSaveProducts({ onCloseModalSaveProducts, cpItemToCreateProduct, ca
 
   useEffect(() => {
     products.map((product) => {
-      if (isInCP(product.id))
+      if (isInCP(product.id)) {
         newSetter.add(isInCP(product.id).id);
+      }
 
       setState({
         ...state,
         selectedSetter: newSetter
       });
+
+      return product;
     });
+
+    return () => {};
   }, []);
 
   return (

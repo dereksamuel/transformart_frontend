@@ -29,7 +29,7 @@ function ContactUs() {
   const finalMessage = `
     Hola, quisiera pagar por estos productos:
     ${
-      (products && products.length) && products.map((product) => {
+      (products && products.length) ? products.map((product) => {
         return `
       - ${product.name}
         | Precio: $${product.priceText}
@@ -37,13 +37,13 @@ function ContactUs() {
         | Tamaño: ${product.selectedSize}
         | Oferta: ${product.offer}%
         `;
-      }).join("") || ""
+      }).join("") : ""
     }
     *Total a pagar: $${(products && products.length) ? totalToPay(products) : ""}*
   `;
 
   const onOpenWhatsappLink = () => {
-    window.open("https://api.whatsapp.com/send" + `?phone=${number}&text=${encodeURIComponent(finalMessage)}`);
+    window.open(`https://api.whatsapp.com/send?phone=${number}&text=${encodeURIComponent(finalMessage)}`);
     navigate({
       pathname: "/"
     });

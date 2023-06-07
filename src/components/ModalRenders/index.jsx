@@ -47,7 +47,6 @@ function ModalRenders({
             name={state.nameProduct}
             price={state.priceProduct && Number(state.priceProduct)}
             offer={state.offerProduct && Number(state.offerProduct)}
-            tweeterUrl={state.tweeterUrlProduct}
             description={state.descriptionProduct}
             instagramUrl={state.instagramUrlProduct}
             facebookUrl={state.facebookUrlProduct}

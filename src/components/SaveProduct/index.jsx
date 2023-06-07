@@ -31,7 +31,6 @@ function SaveProduct({
   name,
   price,
   offer,
-  tweeterUrl,
   description,
   instagramUrl,
   facebookUrl
@@ -68,7 +67,7 @@ function SaveProduct({
       return;
     }
 
-    if (videoModel, imageModel)
+    if (videoModel && imageModel)
       await dispatch(uploadFiles(videoModel, imageModel));
     else {
       onSaveData();
@@ -97,7 +96,6 @@ function SaveProduct({
       price: Number(formData.get("priceModel")),
       description: formData.get("descriptionModel"),
       offer: Number(formData.get("offerModel")),
-      tweeterLink: formData.get("tweeterUrlModel"),
       facebookLink: formData.get("facebookUrlModel"),
       instagramLink: formData.get("instagramUrlModel"),
       srcVideo: sources.srcVideo || srcVideo,
@@ -322,15 +320,6 @@ function SaveProduct({
                         defaultValue={instagramUrl}
                         placeholder="url de Instagram" />
                     </Banner>
-                    <Banner>
-                      <LinkIcon className="Icon" />
-                      <input
-                        name="tweeterUrlModel"
-                        required
-                        type="url"
-                        defaultValue={tweeterUrl}
-                        placeholder="url de Tweeter" />
-                    </Banner>
                   </div>
                   <footer className="FooterModal">
                     <Button
@@ -363,7 +352,6 @@ SaveProduct.propTypes = {
   description: PropTypes.string,
   links: PropTypes.array,
   relationCategories: PropTypes.array,
-  tweeterUrl: PropTypes.string,
   facebookUrl: PropTypes.string,
   instagramUrl: PropTypes.string,
   categoriesProductId: PropTypes.number,

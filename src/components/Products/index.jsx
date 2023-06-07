@@ -40,7 +40,6 @@ function Products({
         nameProduct: product.name,
         priceProduct: product.price,
         offerProduct: product.offer,
-        tweeterUrlProduct: product.tweeterLink,
         descriptionProduct: product.description,
         instagramUrlProduct: product.instagramLink,
         facebookUrlProduct: product.facebookLink

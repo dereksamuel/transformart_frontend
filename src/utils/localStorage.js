@@ -3,7 +3,7 @@ const getLocalStorage = (key) => {
     return JSON.parse(JSON.stringify(localStorage.getItem(key)));
   } catch (error) {
     console.error(error);
-    throw null;
+    return null;
   }
 };
 

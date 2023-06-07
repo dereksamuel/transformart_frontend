@@ -15,7 +15,6 @@ const expectedValues = `
   offer
   facebookLink
   instagramLink
-  tweeterLink
 `;
 
 const getProducts = () => async (dispatch) => {
@@ -135,7 +134,6 @@ const createProduct = (data) => async (dispatch) => {
         srcVideo: "${data.srcVideo}"
         facebookLink: "${data.facebookLink}"
         instagramLink: "${data.instagramLink}"
-        tweeterLink: "${data.tweeterLink}"
       ) {
         id
         name
@@ -146,7 +144,6 @@ const createProduct = (data) => async (dispatch) => {
         srcVideo
         facebookLink
         instagramLink
-        tweeterLink
       }
     }
   `);
@@ -173,7 +170,6 @@ const updateProduct = ({ id, data }) => async (dispatch) => {
         srcVideo: "${data.srcVideo}"
         facebookLink: "${data.facebookLink}"
         instagramLink: "${data.instagramLink}"
-        tweeterLink: "${data.tweeterLink}"
       ) {
         id
         name
@@ -184,7 +180,6 @@ const updateProduct = ({ id, data }) => async (dispatch) => {
         srcVideo
         facebookLink
         instagramLink
-        tweeterLink
       }
     }
   `);

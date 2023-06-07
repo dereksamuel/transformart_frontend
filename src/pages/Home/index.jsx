@@ -66,21 +66,21 @@ function Home() {
             <div className="ContainerIconsTitle">
               <p className="SubTitleSecondaryContainer centered socialMediaText"><strong className="SubTitleSecondary">Conocenos más en:</strong></p>
               <div className="IconsContainer">
-                <a href="https://www.facebook.com/profile.php?id=100076232175404&mibextid=ZbWKwL" target="__blank__">
+                <a href="https://www.facebook.com/profile.php?id=100076232175404&mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer">
                   <Button className="button-without-styles">
                     <IconBanner className="IconBanner facebookIcon">
                       <img src={facebookIcon} alt="facebookIcon" />
                     </IconBanner>
                   </Button>
                 </a>
-                <a href="https://wa.me/573156979296" target="__blank__">
+                <a href="https://wa.me/573156979296" target="_blank" rel="noopener noreferrer">
                   <Button className="button-without-styles">
                     <IconBanner className="IconBanner tweeterIcon">
                       <img src={whatsappIcon} alt="whatsappIcon" />
                     </IconBanner>
                   </Button>
                 </a>
-                <a href="https://instagram.com/transformart_belleza_en_arte?igshid=NTc4MTIwNjQ2YQ==" target="__blank__">
+                <a href="https://instagram.com/transformart_belleza_en_arte?igshid=NTc4MTIwNjQ2YQ==" target="_blank" rel="noopener noreferrer">
                   <Button className="button-without-styles">
                     <IconBanner className="IconBanner instagramIcon">
                       <img src={instagramIcon} alt="instagramIcon" />
